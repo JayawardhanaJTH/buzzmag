@@ -60,6 +60,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - **Sidebar Category Card Margins**: Added distinct `margin-bottom: 25px` to `.fl-sidebar-cat-widget` ensuring all 6 category cards have clean vertical breathing room.
   - **Cartoon Placeholder**: Added SVG illustration placeholder at `img/cartoon-placeholder.svg` to eliminate broken image icons before user upload.
   - **Category Overlay Removal**: Removed the dark transparent category badge mask (`.fl-cat-badge`) overlaid across bottom card images and filtered out "Uncategorized" pills from lead posts to ensure clean, unmasked visuals.
+  - **Actionable CI/CD Workflow**: Upgraded `.github/workflows/php.yml` into a fully automated pipeline running composer validation, PHP parallel syntax checks, WordPress theme structure audits, automated zip packaging, artifact upload, and GitHub Releases on tags. Added root `composer.json` with `php-parallel-lint`. Updated `build-zip.ps1` to exclude `.github/`, `vendor/`, and `composer.*` from distribution zips.
 
 ### Fixed & Security
 - **Security**: Added nonce and integer validation to post views AJAX counter (`buzzmag_setpostviews`).

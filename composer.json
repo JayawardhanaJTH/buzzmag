@@ -1,0 +1,30 @@
+{
+    "name": "tiranjayawardhana/buzzmag",
+    "description": "Modern 3D Card Sri Lankan News Portal WordPress Theme (Ada Derana Desktop + Unusuma.lk Mobile)",
+    "type": "wordpress-theme",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Tiran Jayawardhana",
+            "email": "jayawardhanatiran@gmail.com",
+            "role": "Rebrander & Maintainer"
+        }
+    ],
+    "homepage": "https://todaynews.lk/",
+    "support": {
+        "email": "jayawardhanatiran@gmail.com"
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "php-parallel-lint/php-parallel-lint": "^1.4"
+    },
+    "scripts": {
+        "lint": "parallel-lint --exclude vendor --exclude .git --exclude dist .",
+        "test": "@lint"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

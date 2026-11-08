@@ -1,39 +1,88 @@
-name: PHP Composer
+name: Theme CI & Build Package
 
 on:
   push:
-    branches: [ "V2.1" ]
+    branches: [ "V2.1", "main", "master" ]
+    tags: [ "v*", "V*" ]
   pull_request:
-    branches: [ "V2.1" ]
+    branches: [ "V2.1", "main", "master" ]
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build:
-
+  validate-and-build:
+    name: Validate, Lint & Package Theme
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl, json, mbstring, zip
+          tools: composer:v2
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Validate composer.json
+        run: composer validate --no-check-lock --strict
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Cache Composer Dependencies
+        id: composer-cache
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
 
-    # - name: Run test suite
-    #   run: composer run-script test
+      - name: Run PHP Syntax & Parallel Lint
+        run: |
+          echo "Running PHP parallel-lint..."
+          composer run-script lint
+          echo "Running PHP syntax checks (php -l)..."
+          find . -name "*.php" -not -path "./vendor/*" -not -path "./dist/*" -exec php -l {} +
+
+      - name: Validate Theme Structure & Version Integrity
+        run: |
+          echo "Validating WordPress theme structure..."
+          test -f style.css || { echo "Missing style.css"; exit 1; }
+          test -f functions.php || { echo "Missing functions.php"; exit 1; }
+          test -f index.php || { echo "Missing index.php"; exit 1; }
+          test -f screenshot.png || { echo "Missing screenshot.png"; exit 1; }
+          
+          STYLE_VERSION=$(grep -i "Version:" style.css | head -n1 | sed -e 's/.*Version:[[:space:]]*//' | tr -d '\r\n')
+          echo "style.css Version: $STYLE_VERSION"
+          
+          if grep -q "define([[:space:]]*'fl_theme_version'[[:space:]]*,[[:space:]]*'$STYLE_VERSION')" functions.php; then
+            echo "Version consistency check PASSED ($STYLE_VERSION)"
+          else
+            echo "WARNING: functions.php fl_theme_version does not strictly match style.css version ($STYLE_VERSION)"
+          fi
+
+      - name: Build Distributable Theme Zip
+        run: |
+          pwsh -File ./build-zip.ps1 -Slug buzzmag
+          ls -la dist/
+
+      - name: Upload Theme Zip as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: buzzmag-theme-zip
+          path: dist/*.zip
+          retention-days: 30
+
+      - name: Create GitHub Release on Tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false

@@ -32,8 +32,9 @@ $styleHeader = (Get-Content (Join-Path $root 'style.css') -TotalCount 20) -join 
 $version = if ($styleHeader -match 'Version:\s*([^\r\n]+)') { $Matches[1].Trim() } else { 'dev' }
 
 # Dev-only paths to exclude (relative, forward slashes). Folders end with '/'.
-$excludeDirs  = @('.git/', '.vscode/', '.idea/', 'dist/', 'node_modules/', 'docs/')
+$excludeDirs  = @('.git/', '.github/', '.vscode/', '.idea/', 'dist/', 'node_modules/', 'vendor/', 'docs/')
 $excludeFiles = @('build-zip.ps1', '.gitignore', '.gitattributes', '.editorconfig',
+                  'composer.json', 'composer.lock',
                   'PROJECT_MEMORY.md', 'COMPONENT_MAP.md', 'DEPLOYMENT.md', 'CHANGELOG.md',
                   'Thumbs.db', '.DS_Store', 'desktop.ini')
 
