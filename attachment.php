@@ -25,7 +25,7 @@
 						</div>
 					</article>
 				</div>
-			</article>
+			</div>
 		</div>
 	</div>
 </div>

@@ -3,7 +3,7 @@
 // Constants
 	define('fl_theme_name','BuzzMag');
 	define('fl_theme_path', get_template_directory_uri());
-    define('fl_theme_version', '2.1');
+    define('fl_theme_version', '3.0.0');
 
 // Content Width
 if ( ! isset( $content_width ) ) {
@@ -85,6 +85,8 @@ function buzzmag_addons_scripts() {
     wp_enqueue_style( 'buzzmag-google-fonts', buzzmag_google_fonts(), array(), null );
     // BuzzMag Style
 	wp_enqueue_style( 'buzzmag-style', get_stylesheet_uri() );
+    // 3D Components & Rebranded Layout Style
+    wp_enqueue_style( 'buzzmag-3d-style', fl_theme_path . '/css/3d-components.css', array( 'buzzmag-style' ), fl_theme_version );
     // JS
     wp_enqueue_script( 'jquery-fitvids', fl_theme_path . '/js/fitvids.js', array('jquery'), '1.1', true );
     // Masonry
@@ -107,6 +109,7 @@ function buzzmag_addons_scripts() {
     global $wp_query;
     wp_localize_script( 'buzzmag-script', 'buzzmag', array(
         'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+        'nonce'      => wp_create_nonce( 'buzzmag_ajax_nonce' ),
         'query_vars' => json_encode( $wp_query->query ),
         'thumb_size' => buzzmag_layout_settings()['thumb_size'],
         'ajax_end'   => '<div class="fl-ajax-end">'. esc_html__('Sorry, No More Posts to Load!', 'buzzmag') .'</div>',
@@ -174,7 +177,6 @@ function buzzmag_sidebars() {
         'name'         => esc_html__( 'WooCommerce Sidebar', 'buzzmag' ),
         'id'           => 'buzzmag_woocommerce_sidebar',
         'description'  => esc_html__( 'WooCommerce Sidebar', 'buzzmag' ),
-        'description'  => esc_html__( 'Footer Widget 3', 'buzzmag' ),
         'before_widget'=> '<div id="%1$s" class="fl-widget clearfix %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3 class="fl-widget-title">',
@@ -195,6 +197,18 @@ include_once( get_template_directory() . '/functions/category-options.php' );
 
 // FlatLayers Customizer
 include_once( get_template_directory() . '/functions/customizer.php' );
+
+// Lead Post Meta Box & Helpers
+require_once( get_template_directory() . '/functions/lead-post.php' );
+
+// Sri Lankan Utilities (Calendar, Rahu Kalaya, Subha/Maru Dishawa, Cartoon, WhatsApp)
+require_once( get_template_directory() . '/functions/sri-lankan-utilities.php' );
+
+// Rebranded 3D News Loops & Category Cards
+require_once( get_template_directory() . '/functions/news-loops.php' );
+
+// Single Post Under-Post & Sidebar Modules
+require_once( get_template_directory() . '/includes/single-post-widgets.php' );
 
 
 // WooCommerce
@@ -221,53 +235,56 @@ function buzzmag_google_fonts() {
 
 // Post Views Counter Ajax
 function buzzmag_setpostviews() {
+    $postID = isset( $_POST['postID'] ) ? absint( $_POST['postID'] ) : 0;
+    if ( ! $postID ) {
+        wp_die();
+    }
 
-    $postID = $_POST['postID'];
+    // Check if user is not administrator, if so execute code block within
+    if ( ! current_user_can( 'administrator' ) ) {
+        $user_ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '127.0.0.1';
+        $key     = 'pv_' . md5( $user_ip . 'x' . $postID );
+        $visited = get_transient( $key );
 
-    //check if user not administrator, if so execute code block within
-    if ( !current_user_can('administrator') ) {
+        if ( false === $visited ) {
+            // Store unique key for 60 seconds
+            set_transient( $key, 1, 60 );
 
-        $user_ip = $_SERVER['REMOTE_ADDR']; //retrieve the current IP address of the visitor
-        $key = $user_ip . 'x' . $postID; //combine post ID & IP to form unique key
-        $value = array($user_ip, $postID); // store post ID & IP as separate values (see note)
-        $visited = get_transient($key); //get transient and store in variable
-
-        //check to see if the Post ID/IP ($key) address is currently stored as a transient
-        if ( false === ( $visited ) ) {
-
-            //store the unique key, Post ID & IP address for one minute if it does not exist
-            set_transient( $key, $value, 60 );
-
-            // now run post views function
             $count_key = 'post_views_count';
-            $count = get_post_meta($postID, $count_key, true);
-            if ( $count == '' ) {
-                $count = 0;
-                delete_post_meta($postID, $count_key);
-                add_post_meta($postID, $count_key, '0');
+            $count     = get_post_meta( $postID, $count_key, true );
+            if ( '' === $count ) {
+                $count = 1;
+                add_post_meta( $postID, $count_key, '1' );
             } else {
-                $count++;
-                update_post_meta($postID, $count_key, $count);
+                $count = (int) $count + 1;
+                update_post_meta( $postID, $count_key, $count );
             }
         }
     }
+    wp_die();
 }
 add_action( 'wp_ajax_buzzmag_setpostviews', 'buzzmag_setpostviews' );
 add_action( 'wp_ajax_nopriv_buzzmag_setpostviews', 'buzzmag_setpostviews' );
 
-function buzzmag_getpostviews($postID){
-    $count_key = 'post_views_count';
-    $count = get_post_meta($postID, $count_key, true);
-    if( $count == '' ){
-        delete_post_meta($postID, $count_key);
-        add_post_meta($postID, $count_key, '0');
+function buzzmag_getpostviews( $postID ) {
+    $postID = absint( $postID );
+    if ( ! $postID ) {
         return '';
+    }
+
+    $count_key = 'post_views_count';
+    $count     = get_post_meta( $postID, $count_key, true );
+    if ( '' === $count || empty( $count ) ) {
+        return '';
+    }
+
+    $count = (int) $count;
+    if ( $count >= 1000000 ) {
+        return round( ( $count / 1000000 ), 1 ) . esc_html__( ' M', 'buzzmag' );
     } elseif ( $count >= 1000 ) {
-       return round( ($count/1000), 1 ) . esc_html__( ' K', 'buzzmag' );
-    } elseif ( $count >= 1000 ) {
-       return round( ($count/1000000), 1 ) . esc_html__( ' M', 'buzzmag' );
+        return round( ( $count / 1000 ), 1 ) . esc_html__( ' K', 'buzzmag' );
     } else {
-        return $count;
+        return number_format_i18n( $count );
     }
 }
 

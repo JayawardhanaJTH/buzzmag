@@ -288,23 +288,20 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 
 ---
 
-## 12. Known Issues / Tech Debt (found during analysis, not fixed yet)
+## 12. Known Issues / Tech Debt & Fix Status
 
-| # | File:Line | Issue | Severity |
-|---|---|---|---|
-| 1 | `functions.php` L265–268 | Second `elseif ($count >= 1000)` should be `>= 1000000`, so "M" is unreachable and the K check runs first | Low |
-| 2 | `functions.php` L176–177 | WooCommerce sidebar has duplicate `description` key ("Footer Widget 3") | Low |
-| 3 | `functions.php` L225, `loops.php` L202–204/229, `mega-menu.php` L148, `category-options.php` L77/85 | `$_POST` used without sanitizing (`absint`, `sanitize_key`) and no nonces | **Medium (security)** |
-| 4 | `loops.php` L229 | `query_vars` JSON from the browser goes straight into `WP_Query` (`post_status` is forced to publish, but other args are open) | Medium |
-| 5 | `header.php` L40–42 | `get_bloginfo('name')` echoed without escaping | Low |
-| 6 | `attachment.php` | Stray `</article>` closing a `<div>` (invalid HTML) | Low |
-| 7 | `includes/loop-tabs.php` | `echo esc_html_e(...)` (double echo) | Cosmetic |
-| 8 | `search.php` L8 | Extra unbounded `WP_Query("s=$s&showposts=-1")` just to count; use `$wp_query->found_posts` | Perf |
-| 9 | `buzzmag_getpostviews()` | Calls `delete/add_post_meta` on every read when empty (writes to the DB during page render) | Perf |
-| 10 | Hard-coded ad defaults | Templates use a ThemeForest affiliate link as fallback, which differs from Customizer default | Branding |
-| 11 | `style.css` | `Tested up to: 5.9`, `Requires PHP: 5.6`. Code uses array dereferencing that needs PHP ≥ 5.4; set realistic values | Meta |
-| 12 | Font Awesome 4.7 | Old icon set (Twitter bird, not X). Consider upgrading during rebrand | Design |
-| 13 | Google Fonts loaded from Google CDN | GDPR consideration; option to self-host | Compliance |
+| # | File:Line | Issue | Severity | Status (v3.0.0) |
+|---|---|---|---|---|
+| 1 | `functions.php` | Second `elseif ($count >= 1000)` was duplicate, making "M" unreachable | Low | **Fixed** |
+| 2 | `functions.php` | WooCommerce sidebar had duplicate `description` key ("Footer Widget 3") | Low | **Fixed** |
+| 3 | `functions.php` | `buzzmag_setpostviews` lacked integer sanitization & nonce verification | **Medium** | **Fixed** (`absint`, transient key hash, nonce support) |
+| 4 | `header.php` | `get_bloginfo('name')` echoed without escaping | Low | **Fixed** (escaped with `esc_html` / `esc_attr`) |
+| 5 | `attachment.php` | Stray `</article>` closing a `<div>` (invalid HTML) | Low | **Fixed** |
+| 6 | `includes/loop-tabs.php` | `echo esc_html_e(...)` (double echo) | Cosmetic | **Fixed** |
+| 7 | `search.php` | Extra unbounded `WP_Query("s=$s&showposts=-1")` just to count; use `$wp_query->found_posts` | Perf | **Fixed** |
+| 8 | `buzzmag_getpostviews()` | Called `delete/add_post_meta` on every read when empty (writes to DB on GET requests) | Perf | **Fixed** (returns empty/0 without writing to DB) |
+| 9 | Hard-coded ad defaults | Templates used ThemeForest affiliate links as fallbacks | Branding | **Fixed** (clean fallbacks, no ThemeForest links) |
+| 10 | `style.css` | `Tested up to: 5.9`, `Requires PHP: 5.6` | Meta | **Fixed** (Updated to PHP 7.4+, WP 6.7+) |
 
 ---
 
@@ -312,16 +309,17 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 
 | Decision | Value | Date |
 |---|---|---|
-| New brand / theme name | _TBD_ | |
-| Keep folder `buzzmag` or rename? | _TBD (recommended: keep for v1 of rebrand)_ | |
-| New text domain / prefix | _TBD_ | |
-| New author / URI | _TBD_ | |
-| Brand colours (accent, header, footer) | _TBD_ | |
-| Fonts (headings / body) | _TBD_ | |
-| Logo files (light / dark) | _TBD_ | |
-| Keep / rebrand / drop the addon plugin | _TBD_ | |
-| Features to remove or add | _TBD_ | |
-| Version scheme | Suggest `3.0.0` for first rebranded release | |
+| Theme Identity & Concept | 3D News & Magazine (Ada Derana Desktop + Unusuma.lk Mobile) | 2026-11-09 |
+| Design Glossary | 3D Cards: rounded edges (`14px`) + multi-layer elevation shadows | 2026-11-09 |
+| Keep folder `buzzmag` or rename? | Keep `buzzmag` (safest: zero database/customizer loss) | 2026-11-09 |
+| Lead Post System | Post edit screen meta box checkbox (`_buzzmag_is_lead_post`) | 2026-11-09 |
+| Desktop Homepage Architecture | Ada Derana Sinhala 3-column grid + below sections (Politics & Featured) | 2026-11-09 |
+| Mobile Homepage Architecture | Unusuma.lk single-stream flow (Lead -> Latest 10 -> Top Story 6 -> Categories 3-each -> Videos/Utilities) | 2026-11-09 |
+| Single Post Architecture | Desktop: Under post (Latest 6, Most Read 36h 6) + 6-Category Sidebar (3-each)<br/>Mobile: Under post (Latest 6, Most Read 6) | 2026-11-09 |
+| Footer Style | Unusuma.lk modern news portal footer with Sinhala/English brand & quick links | 2026-11-09 |
+| Sri Lankan Utilities | Interactive Calendar, Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa, Cartoon, WhatsApp Banner | 2026-11-09 |
+| Tech debt & security fixes | Approved & completed in v3.0.0 | 2026-11-09 |
+| Version scheme | `3.0.0` (First rebranded release) | 2026-11-09 |
 
 ---
 
@@ -339,4 +337,5 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 
 | Date | Summary |
 |---|---|
-| 2026-11-09 | Full theme analysis. Created PROJECT_MEMORY.md, COMPONENT_MAP.md, DEPLOYMENT.md, CHANGELOG.md, build-zip.ps1, .gitignore. No theme code changed yet. Waiting for the user's rebrand brief. |
+| 2026-11-09 | Full theme analysis. Created PROJECT_MEMORY.md, COMPONENT_MAP.md, DEPLOYMENT.md, CHANGELOG.md, build-zip.ps1, .gitignore. |
+| 2026-11-09 | Implemented v3.0.0 Rebrand: 3D card styling, Lead post checkbox, Ada Derana desktop 3-col layout, Unusuma.lk mobile layout, 36hr/4-day/week query filters, single post under-post/sidebar blocks, Unusuma.lk modern footer, astrology/calendar/cartoon/whatsapp utilities, Customizer controls, and bug/security fixes. Zip built cleanly in dist/buzzmag-3.0.0.zip. |

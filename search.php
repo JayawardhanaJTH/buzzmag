@@ -5,8 +5,8 @@
 		<div class="head">
 			<?php 
 			// Search Count
-			$allsearch = new WP_Query("s=$s&showposts=-1");
-			$count = $allsearch->found_posts;			
+			global $wp_query;
+			$count = isset( $wp_query->found_posts ) ? $wp_query->found_posts : 0;
 			?>
 		    <span class="fl-meta"><?php echo esc_html($count).' '.esc_html__( 'Search Results for', 'buzzmag' ); ?></span>
 		</div>

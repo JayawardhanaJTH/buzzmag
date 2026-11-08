@@ -1,0 +1,1357 @@
+/**
+ * 3D Card Design System & Rebranded News Components
+ *
+ * Implements:
+ * - 3D Card Architecture (Rounded edges, multi-layer elevation, hover physics)
+ * - Desktop 3-Column Layout (Ada Derana style)
+ * - Mobile Single-Stream Layout (Unusuma.lk style)
+ * - Sri Lankan Utility Widgets (Calendar, Rahu Kalaya, Subha/Maru Dishawa, Cartoon, WhatsApp)
+ * - Modern News Portal Footer
+ * - Full Dark Mode Support
+ *
+ * @package BuzzMag
+ */
+
+/* ==========================================================================
+   1. 3D Card Core Architecture
+   ========================================================================== */
+.fl-3d-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.28s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.28s cubic-bezier(0.165, 0.84, 0.44, 1),
+                border-color 0.28s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.fl-3d-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Theme Overrides for 3D Cards */
+[data-theme="dark"] .fl-3d-card {
+    background: #212121;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.6), 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .fl-3d-card:hover {
+    box-shadow: 0 12px 26px -4px rgba(0, 0, 0, 0.8), 0 4px 10px -2px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Responsive Visibility Helpers */
+@media (min-width: 992px) {
+    .fl-mobile-only {
+        display: none !important;
+    }
+    .fl-desktop-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .fl-desktop-only {
+        display: none !important;
+    }
+    .fl-mobile-only {
+        display: block !important;
+    }
+}
+
+/* ==========================================================================
+   2. Lead Post 3D Hero Card
+   ========================================================================== */
+.fl-lead-section {
+    margin-bottom: 25px;
+}
+
+.fl-lead-hero-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 380px;
+}
+
+.fl-lead-media {
+    flex: 0 0 55%;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+}
+
+.fl-lead-media a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.fl-lead-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.fl-lead-hero-card:hover .fl-lead-media img {
+    transform: scale(1.04);
+}
+
+.fl-lead-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #ed0e28;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(237, 14, 40, 0.5);
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fl-cat-pill {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+    z-index: 2;
+    transition: background 0.2s ease;
+}
+
+.fl-cat-pill:hover {
+    background: #ed0e28;
+    color: #ffffff;
+}
+
+.fl-lead-content {
+    flex: 0 0 45%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fl-lead-meta {
+    font-size: 13px;
+    color: #888888;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.fl-lead-meta .views {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.fl-lead-title {
+    font-size: 26px;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.fl-lead-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.fl-lead-title a:hover {
+    color: #ed0e28;
+}
+
+.fl-lead-excerpt {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+[data-theme="dark"] .fl-lead-excerpt {
+    color: #aaaaaa;
+}
+
+.fl-3d-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #111111;
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    align-self: flex-start;
+}
+
+.fl-3d-btn:hover {
+    background: #ed0e28;
+    transform: translateX(2px);
+    box-shadow: 0 6px 14px rgba(237, 14, 40, 0.35);
+}
+
+@media (max-width: 991px) {
+    .fl-lead-hero-card {
+        flex-direction: column;
+    }
+    .fl-lead-media {
+        min-height: 240px;
+    }
+    .fl-lead-content {
+        padding: 20px;
+    }
+    .fl-lead-title {
+        font-size: 20px;
+    }
+}
+
+/* ==========================================================================
+   3. Desktop 3-Column Grid Layout (Ada Derana style)
+   ========================================================================== */
+.fl-home-3col-grid {
+    display: grid;
+    grid-template-columns: 31% 40% 29%;
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+/* Column Headers */
+.fl-col-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ed0e28;
+}
+
+.fl-col-header.sub-header {
+    border-bottom-color: #e67e22;
+    margin-top: 25px;
+}
+
+.fl-col-header h3,
+.fl-col-header h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: inherit;
+}
+
+.fl-col-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.fl-col-badge.red { background: #ed0e28; }
+.fl-col-badge.orange { background: #e67e22; }
+
+/* ==========================================================================
+   4. Compact Post Cards (Column 1 - Latest 10)
+   ========================================================================== */
+.fl-latest-10-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fl-post-card-compact {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 12px;
+}
+
+.fl-card-thumb {
+    flex: 0 0 95px;
+    height: 72px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.fl-card-thumb a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.fl-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.fl-post-card-compact:hover .fl-card-thumb img {
+    transform: scale(1.06);
+}
+
+.fl-card-body {
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.fl-cat-tag {
+    font-size: 11px;
+    color: #ed0e28;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 2px;
+    text-decoration: none;
+}
+
+.fl-card-title {
+    font-size: 14px;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+
+.fl-card-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.fl-card-title a:hover {
+    color: #ed0e28;
+}
+
+.fl-card-meta {
+    font-size: 11px;
+    color: #888888;
+    display: flex;
+    gap: 10px;
+}
+
+/* ==========================================================================
+   5. Standard 3D Post Card
+   ========================================================================== */
+.fl-post-card-standard {
+    display: flex;
+    flex-direction: column;
+}
+
+.fl-card-media {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+    background: #111;
+}
+
+.fl-card-media a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.fl-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.fl-post-card-standard:hover .fl-card-media img {
+    transform: scale(1.05);
+}
+
+.fl-cat-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.fl-card-details {
+    padding: 14px;
+}
+
+.fl-card-details .fl-card-title {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   6. Column 2: 3D Category Cards (Local, Off Road, Business, Sports)
+   ========================================================================== */
+.fl-col-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fl-category-card-3d {
+    border-top: 4px solid var(--cat-accent, #ed0e28);
+}
+
+.fl-cat-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .fl-cat-card-header {
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.fl-cat-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fl-cat-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.fl-cat-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: inherit;
+}
+
+.fl-cat-more {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888888;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease;
+}
+
+.fl-cat-more:hover {
+    color: var(--cat-accent, #ed0e28);
+}
+
+.fl-cat-card-body {
+    padding: 14px 16px;
+}
+
+.fl-cat-lead-item {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .fl-cat-lead-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.fl-cat-lead-thumb {
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.fl-cat-lead-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.fl-cat-lead-item:hover .fl-cat-lead-thumb img {
+    transform: scale(1.04);
+}
+
+.fl-cat-lead-title {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0 0 6px 0;
+    font-weight: 700;
+}
+
+.fl-cat-lead-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fl-cat-lead-title a:hover {
+    color: var(--cat-accent, #ed0e28);
+}
+
+.fl-cat-lead-meta {
+    font-size: 12px;
+    color: #888888;
+}
+
+.fl-cat-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .fl-cat-list-item {
+    border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+.fl-cat-list-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.fl-bullet {
+    color: var(--cat-accent, #ed0e28);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.fl-item-text a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    transition: color 0.2s ease;
+}
+
+.fl-item-text a:hover {
+    color: var(--cat-accent, #ed0e28);
+}
+
+.fl-item-text small {
+    font-size: 11px;
+    color: #888888;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   7. Column 3: Videos & Sri Lankan Utility Cards
+   ========================================================================== */
+.fl-col-utilities {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fl-utility-card {
+    padding: 16px;
+}
+
+.fl-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="dark"] .fl-card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+
+.fl-header-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #2c3e50;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.fl-header-title h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.fl-header-title small {
+    font-size: 11px;
+    color: #888888;
+    display: block;
+}
+
+.fl-header-badge {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    background: #eef2f5;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #555;
+}
+
+[data-theme="dark"] .fl-header-badge {
+    background: #333333;
+    color: #ddd;
+}
+
+.fl-header-live {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.fl-header-live .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #dc2626;
+    animation: pulseLive 1.5s infinite;
+}
+
+@keyframes pulseLive {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Calendar Grid */
+.fl-calendar-grid {
+    font-size: 12px;
+}
+
+.fl-cal-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 4px;
+}
+
+.fl-cal-head {
+    font-weight: 700;
+    color: #888888;
+    margin-bottom: 6px;
+}
+
+.fl-cal-cell {
+    padding: 6px 0;
+    border-radius: 6px;
+}
+
+.fl-cal-cell.today {
+    background: #ed0e28;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(237, 14, 40, 0.4);
+}
+
+/* Astrology Card (Rahu Kalaya, Subha, Maru) */
+.fl-rahu-box {
+    background: rgba(237, 14, 40, 0.05);
+    border: 1px solid rgba(237, 14, 40, 0.2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fl-astro-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+}
+
+.fl-astro-label i { color: #ed0e28; }
+
+.fl-astro-value .badge {
+    background: #ed0e28;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.fl-astro-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.fl-astro-sub-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .fl-astro-sub-box {
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+.fl-astro-sub-box.subha .icon {
+    color: #10b981;
+    font-size: 18px;
+}
+
+.fl-astro-sub-box.maru .icon {
+    color: #ef4444;
+    font-size: 18px;
+}
+
+.fl-astro-sub-box .txt small {
+    display: block;
+    font-size: 10.5px;
+    color: #888888;
+}
+
+.fl-astro-sub-box .txt strong {
+    font-size: 12px;
+    display: block;
+}
+
+/* Cartoon Card */
+.fl-cartoon-body {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.fl-cartoon-lightbox {
+    position: relative;
+    display: block;
+}
+
+.fl-cartoon-lightbox img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.fl-cartoon-lightbox:hover img {
+    transform: scale(1.02);
+}
+
+.fl-zoom-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.fl-cartoon-caption {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+/* WhatsApp Banner */
+.fl-whatsapp-banner {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.fl-wa-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fl-wa-icon-wrap {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.fl-wa-text h4 {
+    margin: 0 0 3px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.fl-wa-text p {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.35;
+}
+
+.fl-wa-btn {
+    background: #ffffff;
+    color: #075e54 !important;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.fl-wa-btn:hover {
+    background: #f0fdf4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Video Channels Card */
+.fl-channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fl-channel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.fl-channel-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.fl-channel-thumb {
+    flex: 0 0 100px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+}
+
+.fl-channel-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-top: 3px solid #ed0e28;
+}
+
+.fl-play-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(237, 14, 40, 0.9);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.fl-channel-placeholder .badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 4px;
+}
+
+.fl-channel-info h5 {
+    margin: 0;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   8. Below Sections (Politics & Featured) - Desktop Only
+   ========================================================================== */
+.fl-below-sections {
+    margin-top: 20px;
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.fl-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.fl-section-header .fl-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fl-section-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.fl-section-header .fl-header-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .fl-section-header .fl-header-line {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.fl-section-header .fl-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.fl-3d-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.fl-3d-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* ==========================================================================
+   9. Mobile Single-Stream View (Unusuma.lk style)
+   ========================================================================== */
+.fl-home-mobile-wrapper {
+    padding: 5px 0 25px 0;
+}
+
+.fl-mobile-section {
+    margin-bottom: 25px;
+}
+
+.fl-mobile-section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #ed0e28;
+}
+
+.fl-mobile-section-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.fl-mobile-section-header .fl-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+}
+
+.fl-mobile-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fl-mobile-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.fl-mobile-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.fl-mobile-videos-utilities {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+@media (max-width: 576px) {
+    .fl-mobile-grid-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   10. Single Post 3D Layout & Under-Post Modules
+   ========================================================================== */
+.fl-3d-single-page .fl-single-article-card {
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.fl-single-body-wrap {
+    padding: 30px;
+}
+
+.fl-single-sidebar {
+    width: 320px;
+    float: right;
+    margin-left: 30px;
+}
+
+.fl-single-sidebar-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.fl-single-under-post-blocks {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .fl-single-under-post-blocks {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.fl-under-block {
+    margin-bottom: 30px;
+}
+
+.fl-block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #ed0e28;
+}
+
+.fl-block-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.fl-block-header .fl-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+}
+
+@media (max-width: 991px) {
+    .fl-single-body-wrap {
+        padding: 16px;
+    }
+    .fl-3d-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   11. Modern Footer (Unusuma.lk Inspired)
+   ========================================================================== */
+.fl-modern-footer {
+    background: #151515;
+    color: #cccccc;
+    padding: 45px 0 0 0;
+    margin-top: 50px;
+    border-top: 3px solid #ed0e28;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fl-footer-top-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 30px;
+}
+
+.fl-footer-brand-left {
+    max-width: 580px;
+}
+
+.fl-footer-logo h2 a {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.fl-footer-logo img {
+    max-height: 48px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.fl-footer-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #999999;
+    margin: 0;
+}
+
+.fl-footer-social-connect {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.fl-footer-social-connect .social-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.fl-footer-social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.fl-footer-social-icons a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #252525;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s ease;
+}
+
+.fl-footer-social-icons a:hover {
+    transform: translateY(-3px);
+}
+
+.fl-footer-social-icons a.social-fb:hover { background: #1877f2; }
+.fl-footer-social-icons a.social-yt:hover { background: #ff0000; }
+.fl-footer-social-icons a.social-wa:hover { background: #25d366; }
+.fl-footer-social-icons a.social-tw:hover { background: #1da1f2; }
+.fl-footer-social-icons a.social-ig:hover { background: #e1306c; }
+
+/* 4 Navigation Columns */
+.fl-footer-nav-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fl-fcol h4 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.fl-fcol h4:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 28px;
+    height: 2px;
+    background: #ed0e28;
+}
+
+.fl-fcol ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fl-fcol ul li {
+    margin-bottom: 9px;
+}
+
+.fl-fcol ul li a {
+    color: #aaaaaa;
+    text-decoration: none;
+    font-size: 13.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.fl-fcol ul li a:hover {
+    color: #ed0e28;
+    transform: translateX(3px);
+}
+
+/* Bottom Bar */
+#fl-copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    font-size: 13px;
+    color: #888888;
+}
+
+#fl-copyright a {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+#fl-copyright a:hover {
+    color: #ed0e28;
+}
+
+.fl-back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #252525;
+    color: #ffffff !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.fl-back-to-top:hover {
+    background: #ed0e28;
+}
+
+@media (max-width: 991px) {
+    .fl-footer-top-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .fl-footer-social-connect {
+        align-items: flex-start;
+    }
+    .fl-footer-nav-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .fl-footer-nav-columns {
+        grid-template-columns: 1fr;
+    }
+    #fl-copyright {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+

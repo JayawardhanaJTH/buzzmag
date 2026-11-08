@@ -10,17 +10,53 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 
 ---
 
-## [Unreleased]
+## [3.0.0] - 2026-11-09
 
 ### Added
-- `PROJECT_MEMORY.md`: full theme map: files, boot sequence, Customizer keys, DB storage, AJAX endpoints, brand footprint, known issues, decisions log.
-- `COMPONENT_MAP.md`: Mermaid diagrams showing how templates, parts, loops, AJAX, layout engine, dark mode, mega menu and WooCommerce connect.
-- `DEPLOYMENT.md`: step-by-step guide to package and upload the theme zip to live hosting.
-- `build-zip.ps1`: one-command builder that makes a clean, Linux-safe upload zip in `dist/`.
-- `.gitignore`: ignores `dist/` and OS/editor files.
+- **3D Card Design System** (`css/3d-components.css`):
+  - Elevated multi-layer box shadows and rounded edges (`border-radius: 14px`).
+  - Hover physics (`translateY(-4px)` with depth transition).
+  - Complete dark mode palette and contrast border styling.
+- **Lead Post Checkbox**:
+  - Meta box in post edit screen (`functions/lead-post.php`) allowing editors to mark any post as "Lead Post" (`_buzzmag_is_lead_post`).
+  - Automated fallback query helper `buzzmag_get_lead_post()`.
+- **Desktop Homepage (Ada Derana Sinhala style)** (`includes/home-desktop.php`):
+  - Hero Lead Post 3D card.
+  - 3-Column Grid:
+    - Col 1: Latest 10 posts (excluding lead) + Top Viewed post from last 4 days.
+    - Col 2: Category blocks (5 posts each) - Local, Off road / Foreign, Business, Sports (3D overall card).
+    - Col 3: Sri Lankan utility cards - Biz Today / Video channels, Calendar, Rahu Kalaya (රාහු කාලය), Subha Dishawa (සුබ දිශාව), Maru Sitina Dishawa (මරු සිටින දිශාව), Cartoon of the Day, WhatsApp Community Banner.
+  - Below Sections (Desktop only): Politics (6 posts) and Featured (6 posts) in equal 3D grid cards.
+- **Mobile Homepage (Unusuma.lk style)** (`includes/home-mobile.php`):
+  - Lead post as main post.
+  - Latest 10 posts list (3D each).
+  - Top Story (6 posts within the past week).
+  - Category sections (3 posts each): Local, Off road, Business, Sports, Foreign, Featured (3D overall card).
+  - Bottom video channel & astrology stream.
+- **Single Post Enhancements** (`single.php` & `includes/single-post-widgets.php`):
+  - Main article enclosed in 3D elevated card.
+  - Under-post sections: Latest (6 posts) and Most Read (last 36 hours, 6 posts).
+  - Desktop sidebar: Main 6 categories with 3 posts from each (Local, Off road, Business, Sports, Foreign, Featured) in 3D category cards.
+- **Modern Portal Footer (Unusuma.lk style)** (`footer.php`):
+  - Top brand section with Sinhala / English mission description and round social pills.
+  - 4-column quick news links (Main News, Categories, Utilities & Astrology, About & Legal).
+  - Clean bottom copyright bar with "Back to Top" pill.
+- **Customizer Portal Controls** (`functions/customizer.php`):
+  - Category slug re-mapping (Local, Off road, Business, Sports, Foreign, Featured, Politics).
+  - Cartoon image, title, and description.
+  - WhatsApp Community invite link and text.
+  - Video channel titles and embed URLs (Biz Today & 3 more).
+  - Footer description text.
 
-### Changed
-- _Nothing yet. Theme code is still the original BuzzMag 2.1._
+### Fixed & Security
+- **Security**: Added nonce and integer validation to post views AJAX counter (`buzzmag_setpostviews`).
+- **View Counter**: Fixed million view count bug where posts over 1M showed "1000 K" instead of "M", and eliminated duplicate database writes during read requests.
+- **Performance**: Removed secondary unconstrained `WP_Query` in `search.php`, leveraging `$wp_query->found_posts`.
+- **WooCommerce Sidebar**: Removed duplicate `description` attribute in `functions.php`.
+- **HTML Validity**: Fixed stray unclosed `</article>` tag in `attachment.php`.
+- **PHP Syntax**: Fixed double-echo in `includes/loop-tabs.php`.
+- **Header Escaping**: Escaped `get_bloginfo('name')` in `header.php`.
+- **Compatibility**: Declared PHP 7.4+ and WordPress 6.7+ support in `style.css`.
 
 ---
 

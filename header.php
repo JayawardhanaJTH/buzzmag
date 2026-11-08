@@ -37,9 +37,9 @@
 			        </a>
 				<?php } else {
 			        if ( is_home() ) {
-						echo '<h1><a href="'. esc_url(home_url('/')).'" title="'. get_bloginfo('name') .'" rel="Home">'. get_bloginfo('name') .'</a></h1>';
+						echo '<h1><a href="'. esc_url(home_url('/')).'" title="'. esc_attr( get_bloginfo('name') ) .'" rel="Home">'. esc_html( get_bloginfo('name') ) .'</a></h1>';
 					} else {
-						echo '<p><a href="'. esc_url(home_url('/')).'" title="'. get_bloginfo('name') .'" rel="Home">'. get_bloginfo('name') .'</a></p>';
+						echo '<p><a href="'. esc_url(home_url('/')).'" title="'. esc_attr( get_bloginfo('name') ) .'" rel="Home">'. esc_html( get_bloginfo('name') ) .'</a></p>';
 					}
 				} ?>
 			</div>

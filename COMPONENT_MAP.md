@@ -75,29 +75,24 @@ flowchart LR
     end
 
     subgraph Parts["includes/"]
-        FEAT["featured-loops/1post · 4posts · 5posts · 6posts"]
-        TABS["loop-tabs.php"]
-        CARD["loop-post.php (post card)"]
+        FEAT["home-desktop.php (Ada Derana 3-Col)<br/>home-mobile.php (Unusuma.lk Single-Stream)"]
+        LEAD["Lead Post 3D Hero<br/>(_buzzmag_is_lead_post checkbox)"]
+        UTIL["sri-lankan-utilities.php<br/>Calendar · Rahu Kalaya · Subha/Maru · Cartoon · WhatsApp"]
+        SINGW["single-post-widgets.php<br/>Latest 6 · Most Read 36h 6 · 6-Cat Sidebar"]
+        CARD["loop-post.php / 3d-components.css"]
         AUTH["author-box.php"]
-        REL["related-posts.php"]
-        PICK["editor-picks.php"]
-        SOC["social-icons.php"]
+        FOOT["footer.php (Unusuma.lk modern footer)"]
     end
 
     IDX --> FEAT
-    IDX --> TABS
-    IDX --> LOOPF["buzzmag_default_loop()"]
-    ARC --> LOOPF
-    LP --> LOOPX["buzzmag_latest/trending/audio/video/gallery_loop()"]
-    LOOPF --> CARD
-    LOOPX --> CARD
+    FEAT --> LEAD
+    FEAT --> UTIL
+    SGL --> SINGW
     SGL --> AUTH
-    SGL --> REL
-    SGL --> PICK
     SGL --> CMT["comments.php"]
     PG --> CMT
-    E404 --> PICK
-    HDR["header.php"] --> SOC
+    E404 --> PICK["editor-picks.php"]
+    HDR["header.php"] --> SOC["social-icons.php"]
     HDR --> SF["searchform.php"]
 ```
 

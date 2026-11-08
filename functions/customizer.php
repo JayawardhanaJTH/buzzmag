@@ -641,7 +641,7 @@ function buzzmag_customizer( $wp_customize ) {
 
 		// Copyrights
 		$wp_customize->add_setting( 'copyrights', array(
-			'default'   => esc_html('© ') .esc_html( date('Y') ). ' ' .esc_html( get_bloginfo( 'name', 'display' ) ) .'. Designed & Developed by <a href="http://flatlayers.com" target="_blank">FlatLayers</a>',
+			'default'   => esc_html('© ') . esc_html( date('Y') ) . ' ' . esc_html( get_bloginfo( 'name', 'display' ) ) . '. ' . esc_html__( 'සියලුම හිමිකම් ඇවිරිණි (All Rights Reserved).', 'buzzmag' ),
 			'sanitize_callback' => 'buzzmag_textarea_sanitize',
 		) );
 
@@ -1113,6 +1113,110 @@ function buzzmag_customizer( $wp_customize ) {
 	        'priority' => 14,
         ) );
 //.............................. End Social Media Section
+
+	// =========================================================================
+	// 3D News & Sri Lankan Portal Settings (පුවත් අඩවි සැකසුම්)
+	// =========================================================================
+	$wp_customize->add_section( 'rebrand_3d_settings' , array(
+	    'title'       => esc_html__( '3D News Portal Settings (පුවත් සැකසුම්)', 'buzzmag' ),
+	    'priority'    => 42,
+		'description' => esc_html__( 'Configure Category mappings, Video channels, Cartoon of the day, and WhatsApp community.', 'buzzmag' ),
+	) );
+
+		// Category Slugs Mapping
+		$categories_map = array(
+			'cat_slug_local'    => array( 'label' => 'Local Category Slug (දේශීය)', 'default' => 'local' ),
+			'cat_slug_offroad'  => array( 'label' => 'Off Road / Foreign Slug (පිටරට / Off Road)', 'default' => 'off-road' ),
+			'cat_slug_business' => array( 'label' => 'Business Category Slug (ව්‍යාපාරික)', 'default' => 'business' ),
+			'cat_slug_sports'   => array( 'label' => 'Sports Category Slug (ක්‍රීඩා)', 'default' => 'sports' ),
+			'cat_slug_foreign'  => array( 'label' => 'Foreign Category Slug (විදේශීය)', 'default' => 'foreign' ),
+			'cat_slug_featured' => array( 'label' => 'Featured Category Slug (විශේෂාංග)', 'default' => 'featured' ),
+			'cat_slug_politics' => array( 'label' => 'Politics Category Slug (දේශපාලන)', 'default' => 'politics' ),
+		);
+
+		$p_idx = 1;
+		foreach ( $categories_map as $c_key => $c_val ) {
+			$wp_customize->add_setting( $c_key, array(
+				'default'           => $c_val['default'],
+				'sanitize_callback' => 'sanitize_text_field',
+			) );
+
+			$wp_customize->add_control( $c_key, array(
+				'label'    => esc_html__( $c_val['label'], 'buzzmag' ),
+				'section'  => 'rebrand_3d_settings',
+				'type'     => 'text',
+				'priority' => $p_idx++,
+			) );
+		}
+
+		// Cartoon of the Day
+		$wp_customize->add_setting( 'cartoon_image', array(
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cartoon_image', array(
+		    'label'    => esc_html__( 'Cartoon of the Day Image (දවසේ කාටූනය)', 'buzzmag' ),
+		    'section'  => 'rebrand_3d_settings',
+		    'priority' => 15,
+		) ) );
+
+		$wp_customize->add_setting( 'cartoon_title', array(
+			'default'           => 'දවසේ කාටූනය (Cartoon of the Day)',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'cartoon_title', array(
+			'label'    => esc_html__( 'Cartoon Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 16,
+		) );
+
+		// WhatsApp Community
+		$wp_customize->add_setting( 'whatsapp_link', array(
+			'default'           => 'https://chat.whatsapp.com/',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'whatsapp_link', array(
+			'label'    => esc_html__( 'WhatsApp Channel / Group Link', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 20,
+		) );
+
+		// Video Channels (Biz Today & 3 Channels)
+		$wp_customize->add_setting( 'video_channel_1_url', array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'video_channel_1_url', array(
+			'label'       => esc_html__( 'Biz Today Video URL (YouTube/Vimeo)', 'buzzmag' ),
+			'section'     => 'rebrand_3d_settings',
+			'type'        => 'text',
+			'priority'    => 25,
+		) );
+
+		$wp_customize->add_setting( 'video_channel_2_url', array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'video_channel_2_url', array(
+			'label'       => esc_html__( 'Video Channel 2 URL', 'buzzmag' ),
+			'section'     => 'rebrand_3d_settings',
+			'type'        => 'text',
+			'priority'    => 26,
+		) );
+
+		// Footer About Text
+		$wp_customize->add_setting( 'footer_about_text', array(
+			'default'           => 'ශ්‍රී ලංකාවේ සහ ලෝකයේ නවතම පුවත්, දේශපාලන, ව්‍යාපාරික, ක්‍රීඩා සහ විශේෂාංග පුවත් එසැනින් විශ්වාසදායී ලෙස ඔබ වෙත ගෙන එන ප්‍රමුඛතම ඩිජිටල් පුවත් සේවාව.',
+			'sanitize_callback' => 'sanitize_textarea_field',
+		) );
+		$wp_customize->add_control( 'footer_about_text', array(
+			'label'       => esc_html__( 'Footer About Description (Sinhala/English)', 'buzzmag' ),
+			'section'     => 'footer_settings',
+			'type'        => 'textarea',
+			'priority'    => 1,
+		) );
 
 }
 add_action( 'customize_register', 'buzzmag_customizer' );
