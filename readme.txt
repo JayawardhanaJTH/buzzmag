@@ -1,8 +1,8 @@
 Theme Name: BuzzMag - 3D News & Magazine Portal
 Theme URI: https://unusuma.lk/
-Author: Rebranded & Optimized
-Author URI: https://unusuma.lk/
-Description: Modern 3D Card Sri Lankan News Portal (Ada Derana Desktop + Unusuma.lk Mobile)
+Author: Tiran Jayawardhana (Rebrander)
+Author URI: mailto:jayawardhanatiran@gmail.com
+Description: Modern 3D Card Sri Lankan News Portal (Ada Derana Desktop + Unusuma.lk Mobile). Rebranded and maintained by Tiran Jayawardhana (jayawardhanatiran@gmail.com).
 Version: 3.0.0
 Tested up to: 6.7
 Requires PHP: 7.4

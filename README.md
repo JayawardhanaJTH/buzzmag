@@ -2,6 +2,7 @@
 
 > **Theme Version:** 3.0.0  
 > **Architecture:** Modern 3D Card Sri Lankan News Portal (Ada Derana Desktop + Unusuma.lk Mobile)  
+> **Rebrander & Maintainer:** Tiran Jayawardhana ([jayawardhanatiran@gmail.com](mailto:jayawardhanatiran@gmail.com))  
 > **Directory Slug:** `buzzmag`  
 > **Release Package:** `dist/buzzmag-3.0.0.zip`
 

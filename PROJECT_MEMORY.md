@@ -11,6 +11,7 @@
 | Item | Value |
 |---|---|
 | Original theme | **BuzzMag** v2.1 by **FlatLayers** (ThemeForest item 19207752) |
+| Rebrander & Maintainer | **Tiran Jayawardhana** (`jayawardhanatiran@gmail.com`) |
 | Type | Classic PHP WordPress theme (NOT a block/FSE theme), jQuery-based front-end |
 | Local path | `c:\xampp\htdocs\wordpress\wp-content\themes\buzzmag` (XAMPP) |
 | Theme slug (folder name) | `buzzmag` ⚠️ see §11 before renaming |
