@@ -403,116 +403,89 @@ function buzzmag_get_channel_data( $channel_num ) {
 }
 
 /**
- * Render Video Channels Section: 4 Channels with 5 Videos Each (Channel-Wise Separated)
+ * Render a Single Video Channel as a Standalone 3D Card
+ *
+ * @param int $channel_num Channel number (1 to 4).
+ */
+function buzzmag_render_single_channel_card( $channel_num ) {
+    $ch = buzzmag_get_channel_data( $channel_num );
+    ?>
+    <div class="fl-3d-card fl-channel-card ch-<?php echo esc_attr( $channel_num ); ?>" style="--ch-color: <?php echo esc_attr( $ch['color'] ); ?>;">
+        <div class="fl-channel-card-header">
+            <div class="fl-ch-head-left">
+                <span class="fl-ch-icon" style="background: <?php echo esc_attr( $ch['color'] ); ?>;">
+                    <i class="fa <?php echo esc_attr( $ch['icon'] ); ?>"></i>
+                </span>
+                <div>
+                    <h4 class="fl-ch-name"><?php echo esc_html( $ch['title'] ); ?></h4>
+                    <span class="fl-ch-count"><?php esc_html_e( '5 Videos Included', 'buzzmag' ); ?></span>
+                </div>
+            </div>
+            <span class="fl-ch-pill" style="background: <?php echo esc_attr( $ch['color'] ); ?>;"><?php echo esc_html( $ch['badge'] ); ?></span>
+        </div>
+
+        <div class="fl-channel-videos-grid">
+            <?php
+            $first_video = true;
+            foreach ( $ch['videos'] as $v_item ) :
+                $meta      = $v_item['meta'];
+                $has_url   = ! empty( $v_item['url'] );
+                $thumb_url = ! empty( $meta['thumb'] ) ? $meta['thumb'] : ( fl_theme_path . '/img/buzzmag_small.png' );
+                ?>
+                <?php if ( $first_video ) : ?>
+                    <!-- Video 1: Featured Main Video with Large Thumb & Play -->
+                    <div class="fl-video-item fl-video-lead">
+                        <div class="fl-v-thumb-wrap">
+                            <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?> class="fl-v-link">
+                                <img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $v_item['title'] ); ?>" loading="lazy">
+                                <div class="fl-play-overlay">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                                <span class="fl-v-badge"><i class="fa fa-film"></i> <?php esc_html_e( 'Featured Video', 'buzzmag' ); ?></span>
+                            </a>
+                        </div>
+                        <h5 class="fl-v-title">
+                            <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?>>
+                                <?php echo esc_html( $v_item['title'] ); ?>
+                            </a>
+                        </h5>
+                    </div>
+                    <?php
+                    $first_video = false;
+                else : ?>
+                    <!-- Videos 2, 3, 4, 5: Compact video rows with thumb & title -->
+                    <div class="fl-video-item fl-video-compact">
+                        <div class="fl-v-mini-thumb">
+                            <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?>>
+                                <img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $v_item['title'] ); ?>" loading="lazy">
+                                <span class="fl-play-mini"><i class="fa fa-play"></i></span>
+                            </a>
+                        </div>
+                        <div class="fl-v-info">
+                            <span class="fl-v-num"><?php echo esc_html( $ch['badge'] ); ?> &bull; 0<?php echo esc_html( $v_item['index'] ); ?></span>
+                            <h6 class="fl-v-title">
+                                <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?>>
+                                    <?php echo esc_html( $v_item['title'] ); ?>
+                                </a>
+                            </h6>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * Render Video Channels Section: 4 Channels Separated as Standalone 3D Cards (No Tabs)
  */
 function buzzmag_render_video_channels_card() {
     if ( get_theme_mod( 'hide_video_channels', false ) ) {
         return;
     }
 
-    $section_title = get_theme_mod( 'video_section_title', esc_html__( 'වීඩියෝ නාලිකා (Video Channels)', 'buzzmag' ) );
-
-    $channels = array(
-        1 => buzzmag_get_channel_data( 1 ),
-        2 => buzzmag_get_channel_data( 2 ),
-        3 => buzzmag_get_channel_data( 3 ),
-        4 => buzzmag_get_channel_data( 4 ),
-    );
-    ?>
-    <div class="fl-3d-card fl-utility-card fl-video-channels-container" id="video-channels-section">
-        <div class="fl-card-header">
-            <span class="fl-header-icon" style="background:#ed0e28; color:#fff;"><i class="fa fa-youtube-play"></i></span>
-            <div class="fl-header-title">
-                <h4><?php echo esc_html( $section_title ); ?></h4>
-                <small><?php esc_html_e( '4 Channels &bull; 5 Videos Each', 'buzzmag' ); ?></small>
-            </div>
-            <span class="fl-header-live"><span class="dot"></span> LIVE</span>
-        </div>
-
-        <!-- Channel Filter Tabs for Smooth Navigation -->
-        <div class="fl-channel-filter-tabs">
-            <button type="button" class="fl-ch-tab active" data-channel="all">
-                <i class="fa fa-th-large"></i> <?php esc_html_e( 'සියල්ල (All Channels)', 'buzzmag' ); ?>
-            </button>
-            <?php foreach ( $channels as $c_num => $ch ) : ?>
-                <button type="button" class="fl-ch-tab" data-channel="ch-<?php echo esc_attr( $c_num ); ?>" style="--ch-color: <?php echo esc_attr( $ch['color'] ); ?>;">
-                    <i class="fa <?php echo esc_attr( $ch['icon'] ); ?>"></i>
-                    <span><?php echo esc_html( $ch['badge'] ); ?></span>
-                </button>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Channel-Wise Separated Blocks -->
-        <div class="fl-channel-blocks-wrap">
-            <?php foreach ( $channels as $c_num => $ch ) : ?>
-                <div class="fl-channel-section-block ch-<?php echo esc_attr( $c_num ); ?>" style="--ch-color: <?php echo esc_attr( $ch['color'] ); ?>;">
-                    <!-- Channel Header -->
-                    <div class="fl-channel-block-header">
-                        <div class="fl-ch-head-left">
-                            <span class="fl-ch-icon" style="background: <?php echo esc_attr( $ch['color'] ); ?>;">
-                                <i class="fa <?php echo esc_attr( $ch['icon'] ); ?>"></i>
-                            </span>
-                            <div>
-                                <h4 class="fl-ch-name"><?php echo esc_html( $ch['title'] ); ?></h4>
-                                <span class="fl-ch-count"><?php esc_html_e( '5 Videos Included', 'buzzmag' ); ?></span>
-                            </div>
-                        </div>
-                        <span class="fl-ch-pill" style="background: <?php echo esc_attr( $ch['color'] ); ?>;"><?php echo esc_html( $ch['badge'] ); ?></span>
-                    </div>
-
-                    <!-- 5 Videos List for this Channel -->
-                    <div class="fl-channel-videos-grid">
-                        <?php
-                        $first_video = true;
-                        foreach ( $ch['videos'] as $v_item ) :
-                            $meta = $v_item['meta'];
-                            $has_url = ! empty( $v_item['url'] );
-                            $thumb_url = ! empty( $meta['thumb'] ) ? $meta['thumb'] : ( fl_theme_path . '/img/buzzmag_small.png' );
-                            ?>
-                            <?php if ( $first_video ) : ?>
-                                <!-- Video 1: Featured Main Video with Large Thumb & Play -->
-                                <div class="fl-video-item fl-video-lead">
-                                    <div class="fl-v-thumb-wrap">
-                                        <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?> class="fl-v-link">
-                                            <img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $v_item['title'] ); ?>" loading="lazy">
-                                            <div class="fl-play-overlay">
-                                                <i class="fa fa-play"></i>
-                                            </div>
-                                            <span class="fl-v-badge"><i class="fa fa-film"></i> <?php esc_html_e( 'Video 1', 'buzzmag' ); ?></span>
-                                        </a>
-                                    </div>
-                                    <h5 class="fl-v-title">
-                                        <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?>>
-                                            <?php echo esc_html( $v_item['title'] ); ?>
-                                        </a>
-                                    </h5>
-                                </div>
-                                <?php
-                                $first_video = false;
-                            else : ?>
-                                <!-- Videos 2, 3, 4, 5: Compact video rows with thumb & title -->
-                                <div class="fl-video-item fl-video-compact">
-                                    <div class="fl-v-mini-thumb">
-                                        <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?>>
-                                            <img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $v_item['title'] ); ?>" loading="lazy">
-                                            <span class="fl-play-mini"><i class="fa fa-play"></i></span>
-                                        </a>
-                                    </div>
-                                    <div class="fl-v-info">
-                                        <span class="fl-v-num">Video <?php echo esc_html( $v_item['index'] ); ?></span>
-                                        <h6 class="fl-v-title">
-                                            <a href="<?php echo esc_url( $has_url ? $v_item['url'] : '#' ); ?>" <?php echo $has_url ? 'target="_blank" rel="noopener"' : ''; ?>>
-                                                <?php echo esc_html( $v_item['title'] ); ?>
-                                            </a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <?php
+    for ( $ch = 1; $ch <= 4; $ch++ ) {
+        buzzmag_render_single_channel_card( $ch );
+    }
 }

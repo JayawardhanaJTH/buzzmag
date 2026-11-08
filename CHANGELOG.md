@@ -43,12 +43,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Clean bottom copyright bar with "Back to Top" pill.
 - **Customizer Portal Controls** (`functions/customizer.php`):
   - Category slug re-mapping (Local, Off road, Business, Sports, Foreign, Featured, Politics).
-  - **4 Video Channels with 5 Videos Each**: Fully customizable channel names, badge tags, accent colors, and 5 video titles and embed URLs per channel (20 videos total), with interactive channel filter tabs (`All Channels`, `Channel 1`, `Channel 2`, `Channel 3`, `Channel 4`).
+  - **4 Video Channels with 5 Videos Each**: Fully customizable channel names, badge tags, accent colors, and 5 video titles and embed URLs per channel (20 videos total).
   - **Calendar**: Custom title and visibility toggle.
   - **Rahu Kalaya & Astrology**: Visibility toggles, custom labels, and manual calculation overrides for Rahu Kalaya, Subha Dishawa, and Maru Sitina Dishawa.
   - **Cartoon of the Day**: Image upload, custom title, caption/description, custom destination link, and visibility toggle.
   - **WhatsApp Community Banner**: Channel/group link, title, description, custom button label, and visibility toggle.
   - Footer description text.
+- **Visual Optimization & Column Layout Polish**:
+  - **Columns 1 & 2 News Cards**: Refactored post cards to the `[Image] - [Title / Date]` format (`.fl-post-card-horizontal`) with calendar date icon (`fa-calendar`), bold headline, and rounded thumbnail matching the Unusuma.lk desktop reference.
+  - **Column 2 Category Cards**: Updated each 3D category card to render all 5 posts with the horizontal `[Image] - [Title / Date]` layout (`.fl-cat-post-item`).
+  - **Column 3 Channel Cards**: Removed channel filter tabs; separated each of the 4 channels into its own standalone 3D card (`.fl-channel-card`) featuring channel badge pill, lead video with playable overlay, and 4 compact video rows.
+  - **Mobile Responsive Polish**: Tuned horizontal card proportions for mobile devices (<576px) ensuring clean title typography and responsive thumbnail scaling.
 
 ### Fixed & Security
 - **Security**: Added nonce and integer validation to post views AJAX counter (`buzzmag_setpostviews`).

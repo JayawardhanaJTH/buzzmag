@@ -68,7 +68,7 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
             if ( $top_stories->have_posts() ) :
                 while ( $top_stories->have_posts() ) :
                     $top_stories->the_post();
-                    buzzmag_render_3d_post_card( get_the_ID(), 'card' );
+                    buzzmag_render_3d_post_card( get_the_ID(), 'horizontal-card' );
                 endwhile;
                 wp_reset_postdata();
             endif;

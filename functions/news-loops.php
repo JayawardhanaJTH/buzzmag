@@ -306,10 +306,10 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
             </div>
         </article>
 
-    <?php elseif ( 'compact-row' === $style ) : ?>
-        <article class="fl-3d-card fl-post-card-compact">
+    <?php elseif ( 'compact-row' === $style || 'horizontal-card' === $style ) : ?>
+        <article class="fl-3d-card fl-post-card-horizontal">
             <div class="fl-card-thumb">
-                <a href="<?php echo esc_url( $permalink ); ?>">
+                <a href="<?php echo esc_url( $permalink ); ?>" title="<?php echo esc_attr( $title ); ?>">
                     <?php if ( has_post_thumbnail( $post_id ) ) : ?>
                         <?php echo get_the_post_thumbnail( $post_id, 'buzzmag_small' ); ?>
                     <?php else : ?>
@@ -318,19 +318,11 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
                 </a>
             </div>
             <div class="fl-card-body">
-                <?php if ( $first_cat && empty( $options['hide_cat'] ) ) : ?>
-                    <a href="<?php echo esc_url( get_category_link( $first_cat->term_id ) ); ?>" class="fl-cat-tag">
-                        <?php echo esc_html( $first_cat->name ); ?>
-                    </a>
-                <?php endif; ?>
                 <h4 class="fl-card-title">
-                    <a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $title ); ?></a>
+                    <a href="<?php echo esc_url( $permalink ); ?>" title="<?php echo esc_attr( $title ); ?>"><?php echo esc_html( $title ); ?></a>
                 </h4>
                 <div class="fl-card-meta">
-                    <span><i class="fa fa-clock-o"></i> <?php echo esc_html( $time_ago ); ?></span>
-                    <?php if ( ! empty( $views ) ) : ?>
-                        <span><i class="fa fa-eye"></i> <?php echo esc_html( $views ); ?></span>
-                    <?php endif; ?>
+                    <span class="fl-post-date"><i class="fa fa-calendar"></i> <?php echo esc_html( get_the_date( 'F j, Y', $post_id ) ); ?></span>
                 </div>
             </div>
         </article>
@@ -411,35 +403,29 @@ function buzzmag_render_category_3d_card( $title, $slug, $count = 5, $icon = 'fa
 
         <div class="fl-cat-card-body">
             <?php if ( $query->have_posts() ) :
-                $first = true;
                 while ( $query->have_posts() ) :
                     $query->the_post();
-                    if ( $first ) :
-                        // Lead item of category with thumbnail
-                        ?>
-                        <div class="fl-cat-lead-item">
-                            <div class="fl-cat-lead-thumb">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php if ( has_post_thumbnail() ) : ?>
-                                        <?php the_post_thumbnail( 'buzzmag_medium' ); ?>
-                                    <?php else : ?>
-                                        <img src="<?php echo esc_url( fl_theme_path . '/img/buzzmag_medium.png' ); ?>" alt="<?php the_title_attribute(); ?>">
-                                    <?php endif; ?>
-                                </a>
-                            </div>
-                            <h4 class="fl-cat-lead-title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    ?>
+                    <div class="fl-cat-post-item">
+                        <div class="fl-cat-item-thumb">
+                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <?php the_post_thumbnail( 'buzzmag_small' ); ?>
+                                <?php else : ?>
+                                    <img src="<?php echo esc_url( fl_theme_path . '/img/buzzmag_small.png' ); ?>" alt="<?php the_title_attribute(); ?>">
+                                <?php endif; ?>
+                            </a>
+                        </div>
+                        <div class="fl-cat-item-content">
+                            <h4 class="fl-cat-item-title">
+                                <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                             </h4>
-                            <div class="fl-cat-lead-meta">
-                                <span><i class="fa fa-clock-o"></i> <?php echo human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . esc_html__( ' ago', 'buzzmag' ); ?></span>
+                            <div class="fl-cat-item-meta">
+                                <span class="fl-post-date"><i class="fa fa-calendar"></i> <?php echo esc_html( get_the_date( 'F j, Y' ) ); ?></span>
                             </div>
                         </div>
-                        <?php
-                        $first = false;
-                    else :
-                        // Subsequent compact items
-                        buzzmag_render_3d_post_card( get_the_ID(), 'list-item' );
-                    endif;
+                    </div>
+                    <?php
                 endwhile;
                 wp_reset_postdata();
             else : ?>

@@ -319,6 +319,8 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 | Footer Style | Unusuma.lk modern news portal footer with Sinhala/English brand & quick links | 2026-11-09 |
 | Sri Lankan Utilities | Interactive Calendar, Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa, Cartoon, WhatsApp Banner | 2026-11-09 |
 | 4 Channels x 5 Videos Section | Channel-wise separated 3D layout (4 channels, 5 videos each = 20 total) with interactive channel filter tabs & Customizer settings | 2026-11-09 |
+| Standalone Channel 3D Cards | Removed channel filter tabs; each of the 4 channels rendered as a distinct standalone 3D card with badge pill, featured lead video, and 4 compact rows | 2026-11-09 |
+| Post Card Layout Optimization | Columns 1 & 2 post cards updated to Image - [Title / Date] format (`.fl-post-card-horizontal` & `.fl-cat-post-item`) with calendar icon, matching Unusuma.lk desktop reference | 2026-11-09 |
 | Full Feature Customization | Visibility toggles and Customizer overrides for Calendar, Rahu Kalaya, Directions, Cartoon, WhatsApp & Channels | 2026-11-09 |
 | Tech debt & security fixes | Approved & completed in v3.0.0 | 2026-11-09 |
 | Version scheme | `3.0.0` (First rebranded release) | 2026-11-09 |
@@ -341,3 +343,4 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 |---|---|
 | 2026-11-09 | Full theme analysis. Created PROJECT_MEMORY.md, COMPONENT_MAP.md, DEPLOYMENT.md, CHANGELOG.md, build-zip.ps1, .gitignore. |
 | 2026-11-09 | Implemented v3.0.0 Rebrand: 3D card styling, Lead post checkbox, Ada Derana desktop 3-col layout, Unusuma.lk mobile layout, 36hr/4-day/week query filters, single post under-post/sidebar blocks, Unusuma.lk modern footer, astrology/calendar/cartoon/whatsapp utilities, Customizer controls, and bug/security fixes. Zip built cleanly in dist/buzzmag-3.0.0.zip. |
+| 2026-11-09 | Visual Optimization: Updated Columns 1 & 2 to Image - [Title / Date] card format with calendar date icon matching Unusuma.lk desktop image; converted Column 3 to 4 distinct standalone 3D Channel cards (removed tabs); rebuilt dist/buzzmag-3.0.0.zip. |

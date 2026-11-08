@@ -70,7 +70,7 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
                 if ( $top_4days->have_posts() ) :
                     while ( $top_4days->have_posts() ) :
                         $top_4days->the_post();
-                        buzzmag_render_3d_post_card( get_the_ID(), 'card' );
+                        buzzmag_render_3d_post_card( get_the_ID(), 'horizontal-card' );
                     endwhile;
                     wp_reset_postdata();
                 endif;

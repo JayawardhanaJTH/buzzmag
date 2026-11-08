@@ -137,8 +137,8 @@ get_header();
 							</div>
 						<?php }
 
-						// Footer Ad
-					    $post_ad = get_theme_mod( 'post_ad', '<a href="https://themeforest.net/item/buzzmag-viral-news-wordpress-magazineblog-theme/19207752?ref=FlatLayers" target="_blank"><img src="'.fl_theme_path.'/img/ad.jpg" alt="BuzzMag Ad"></a>' );
+						// Post Ad
+					    $post_ad = get_theme_mod( 'post_ad', '' );
 					    if ( $post_ad ) { ?>
 					        <div class="fl-ad alignwide clearfix">
 					            <span class="adtitle"><?php esc_html_e( '&ndash; Advertisement &ndash;', 'buzzmag' ); ?></span>
@@ -150,14 +150,11 @@ get_header();
 					// Author Section
 					get_template_part('includes/author-box');
 
-					// Related Posts
-					get_template_part('includes/related-posts');
-
-					// Editor Picks
-					get_template_part('includes/editor-picks');
-
 					// Comments
 					comments_template();
+
+					// Under-Post Modules: Latest (6) and Most Read 36h (6)
+					buzzmag_render_single_under_post( get_the_ID() );
 					?>
 				</div>
 				<?php if ( $sidebar == true) { get_sidebar(); } ?>
