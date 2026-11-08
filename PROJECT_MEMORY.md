@@ -318,6 +318,8 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 | Single Post Architecture | Desktop: Under post (Latest 6, Most Read 36h 6) + 6-Category Sidebar (3-each)<br/>Mobile: Under post (Latest 6, Most Read 6) | 2026-11-09 |
 | Footer Style | Unusuma.lk modern news portal footer with Sinhala/English brand & quick links | 2026-11-09 |
 | Sri Lankan Utilities | Interactive Calendar, Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa, Cartoon, WhatsApp Banner | 2026-11-09 |
+| 4 Channels x 5 Videos Section | Channel-wise separated 3D layout (4 channels, 5 videos each = 20 total) with interactive channel filter tabs & Customizer settings | 2026-11-09 |
+| Full Feature Customization | Visibility toggles and Customizer overrides for Calendar, Rahu Kalaya, Directions, Cartoon, WhatsApp & Channels | 2026-11-09 |
 | Tech debt & security fixes | Approved & completed in v3.0.0 | 2026-11-09 |
 | Version scheme | `3.0.0` (First rebranded release) | 2026-11-09 |
 

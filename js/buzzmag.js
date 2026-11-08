@@ -461,5 +461,19 @@ jQuery(document).ready(function( $ ) {
             }
         }
     });
+
+    // Channel-Wise Filter Tabs (4 Channels x 5 Videos)
+    $('.fl-channel-filter-tabs .fl-ch-tab').click(function(e) {
+        e.preventDefault();
+        var targetCh = $(this).attr('data-channel');
+        $(this).addClass('active').siblings().removeClass('active');
+
+        if ( targetCh === 'all' ) {
+            $('.fl-channel-section-block').fadeIn(200);
+        } else {
+            $('.fl-channel-section-block').hide();
+            $('.fl-channel-section-block.' + targetCh).fadeIn(200);
+        }
+    });
     
 });

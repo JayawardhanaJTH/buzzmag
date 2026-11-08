@@ -43,9 +43,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Clean bottom copyright bar with "Back to Top" pill.
 - **Customizer Portal Controls** (`functions/customizer.php`):
   - Category slug re-mapping (Local, Off road, Business, Sports, Foreign, Featured, Politics).
-  - Cartoon image, title, and description.
-  - WhatsApp Community invite link and text.
-  - Video channel titles and embed URLs (Biz Today & 3 more).
+  - **4 Video Channels with 5 Videos Each**: Fully customizable channel names, badge tags, accent colors, and 5 video titles and embed URLs per channel (20 videos total), with interactive channel filter tabs (`All Channels`, `Channel 1`, `Channel 2`, `Channel 3`, `Channel 4`).
+  - **Calendar**: Custom title and visibility toggle.
+  - **Rahu Kalaya & Astrology**: Visibility toggles, custom labels, and manual calculation overrides for Rahu Kalaya, Subha Dishawa, and Maru Sitina Dishawa.
+  - **Cartoon of the Day**: Image upload, custom title, caption/description, custom destination link, and visibility toggle.
+  - **WhatsApp Community Banner**: Channel/group link, title, description, custom button label, and visibility toggle.
   - Footer description text.
 
 ### Fixed & Security

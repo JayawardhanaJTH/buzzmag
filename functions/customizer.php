@@ -1149,15 +1149,122 @@ function buzzmag_customizer( $wp_customize ) {
 			) );
 		}
 
+		// ==========================================
+		// Calendar Settings
+		// ==========================================
+		$wp_customize->add_setting( 'hide_calendar', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_calendar', array(
+			'label'    => esc_html__( 'Hide Calendar Widget', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 10,
+		) );
+
+		$wp_customize->add_setting( 'calendar_title', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'calendar_title', array(
+			'label'       => esc_html__( 'Calendar Custom Title (Leave blank for default Month/Year)', 'buzzmag' ),
+			'section'     => 'rebrand_3d_settings',
+			'type'        => 'text',
+			'priority'    => 11,
+		) );
+
+		// ==========================================
+		// Astrological Settings (Rahu Kalaya, Subha, Maru)
+		// ==========================================
+		$wp_customize->add_setting( 'hide_rahu_kalaya', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_rahu_kalaya', array(
+			'label'    => esc_html__( 'Hide Rahu Kalaya (රාහු කාලය සඟවන්න)', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 12,
+		) );
+
+		$wp_customize->add_setting( 'rahu_kalaya_label', array(
+			'default'           => 'රාහු කාලය (Rahu Kalaya)',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'rahu_kalaya_label', array(
+			'label'    => esc_html__( 'Rahu Kalaya Label', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 13,
+		) );
+
+		$wp_customize->add_setting( 'rahu_kalaya_override', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'rahu_kalaya_override', array(
+			'label'       => esc_html__( 'Rahu Kalaya Manual Time Override (e.g. "දහවල් 12:00 - 01:30")', 'buzzmag' ),
+			'description' => esc_html__( 'Leave blank to use automatic traditional calculation.', 'buzzmag' ),
+			'section'     => 'rebrand_3d_settings',
+			'type'        => 'text',
+			'priority'    => 14,
+		) );
+
+		$wp_customize->add_setting( 'hide_astrology_directions', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_astrology_directions', array(
+			'label'    => esc_html__( 'Hide Subha & Maru Sitina Directions', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 15,
+		) );
+
+		$wp_customize->add_setting( 'subha_dishawa_override', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'subha_dishawa_override', array(
+			'label'    => esc_html__( 'Subha Dishawa Override (සුබ දිශාව)', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 16,
+		) );
+
+		$wp_customize->add_setting( 'maru_dishawa_override', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'maru_dishawa_override', array(
+			'label'    => esc_html__( 'Maru Sitina Dishawa Override (මරු සිටින දිශාව)', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 17,
+		) );
+
+		// ==========================================
 		// Cartoon of the Day
+		// ==========================================
+		$wp_customize->add_setting( 'hide_cartoon', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_cartoon', array(
+			'label'    => esc_html__( 'Hide Cartoon of the Day', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 20,
+		) );
+
 		$wp_customize->add_setting( 'cartoon_image', array(
 			'sanitize_callback' => 'esc_url_raw',
 		) );
-
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cartoon_image', array(
 		    'label'    => esc_html__( 'Cartoon of the Day Image (දවසේ කාටූනය)', 'buzzmag' ),
 		    'section'  => 'rebrand_3d_settings',
-		    'priority' => 15,
+		    'priority' => 21,
 		) ) );
 
 		$wp_customize->add_setting( 'cartoon_title', array(
@@ -1168,10 +1275,45 @@ function buzzmag_customizer( $wp_customize ) {
 			'label'    => esc_html__( 'Cartoon Title', 'buzzmag' ),
 			'section'  => 'rebrand_3d_settings',
 			'type'     => 'text',
-			'priority' => 16,
+			'priority' => 22,
 		) );
 
-		// WhatsApp Community
+		$wp_customize->add_setting( 'cartoon_desc', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'cartoon_desc', array(
+			'label'    => esc_html__( 'Cartoon Caption / Description', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 23,
+		) );
+
+		$wp_customize->add_setting( 'cartoon_link', array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'cartoon_link', array(
+			'label'    => esc_html__( 'Cartoon Link (Optional external or page URL)', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 24,
+		) );
+
+		// ==========================================
+		// WhatsApp Community Banner
+		// ==========================================
+		$wp_customize->add_setting( 'hide_whatsapp_banner', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_whatsapp_banner', array(
+			'label'    => esc_html__( 'Hide WhatsApp Community Banner', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 30,
+		) );
+
 		$wp_customize->add_setting( 'whatsapp_link', array(
 			'default'           => 'https://chat.whatsapp.com/',
 			'sanitize_callback' => 'esc_url_raw',
@@ -1180,31 +1322,139 @@ function buzzmag_customizer( $wp_customize ) {
 			'label'    => esc_html__( 'WhatsApp Channel / Group Link', 'buzzmag' ),
 			'section'  => 'rebrand_3d_settings',
 			'type'     => 'text',
-			'priority' => 20,
+			'priority' => 31,
 		) );
 
-		// Video Channels (Biz Today & 3 Channels)
-		$wp_customize->add_setting( 'video_channel_1_url', array(
-			'default'           => '',
-			'sanitize_callback' => 'esc_url_raw',
+		$wp_customize->add_setting( 'whatsapp_title', array(
+			'default'           => 'අපගේ WhatsApp සමූහයට එක්වන්න',
+			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( 'video_channel_1_url', array(
-			'label'       => esc_html__( 'Biz Today Video URL (YouTube/Vimeo)', 'buzzmag' ),
-			'section'     => 'rebrand_3d_settings',
-			'type'        => 'text',
-			'priority'    => 25,
+		$wp_customize->add_control( 'whatsapp_title', array(
+			'label'    => esc_html__( 'WhatsApp Banner Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 32,
 		) );
 
-		$wp_customize->add_setting( 'video_channel_2_url', array(
-			'default'           => '',
-			'sanitize_callback' => 'esc_url_raw',
+		$wp_customize->add_setting( 'whatsapp_desc', array(
+			'default'           => 'නවතම උණුසුම් පුවත් එසැනින් ඔබගේ දුරකථනයටම ලබාගන්න',
+			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( 'video_channel_2_url', array(
-			'label'       => esc_html__( 'Video Channel 2 URL', 'buzzmag' ),
-			'section'     => 'rebrand_3d_settings',
-			'type'        => 'text',
-			'priority'    => 26,
+		$wp_customize->add_control( 'whatsapp_desc', array(
+			'label'    => esc_html__( 'WhatsApp Banner Description', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 33,
 		) );
+
+		$wp_customize->add_setting( 'whatsapp_btn_text', array(
+			'default'           => 'Join Channel (සම්බන්ධ වන්න)',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'whatsapp_btn_text', array(
+			'label'    => esc_html__( 'WhatsApp Button Label', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 34,
+		) );
+
+		// ==========================================
+		// 4 Video Channels with 5 Videos Each
+		// ==========================================
+		$wp_customize->add_setting( 'hide_video_channels', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_video_channels', array(
+			'label'    => esc_html__( 'Hide Video Channels Section', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 40,
+		) );
+
+		$wp_customize->add_setting( 'video_section_title', array(
+			'default'           => 'වීඩියෝ නාලිකා (Video Channels)',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'video_section_title', array(
+			'label'    => esc_html__( 'Main Video Section Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 41,
+		) );
+
+		// Channel Defaults configuration
+		$ch_defaults = array(
+			1 => array( 'name' => 'Channel 1 - Biz Today (ව්‍යාපාරික පුවත්)', 'badge' => 'Biz Today', 'color' => '#e67e22' ),
+			2 => array( 'name' => 'Channel 2 - Prime Bulletin (ප්‍රධාන පුවත්)', 'badge' => 'Prime News', 'color' => '#ed0e28' ),
+			3 => array( 'name' => 'Channel 3 - Special Talk (විශේෂ සාකච්ඡා)', 'badge' => 'Exclusive', 'color' => '#2980b9' ),
+			4 => array( 'name' => 'Channel 4 - Entertainment & Sports', 'badge' => 'Channel 4', 'color' => '#27ae60' ),
+		);
+
+		$c_priority = 50;
+		for ( $ch_i = 1; $ch_i <= 4; $ch_i++ ) {
+			$ch_d = $ch_defaults[ $ch_i ];
+
+			// Channel Title
+			$wp_customize->add_setting( "video_ch_{$ch_i}_title", array(
+				'default'           => $ch_d['name'],
+				'sanitize_callback' => 'sanitize_text_field',
+			) );
+			$wp_customize->add_control( "video_ch_{$ch_i}_title", array(
+				'label'       => sprintf( esc_html__( 'Channel %d Title / Name', 'buzzmag' ), $ch_i ),
+				'section'     => 'rebrand_3d_settings',
+				'type'        => 'text',
+				'priority'    => $c_priority++,
+			) );
+
+			// Channel Badge
+			$wp_customize->add_setting( "video_ch_{$ch_i}_badge", array(
+				'default'           => $ch_d['badge'],
+				'sanitize_callback' => 'sanitize_text_field',
+			) );
+			$wp_customize->add_control( "video_ch_{$ch_i}_badge", array(
+				'label'       => sprintf( esc_html__( 'Channel %d Badge Tag', 'buzzmag' ), $ch_i ),
+				'section'     => 'rebrand_3d_settings',
+				'type'        => 'text',
+				'priority'    => $c_priority++,
+			) );
+
+			// Channel Color
+			$wp_customize->add_setting( "video_ch_{$ch_i}_color", array(
+				'default'           => $ch_d['color'],
+				'sanitize_callback' => 'sanitize_hex_color',
+			) );
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "video_ch_{$ch_i}_color", array(
+				'label'    => sprintf( esc_html__( 'Channel %d Accent Color', 'buzzmag' ), $ch_i ),
+				'section'  => 'rebrand_3d_settings',
+				'priority' => $c_priority++,
+			) ) );
+
+			// 5 Videos for this Channel
+			for ( $v_j = 1; $v_j <= 5; $v_j++ ) {
+				$wp_customize->add_setting( "video_ch_{$ch_i}_v_{$v_j}_title", array(
+					'default'           => sprintf( '%s Video 0%d', $ch_d['badge'], $v_j ),
+					'sanitize_callback' => 'sanitize_text_field',
+				) );
+				$wp_customize->add_control( "video_ch_{$ch_i}_v_{$v_j}_title", array(
+					'label'       => sprintf( esc_html__( 'Ch %d - Video %d Title', 'buzzmag' ), $ch_i, $v_j ),
+					'section'     => 'rebrand_3d_settings',
+					'type'        => 'text',
+					'priority'    => $c_priority++,
+				) );
+
+				$wp_customize->add_setting( "video_ch_{$ch_i}_v_{$v_j}_url", array(
+					'default'           => '',
+					'sanitize_callback' => 'esc_url_raw',
+				) );
+				$wp_customize->add_control( "video_ch_{$ch_i}_v_{$v_j}_url", array(
+					'label'       => sprintf( esc_html__( 'Ch %d - Video %d URL (YouTube/Vimeo)', 'buzzmag' ), $ch_i, $v_j ),
+					'section'     => 'rebrand_3d_settings',
+					'type'        => 'text',
+					'priority'    => $c_priority++,
+				) );
+			}
+		}
 
 		// Footer About Text
 		$wp_customize->add_setting( 'footer_about_text', array(
@@ -1224,6 +1474,11 @@ add_action( 'customize_register', 'buzzmag_customizer' );
 // Textarea Escape
 function buzzmag_textarea_sanitize( $input ) {
     return wp_kses_post( $input );
+}
+
+// Checkbox Sanitization
+function buzzmag_sanitize_checkbox( $checked ) {
+    return ( ( isset( $checked ) && true == $checked ) ? true : false );
 }
 
 // Add Changes To Head
