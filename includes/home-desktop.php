@@ -66,7 +66,7 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
                     <h4><?php esc_html_e( 'වැඩිම පිරිසක් නැරඹූ (Top Viewed - 4 Days)', 'buzzmag' ); ?></h4>
                 </div>
                 <?php
-                $top_4days = buzzmag_query_most_viewed_days( 4, 1 );
+                $top_4days = buzzmag_query_most_viewed_days( 4, 10 );
                 if ( $top_4days->have_posts() ) :
                     while ( $top_4days->have_posts() ) :
                         $top_4days->the_post();
