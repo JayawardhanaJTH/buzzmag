@@ -1,0 +1,72 @@
+/* Editor Style RTL */
+ul.wp-block-list ul,
+ol.wp-block-list ol,
+ul.wp-block-list ol,
+ol.wp-block-list ul {
+    margin-left: 0;
+    margin-right: 40px;
+}
+
+/* BlockQuotes */
+blockquote,
+q,
+.wp-block-freeform.block-library-rich-text__tinymce blockquote { padding: 24px 56px 24px 0; }
+
+blockquote:before,
+q:before,
+.wp-block-freeform.block-library-rich-text__tinymce blockquote:before {
+    left: auto;
+    right: 0;
+    text-align: right;
+}
+
+.wp-block-quote.is-large,
+.wp-block-quote.is-style-large { padding: 24px 56px 24px 0; }
+
+blockquote cite:before,
+q cite:before,
+pre cite:before,
+.wp-block-pullquote__citation:before {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+/* Address, Pre, Code ...etc */
+pre, address, code { padding: 24px 64px 24px 24px; }
+address:before,
+code:before {
+    left: auto;
+    right: 24px;
+    text-align: right;
+}
+
+/* Gutenberg Blocks -> Gallery & Images & Embeds*/
+.wp-block-image figcaption:before,
+.wp-block-gallery figcaption:before,
+.wp-block-embed figcaption:before,
+.wp-caption .wp-caption-text:before,
+.entry-caption:before,
+.gallery-caption:before,
+.wp-caption-dd:before {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+/* Gutenberg Blocks -> Widgets */
+.wp-block-latest-posts__post-author,
+.wp-block-latest-posts__post-date {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+/* Gutenberg Blocks -> Layout Elements */
+pre code { padding: 0 40px 0 0; }
+pre code:before {
+    left: auto;
+    right: 0;
+}
+
+.wp-block-separator.is-style-dots:before {
+    padding-left: 0;
+    padding-right: 24px;
+}

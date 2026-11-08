@@ -1,0 +1,1049 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BuzzMag v2.0\n"
+"POT-Creation-Date: 2022-02-27 15:28+0200\n"
+"PO-Revision-Date: 2016-02-29 14:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: FlatLayers\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;__;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../404.php:7
+msgid "Error 404. Oops!"
+msgstr ""
+
+#: ../404.php:11
+msgid ""
+"It seems we can not find what you are looking for. Perhaps searching can help."
+msgstr ""
+
+#: ../archive.php:6
+msgid "Browsing Archive"
+msgstr ""
+
+#: ../author.php:9
+msgid "Articles Written By"
+msgstr ""
+
+#: ../comments.php:6 ../comments.php:11 ../comments.php:44
+msgid "No Comments"
+msgstr ""
+
+#: ../comments.php:6 ../comments.php:11 ../comments.php:38 ../comments.php:44
+msgid "1 Comment"
+msgstr ""
+
+#: ../comments.php:6 ../comments.php:11 ../comments.php:38 ../comments.php:44
+msgid "% Comments"
+msgstr ""
+
+#: ../comments.php:28
+msgid "Comments are closed."
+msgstr ""
+
+#: ../comments.php:38 ../comments.php:65
+msgid "Leave a Reply"
+msgstr ""
+
+#: ../footer.php:9 ../index.php:16 ../single.php:152
+#: ../templates/post-full-width.php:144 ../templates/post-sidebar-left.php:147
+#: ../templates/post-sidebar-right.php:147
+msgid "&ndash; Advertisement &ndash;"
+msgstr ""
+
+#: ../functions.php:18
+msgid "Main Menu"
+msgstr ""
+
+#: ../functions.php:19
+msgid "Footer Menu"
+msgstr ""
+
+#: ../functions.php:112
+msgid "Sorry, No More Posts to Load!"
+msgstr ""
+
+#: ../functions.php:121 ../functions.php:123
+msgid "Sidebar"
+msgstr ""
+
+#: ../functions.php:132 ../functions.php:134
+msgid "Drawer"
+msgstr ""
+
+#: ../functions.php:143 ../functions.php:145
+msgid "Footer Widget 1"
+msgstr ""
+
+#: ../functions.php:153 ../functions.php:155
+msgid "Footer Widget 2"
+msgstr ""
+
+#: ../functions.php:163 ../functions.php:165 ../functions.php:177
+msgid "Footer Widget 3"
+msgstr ""
+
+#: ../functions.php:174 ../functions.php:176
+msgid "WooCommerce Sidebar"
+msgstr ""
+
+#: ../functions.php:266
+msgid " K"
+msgstr ""
+
+#: ../functions.php:268
+msgid " M"
+msgstr ""
+
+#: ../functions.php:424
+msgid "BuzzMag Theme Addons"
+msgstr ""
+
+#: ../functions/category-options.php:7 ../functions/category-options.php:40
+msgid "Default Category Layout"
+msgstr ""
+
+#: ../functions/category-options.php:8 ../functions/category-options.php:41
+#: ../functions/customizer.php:13
+msgid "Grid 2 Columns"
+msgstr ""
+
+#: ../functions/category-options.php:9 ../functions/category-options.php:42
+#: ../functions/customizer.php:14
+msgid "Grid 2 Columns & Sidebar"
+msgstr ""
+
+#: ../functions/category-options.php:10 ../functions/category-options.php:43
+#: ../functions/customizer.php:15
+msgid "Grid 3 Columns"
+msgstr ""
+
+#: ../functions/category-options.php:11 ../functions/category-options.php:44
+#: ../functions/customizer.php:16
+msgid "List Full Width"
+msgstr ""
+
+#: ../functions/category-options.php:12 ../functions/category-options.php:45
+#: ../functions/customizer.php:17
+msgid "List & Sidebar"
+msgstr ""
+
+#: ../functions/category-options.php:13 ../functions/category-options.php:46
+#: ../functions/customizer.php:18
+msgid "Masonry 2 Columns"
+msgstr ""
+
+#: ../functions/category-options.php:14 ../functions/category-options.php:47
+#: ../functions/customizer.php:19
+msgid "Masonry 2 Columns & Sidebar"
+msgstr ""
+
+#: ../functions/category-options.php:15 ../functions/category-options.php:48
+#: ../functions/customizer.php:20
+msgid "Masonry 3 Columns"
+msgstr ""
+
+#: ../functions/category-options.php:16 ../functions/category-options.php:49
+#: ../functions/customizer.php:21
+msgid "Standard"
+msgstr ""
+
+#: ../functions/category-options.php:17 ../functions/category-options.php:50
+#: ../functions/customizer.php:22
+msgid "Standard & Sidebar"
+msgstr ""
+
+#: ../functions/category-options.php:21 ../functions/category-options.php:56
+msgid "Category Layout"
+msgstr ""
+
+#: ../functions/category-options.php:29 ../functions/category-options.php:66
+msgid "Select Category Layout"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:339
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:393
+#: ../functions/class-tgm-plugin-activation.php:912
+#: ../functions/class-tgm-plugin-activation.php:2618
+#: ../functions/class-tgm-plugin-activation.php:3665
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:394
+#: ../functions/class-tgm-plugin-activation.php:3244
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:395
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:397
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:399
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. Please "
+"update the plugin."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:1019
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug and "
+"renaming did not work."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:1019
+#: ../functions/class-tgm-plugin-activation.php:1022
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:1022
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2067
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2358
+msgid "Required"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2361
+msgid "Recommended"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2377
+msgid "WordPress Repository"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2380
+msgid "External Source"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2383
+msgid "Pre-Packaged"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2400
+msgid "Not Installed"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2404
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2406
+msgid "Active"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2412
+msgid "Required Update not Available"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2415
+msgid "Requires Update"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2418
+msgid "Update recommended"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2575
+msgid "Installed version:"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2583
+msgid "Minimum required version:"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2595
+msgid "Available version:"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2618
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2632
+msgid "Plugin"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2633
+msgid "Source"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2634
+msgid "Type"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2638
+msgid "Version"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2639
+msgid "Status"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2688
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2693
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2699
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2769
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2802
+msgid "Install"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2808
+msgid "Update"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2811
+msgid "Activate"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2842
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2844
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2885
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2887
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:2993
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3019
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3243
+msgid "Plugin activation failed."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3583
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3586
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3588
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3592
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3594
+#: ../functions/class-tgm-plugin-activation.php:3602
+msgid "Show Details"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3594
+#: ../functions/class-tgm-plugin-activation.php:3602
+msgid "Hide Details"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3595
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3597
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3600
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3603
+msgid "All installations have been completed."
+msgstr ""
+
+#: ../functions/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: ../functions/customizer.php:26
+msgid "No Featured Posts"
+msgstr ""
+
+#: ../functions/customizer.php:27
+msgid "1 Post"
+msgstr ""
+
+#: ../functions/customizer.php:28
+msgid "4 Posts"
+msgstr ""
+
+#: ../functions/customizer.php:29
+msgid "5 Posts"
+msgstr ""
+
+#: ../functions/customizer.php:30
+msgid "6 Posts"
+msgstr ""
+
+#: ../functions/customizer.php:35
+msgid "General Settings"
+msgstr ""
+
+#: ../functions/customizer.php:47
+msgid "Sidebar Position"
+msgstr ""
+
+#: ../functions/customizer.php:62
+msgid "Disable Smart Sticky Sidebar Option"
+msgstr ""
+
+#: ../functions/customizer.php:74
+msgid "Hide Sidebar in Posts"
+msgstr ""
+
+#: ../functions/customizer.php:86
+msgid "Hide Sidebar in Pages"
+msgstr ""
+
+#: ../functions/customizer.php:98
+msgid "Activate Infinite Scroll"
+msgstr ""
+
+#: ../functions/customizer.php:112
+msgid "Display trending posts for last:"
+msgstr ""
+
+#: ../functions/customizer.php:113
+msgid "Value must be in days. Ex: Most viewed posts published in last 30 days."
+msgstr ""
+
+#: ../functions/customizer.php:129
+msgid "Categories Archive Layout"
+msgstr ""
+
+#: ../functions/customizer.php:144
+msgid "Author Archive Layout"
+msgstr ""
+
+#: ../functions/customizer.php:159
+msgid "Search Results Layout"
+msgstr ""
+
+#: ../functions/customizer.php:173
+msgid "Tags & Other Archives Layout"
+msgstr ""
+
+#: ../functions/customizer.php:191
+msgid "WooCommerce Shop & Archives Layout"
+msgstr ""
+
+#: ../functions/customizer.php:195
+msgid "Grid 3 Columns & Sidebar"
+msgstr ""
+
+#: ../functions/customizer.php:196
+msgid "Grid 4 Columns"
+msgstr ""
+
+#: ../functions/customizer.php:206
+msgid "Hide Sidebar in Product Page"
+msgstr ""
+
+#: ../functions/customizer.php:218
+msgid "Header Settings"
+msgstr ""
+
+#: ../functions/customizer.php:228
+msgid "Logo"
+msgstr ""
+
+#: ../functions/customizer.php:229
+msgid "Add logo to display logo and dark mode logo."
+msgstr ""
+
+#: ../functions/customizer.php:240
+msgid "Dark Mode Logo"
+msgstr ""
+
+#: ../functions/customizer.php:251
+msgid "Disable Dark Mode"
+msgstr ""
+
+#: ../functions/customizer.php:263
+msgid "Set Dark Mode As Default Mode"
+msgstr ""
+
+#: ../functions/customizer.php:275
+msgid "Disable Fixed Header"
+msgstr ""
+
+#: ../functions/customizer.php:287
+msgid "Hide Drawer on Desktop"
+msgstr ""
+
+#: ../functions/customizer.php:299
+msgid "Hide Social Icons"
+msgstr ""
+
+#: ../functions/customizer.php:311
+msgid "Hide Search"
+msgstr ""
+
+#: ../functions/customizer.php:325
+msgid "Hide WooCommerce Cart Icon"
+msgstr ""
+
+#: ../functions/customizer.php:337
+msgid "Hide WooCommerce Account Icon"
+msgstr ""
+
+#: ../functions/customizer.php:350
+msgid "Home Settings"
+msgstr ""
+
+#: ../functions/customizer.php:362
+msgid "Home Layout"
+msgstr ""
+
+#: ../functions/customizer.php:376
+msgid "Featured Posts Layout"
+msgstr ""
+
+#: ../functions/customizer.php:388
+msgid "Featured Categories Slugs"
+msgstr ""
+
+#: ../functions/customizer.php:389 ../functions/customizer.php:506
+msgid "Split category slugs by \",\". Example: cats,dogs,horses...etc."
+msgstr ""
+
+#: ../functions/customizer.php:401
+msgid "Hide Trending Posts"
+msgstr ""
+
+#: ../functions/customizer.php:402
+msgid "Hide trending tab and posts from home."
+msgstr ""
+
+#: ../functions/customizer.php:414
+msgid "Hide Audios Posts"
+msgstr ""
+
+#: ../functions/customizer.php:415
+msgid "Hide Audios tab and posts from homepage."
+msgstr ""
+
+#: ../functions/customizer.php:427
+msgid "Hide Videos Posts"
+msgstr ""
+
+#: ../functions/customizer.php:428
+msgid "Hide Videos tab and posts from homepage."
+msgstr ""
+
+#: ../functions/customizer.php:440
+msgid "Hide Galleries Posts"
+msgstr ""
+
+#: ../functions/customizer.php:441
+msgid "Hide Galleries tab and posts from homepage."
+msgstr ""
+
+#: ../functions/customizer.php:453
+msgid "Disable Smart Sticky Tabs"
+msgstr ""
+
+#: ../functions/customizer.php:466
+msgid "Homepage Ad"
+msgstr ""
+
+#: ../functions/customizer.php:467
+msgid ""
+"Ad display after featured posts in homepage. Keep it empty if you want to "
+"hide it."
+msgstr ""
+
+#: ../functions/customizer.php:478
+msgid "Post Settings"
+msgstr ""
+
+#: ../functions/customizer.php:490
+msgid "Related Posts Type"
+msgstr ""
+
+#: ../functions/customizer.php:494
+msgid "Based On Tags"
+msgstr ""
+
+#: ../functions/customizer.php:495
+msgid "From Same Category"
+msgstr ""
+
+#: ../functions/customizer.php:505
+msgid "Editor Picks Categories Slugs"
+msgstr ""
+
+#: ../functions/customizer.php:530
+msgid "Hide Related Posts"
+msgstr ""
+
+#: ../functions/customizer.php:542
+msgid "Hide Editor Picks Section"
+msgstr ""
+
+#: ../functions/customizer.php:554
+msgid "Hide Author Meta"
+msgstr ""
+
+#: ../functions/customizer.php:566
+msgid "Hide Date Meta"
+msgstr ""
+
+#: ../functions/customizer.php:578
+msgid "Hide Views Meta"
+msgstr ""
+
+#: ../functions/customizer.php:590
+msgid "Hide Tags Meta"
+msgstr ""
+
+#: ../functions/customizer.php:602
+msgid "Hide Comments Meta"
+msgstr ""
+
+#: ../functions/customizer.php:615
+msgid "Post Ad"
+msgstr ""
+
+#: ../functions/customizer.php:616
+msgid ""
+"Ad display after article in all posts. Keep it empty if you want to hide it."
+msgstr ""
+
+#: ../functions/customizer.php:626
+msgid "Footer Settings"
+msgstr ""
+
+#: ../functions/customizer.php:636
+msgid "Hide Footer Widgets"
+msgstr ""
+
+#: ../functions/customizer.php:649
+msgid "Copyrights"
+msgstr ""
+
+#: ../functions/customizer.php:662
+msgid "Footer Ad"
+msgstr ""
+
+#: ../functions/customizer.php:663
+msgid ""
+"Ad display before footer in all pages. Keep it empty if you want to hide it."
+msgstr ""
+
+#: ../functions/customizer.php:674
+msgid "Colors: General"
+msgstr ""
+
+#: ../functions/customizer.php:685
+msgid "Accent Color"
+msgstr ""
+
+#: ../functions/customizer.php:697
+msgid "Body Background Color"
+msgstr ""
+
+#: ../functions/customizer.php:709
+msgid "Content Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:722
+msgid "Headings Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:735
+msgid "Meta Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:748
+msgid "Buttons Background Color"
+msgstr ""
+
+#: ../functions/customizer.php:758
+msgid "Colors: Header"
+msgstr ""
+
+#: ../functions/customizer.php:769
+msgid "Header Background Color"
+msgstr ""
+
+#: ../functions/customizer.php:781
+msgid "Header Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:793
+msgid "Submenu & Drawer Background"
+msgstr ""
+
+#: ../functions/customizer.php:805
+msgid "Submenu & Drawer Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:814
+msgid "Colors: Footer"
+msgstr ""
+
+#: ../functions/customizer.php:825
+msgid "Footer Background Color"
+msgstr ""
+
+#: ../functions/customizer.php:838
+msgid "Footer Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:851
+msgid "Footer Headings Text Color"
+msgstr ""
+
+#: ../functions/customizer.php:860
+msgid "Typography"
+msgstr ""
+
+#: ../functions/customizer.php:872
+msgid "Headings Font Family"
+msgstr ""
+
+#: ../functions/customizer.php:873 ../functions/customizer.php:906
+msgid ""
+"Got to Google Fonts (https://fonts.google.com). Copy selected font name and "
+"paste it here."
+msgstr ""
+
+#: ../functions/customizer.php:887
+msgid "Headings Font Weight"
+msgstr ""
+
+#: ../functions/customizer.php:905
+msgid "Body Font Family"
+msgstr ""
+
+#: ../functions/customizer.php:920
+msgid "Body Text Font Size"
+msgstr ""
+
+#: ../functions/customizer.php:921
+msgid ""
+"Headings and all other typography elements are based on body font. When you "
+"increase body font all other typography elements increase with the same ratio."
+msgstr ""
+
+#: ../functions/customizer.php:929
+msgid "Social Media (Header)"
+msgstr ""
+
+#: ../functions/customizer.php:931
+msgid "Add social media URLs. Icon will not display if left blank."
+msgstr ""
+
+#: ../functions/customizer.php:942 ../includes/social-icons.php:4
+msgid "Twitter"
+msgstr ""
+
+#: ../functions/customizer.php:955 ../includes/social-icons.php:8
+msgid "Facebook"
+msgstr ""
+
+#: ../functions/customizer.php:968 ../includes/social-icons.php:12
+msgid "Instagram"
+msgstr ""
+
+#: ../functions/customizer.php:981 ../includes/social-icons.php:16
+msgid "Vimeo"
+msgstr ""
+
+#: ../functions/customizer.php:994 ../includes/social-icons.php:20
+msgid "Youtube"
+msgstr ""
+
+#: ../functions/customizer.php:1007 ../includes/social-icons.php:24
+msgid "Soundcloud"
+msgstr ""
+
+#: ../functions/customizer.php:1020 ../includes/social-icons.php:28
+msgid "Dribbble"
+msgstr ""
+
+#: ../functions/customizer.php:1033 ../includes/social-icons.php:32
+msgid "Pinterest"
+msgstr ""
+
+#: ../functions/customizer.php:1046
+msgid "Linkedin"
+msgstr ""
+
+#: ../functions/customizer.php:1059 ../includes/social-icons.php:40
+msgid "VK"
+msgstr ""
+
+#: ../functions/customizer.php:1072 ../includes/social-icons.php:44
+msgid "Behance"
+msgstr ""
+
+#: ../functions/customizer.php:1085 ../includes/social-icons.php:48
+msgid "Flickr"
+msgstr ""
+
+#: ../functions/customizer.php:1098 ../includes/social-icons.php:52
+msgid "E-mail"
+msgstr ""
+
+#: ../functions/customizer.php:1111 ../includes/social-icons.php:56
+msgid "RSS"
+msgstr ""
+
+#: ../functions/loops.php:16
+msgid "Sorry, No Posts Found!"
+msgstr ""
+
+#: ../functions/loops.php:37
+msgid "Load More Posts"
+msgstr ""
+
+#: ../functions/mega-menu.php:16
+msgid "Enable Mega Menu for this category."
+msgstr ""
+
+#: ../functions/mega-menu.php:18
+msgid ""
+"Mega Menu will only display when menu item is ( Category, First level, Main "
+"Menu Location, Does not have submenu items."
+msgstr ""
+
+#: ../functions/mega-menu.php:71
+msgid "All"
+msgstr ""
+
+#: ../header.php:23 ../header.php:25
+msgid "Menu"
+msgstr ""
+
+#: ../includes/author-box.php:9
+msgid "Written By"
+msgstr ""
+
+#: ../includes/editor-picks.php:27
+msgid "Editor Picks"
+msgstr ""
+
+#: ../includes/editor-picks.php:60 ../includes/featured-loops/1post.php:56
+#: ../includes/featured-loops/4posts.php:75
+#: ../includes/featured-loops/5posts.php:60 ../includes/loop-post.php:39
+#: ../includes/related-posts.php:65 ../single.php:111
+#: ../templates/post-full-width.php:103 ../templates/post-sidebar-left.php:106
+#: ../templates/post-sidebar-right.php:106
+msgid " ago"
+msgstr ""
+
+#: ../includes/featured-loops/1post.php:72 ../includes/loop-post.php:49
+#: ../single.php:117 ../templates/post-full-width.php:109
+#: ../templates/post-sidebar-left.php:112
+#: ../templates/post-sidebar-right.php:112
+msgid "0"
+msgstr ""
+
+#: ../includes/featured-loops/1post.php:72 ../includes/loop-post.php:49
+#: ../single.php:117 ../templates/post-full-width.php:109
+#: ../templates/post-sidebar-left.php:112
+#: ../templates/post-sidebar-right.php:112
+msgid "1"
+msgstr ""
+
+#: ../includes/featured-loops/1post.php:72 ../includes/loop-post.php:49
+#: ../single.php:117 ../templates/post-full-width.php:109
+#: ../templates/post-sidebar-left.php:112
+#: ../templates/post-sidebar-right.php:112
+msgid "%"
+msgstr ""
+
+#: ../includes/loop-tabs.php:4
+msgid "Latest"
+msgstr ""
+
+#: ../includes/loop-tabs.php:8
+msgid "Trending"
+msgstr ""
+
+#: ../includes/loop-tabs.php:13
+msgid "Audios"
+msgstr ""
+
+#: ../includes/loop-tabs.php:18
+msgid "Videos"
+msgstr ""
+
+#: ../includes/loop-tabs.php:23
+msgid "Galleries"
+msgstr ""
+
+#: ../includes/related-posts.php:33
+msgid "You might also like"
+msgstr ""
+
+#: ../includes/social-icons.php:36
+msgid "LinkedIn"
+msgstr ""
+
+#: ../page.php:74 ../single.php:133 ../templates/page-full-width.php:55
+#: ../templates/page-sidebar-left.php:55 ../templates/page-sidebar-right.php:55
+#: ../templates/post-full-width.php:125 ../templates/post-sidebar-left.php:128
+#: ../templates/post-sidebar-right.php:128
+msgid "Page"
+msgstr ""
+
+#: ../page.php:74 ../single.php:133 ../templates/page-full-width.php:55
+#: ../templates/page-sidebar-left.php:55 ../templates/page-sidebar-right.php:55
+#: ../templates/post-full-width.php:125 ../templates/post-sidebar-left.php:128
+#: ../templates/post-sidebar-right.php:128
+msgid " / "
+msgstr ""
+
+#: ../page.php:76 ../single.php:135 ../templates/page-full-width.php:57
+#: ../templates/page-sidebar-left.php:57 ../templates/page-sidebar-right.php:57
+#: ../templates/post-full-width.php:127 ../templates/post-sidebar-left.php:130
+#: ../templates/post-sidebar-right.php:130
+msgid "Next"
+msgstr ""
+
+#: ../page.php:77 ../single.php:136 ../templates/page-full-width.php:58
+#: ../templates/page-sidebar-left.php:58 ../templates/page-sidebar-right.php:58
+#: ../templates/post-full-width.php:128 ../templates/post-sidebar-left.php:131
+#: ../templates/post-sidebar-right.php:131
+msgid "Previous"
+msgstr ""
+
+#: ../search.php:11
+msgid "Search Results for"
+msgstr ""
+
+#: ../searchform.php:4
+msgid "Search"
+msgstr ""
+
+#: ../single.php:143 ../templates/post-full-width.php:135
+#: ../templates/post-sidebar-left.php:138
+#: ../templates/post-sidebar-right.php:138
+msgid "Tags"
+msgstr ""
+
+#: ../tag.php:6
+msgid "Browsing Tag"
+msgstr ""
