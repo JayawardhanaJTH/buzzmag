@@ -275,7 +275,7 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
                     <?php endif; ?>
                 </a>
                 <span class="fl-lead-badge"><i class="fa fa-bolt"></i> <?php esc_html_e( 'ප්‍රධාන පුවත (Lead Story)', 'buzzmag' ); ?></span>
-                <?php if ( $first_cat ) : ?>
+                <?php if ( $first_cat && strtolower( $first_cat->slug ) !== 'uncategorized' ) : ?>
                     <a href="<?php echo esc_url( get_category_link( $first_cat->term_id ) ); ?>" class="fl-cat-pill">
                         <?php echo esc_html( $first_cat->name ); ?>
                     </a>
@@ -346,11 +346,6 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
                         <img src="<?php echo esc_url( fl_theme_path . '/img/buzzmag_medium.png' ); ?>" alt="<?php echo esc_attr( $title ); ?>">
                     <?php endif; ?>
                 </a>
-                <?php if ( $first_cat ) : ?>
-                    <a href="<?php echo esc_url( get_category_link( $first_cat->term_id ) ); ?>" class="fl-cat-badge">
-                        <?php echo esc_html( $first_cat->name ); ?>
-                    </a>
-                <?php endif; ?>
             </div>
             <div class="fl-card-details">
                 <h3 class="fl-card-title">

@@ -276,7 +276,7 @@ function buzzmag_render_cartoon_card() {
     $cartoon_link  = get_theme_mod( 'cartoon_link', '' );
 
     if ( empty( $cartoon_img ) ) {
-        $cartoon_img = get_template_directory_uri() . '/img/cartoon-placeholder.jpg';
+        $cartoon_img = get_template_directory_uri() . '/img/cartoon-placeholder.svg';
     }
 
     $target_link = ! empty( $cartoon_link ) ? $cartoon_link : $cartoon_img;

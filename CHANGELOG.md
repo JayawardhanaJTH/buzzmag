@@ -54,6 +54,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - **Column 2 Category Cards**: Updated each 3D category card to render all 5 posts with the horizontal `[Image] - [Title / Date]` layout (`.fl-cat-post-item`).
   - **Column 3 Channel Cards**: Removed channel filter tabs; separated each of the 4 channels into its own standalone 3D card (`.fl-channel-card`) featuring channel badge pill, lead video with playable overlay, and 4 compact video rows.
   - **Mobile Responsive Polish**: Tuned horizontal card proportions for mobile devices (<576px) ensuring clean title typography and responsive thumbnail scaling.
+  - **Homepage Bottom Sections Spacing**: Expanded separation after the 3-column grid (`margin-top: 60px; padding-top: 40px; border-top`) and expanded gap between Politics and Featured sections to `70px`.
+  - **Bottom Section Image Aspect & Framing**: Increased card thumbnail height to `205px` and set `object-position: top center` so headlines and faces are never cropped from the top.
+  - **Single Post Sidebar Baseline Alignment**: Relocated `.fl-media-wrap` inside `#fl-post-container` and configured `.fl-single-columns-wrap` as a flex container (`align-items: flex-start; gap: 32px;`), aligning the post image and the top of the sidebar on the exact same horizontal level.
+  - **Sidebar Category Card Margins**: Added distinct `margin-bottom: 25px` to `.fl-sidebar-cat-widget` ensuring all 6 category cards have clean vertical breathing room.
+  - **Cartoon Placeholder**: Added SVG illustration placeholder at `img/cartoon-placeholder.svg` to eliminate broken image icons before user upload.
+  - **Category Overlay Removal**: Removed the dark transparent category badge mask (`.fl-cat-badge`) overlaid across bottom card images and filtered out "Uncategorized" pills from lead posts to ensure clean, unmasked visuals.
 
 ### Fixed & Security
 - **Security**: Added nonce and integer validation to post views AJAX counter (`buzzmag_setpostviews`).
