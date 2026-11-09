@@ -1142,10 +1142,11 @@ function buzzmag_customizer( $wp_customize ) {
 			) );
 
 			$wp_customize->add_control( $c_key, array(
-				'label'    => esc_html__( $c_val['label'], 'buzzmag' ),
-				'section'  => 'rebrand_3d_settings',
-				'type'     => 'text',
-				'priority' => $p_idx++,
+				'label'       => esc_html__( $c_val['label'], 'buzzmag' ),
+				'description' => esc_html__( 'Enter category slug, category name, or category ID (e.g. local, දේශීය, 5). The "More" button dynamically links to its archive.', 'buzzmag' ),
+				'section'     => 'rebrand_3d_settings',
+				'type'        => 'text',
+				'priority'    => $p_idx++,
 			) );
 		}
 

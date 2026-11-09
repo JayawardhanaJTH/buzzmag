@@ -287,6 +287,7 @@ flowchart LR
 | Header layout/icons | `header.php` + style.css §4 |
 | Footer / copyright | `footer.php` + customizer `copyrights` default |
 | Post card look | `includes/loop-post.php` + style.css §6 |
+| Category 3D Cards & "More" Buttons | `functions/news-loops.php` (`buzzmag_render_category_3d_card`, `buzzmag_resolve_category_term`), `css/3d-components.css` |
 | Featured (hero) block | `includes/featured-loops/*` + style.css §5 |
 | Single post layout | `single.php` **and** the 3 `templates/post-*.php` copies |
 | Home tabs | `index.php`, `includes/loop-tabs.php`, `loops.php`, `buzzmag.js` |

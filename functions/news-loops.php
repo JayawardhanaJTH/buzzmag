@@ -206,18 +206,179 @@ function buzzmag_query_top_stories_week( $count = 6, $exclude_ids = array() ) {
 }
 
 /**
+ * Resolve a WordPress Category Term from slug, ID, or name with multi-stage fuzzy fallback.
+ *
+ * @param string|int|WP_Term $slug_or_id_or_name Category identifier.
+ * @param string $fallback_title Optional display title to attempt matching.
+ * @return WP_Term|null
+ */
+function buzzmag_resolve_category_term( $slug_or_id_or_name, $fallback_title = '' ) {
+    if ( empty( $slug_or_id_or_name ) && empty( $fallback_title ) ) {
+        return null;
+    }
+
+    if ( is_a( $slug_or_id_or_name, 'WP_Term' ) ) {
+        return $slug_or_id_or_name;
+    }
+
+    // 1. Numeric ID check
+    if ( is_numeric( $slug_or_id_or_name ) && (int) $slug_or_id_or_name > 0 ) {
+        $term = get_term( (int) $slug_or_id_or_name, 'category' );
+        if ( $term && ! is_wp_error( $term ) ) {
+            return $term;
+        }
+    }
+
+    $input = trim( (string) $slug_or_id_or_name );
+
+    // 2. Exact slug match
+    if ( ! empty( $input ) ) {
+        $term = get_term_by( 'slug', $input, 'category' );
+        if ( $term && ! is_wp_error( $term ) ) {
+            return $term;
+        }
+
+        // 3. Sanitized slug match
+        $sanitized = sanitize_title( $input );
+        if ( ! empty( $sanitized ) && $sanitized !== $input ) {
+            $term = get_term_by( 'slug', $sanitized, 'category' );
+            if ( $term && ! is_wp_error( $term ) ) {
+                return $term;
+            }
+        }
+
+        // 4. Exact name match
+        $term = get_term_by( 'name', $input, 'category' );
+        if ( $term && ! is_wp_error( $term ) ) {
+            return $term;
+        }
+    }
+
+    // 5. Check with fallback title (if provided)
+    if ( ! empty( $fallback_title ) ) {
+        $clean_title = trim( $fallback_title );
+
+        $term = get_term_by( 'name', $clean_title, 'category' );
+        if ( $term && ! is_wp_error( $term ) ) {
+            return $term;
+        }
+
+        $term = get_term_by( 'slug', sanitize_title( $clean_title ), 'category' );
+        if ( $term && ! is_wp_error( $term ) ) {
+            return $term;
+        }
+
+        // Extract inside parentheses, e.g. "Local" from "දේශීය පුවත් (Local News)"
+        if ( preg_match( '/\((.*?)\)/u', $clean_title, $m ) ) {
+            $inner = trim( $m[1] );
+            if ( ! empty( $inner ) ) {
+                $term = get_term_by( 'slug', sanitize_title( $inner ), 'category' );
+                if ( $term && ! is_wp_error( $term ) ) {
+                    return $term;
+                }
+                $term = get_term_by( 'name', $inner, 'category' );
+                if ( $term && ! is_wp_error( $term ) ) {
+                    return $term;
+                }
+            }
+        }
+
+        // Extract before parentheses
+        $before = trim( preg_replace( '/\(.*?\)/u', '', $clean_title ) );
+        if ( ! empty( $before ) ) {
+            $term = get_term_by( 'name', $before, 'category' );
+            if ( $term && ! is_wp_error( $term ) ) {
+                return $term;
+            }
+            $term = get_term_by( 'slug', sanitize_title( $before ), 'category' );
+            if ( $term && ! is_wp_error( $term ) ) {
+                return $term;
+            }
+        }
+    }
+
+    // 6. Fuzzy keyword search across all existing categories
+    if ( function_exists( 'get_categories' ) ) {
+        $all_cats = get_categories( array( 'hide_empty' => false ) );
+        if ( ! empty( $all_cats ) && ! is_wp_error( $all_cats ) ) {
+            $needle = strtolower( $input );
+            $keywords_map = array(
+                'local'    => array( 'local', 'deshiya', 'lanka', 'sri-lanka', 'colombo' ),
+                'offroad'  => array( 'off-road', 'offroad', 'foreign', 'world', 'pitarata', 'international' ),
+                'off-road' => array( 'off-road', 'offroad', 'foreign', 'world', 'pitarata', 'international' ),
+                'business' => array( 'business', 'biz', 'vyaparika', 'economy', 'finance', 'market' ),
+                'sports'   => array( 'sports', 'sport', 'krida', 'cricket' ),
+                'foreign'  => array( 'foreign', 'world', 'pitarata', 'international', 'global' ),
+                'politics' => array( 'politics', 'politic', 'deshapalana' ),
+                'featured' => array( 'featured', 'feature', 'visheshanga', 'special' ),
+            );
+
+            $search_keywords = array();
+            if ( ! empty( $needle ) ) {
+                $search_keywords[] = $needle;
+                if ( isset( $keywords_map[ $needle ] ) ) {
+                    $search_keywords = array_merge( $search_keywords, $keywords_map[ $needle ] );
+                }
+            }
+
+            foreach ( $all_cats as $cat ) {
+                $cat_slug_lower = strtolower( $cat->slug );
+                $cat_name_lower = strtolower( $cat->name );
+
+                // Direct case-insensitive match
+                if ( ! empty( $needle ) && ( $cat_slug_lower === $needle || $cat_name_lower === $needle ) ) {
+                    return $cat;
+                }
+
+                // Keyword match
+                foreach ( $search_keywords as $kw ) {
+                    if ( ! empty( $kw ) && ( strpos( $cat_slug_lower, $kw ) !== false || strpos( $cat_name_lower, $kw ) !== false ) ) {
+                        return $cat;
+                    }
+                }
+            }
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Get category archive URL safely without ever returning '#'
+ *
+ * @param WP_Term|null $term Category term object or null.
+ * @param string $fallback_slug Fallback slug to construct URL if term not yet in database.
+ * @return string Valid navigable URL.
+ */
+function buzzmag_get_category_link( $term = null, $fallback_slug = '' ) {
+    if ( $term && ! is_wp_error( $term ) && ! empty( $term->term_id ) ) {
+        $link = get_category_link( $term->term_id );
+        if ( ! empty( $link ) && ! is_wp_error( $link ) && '#' !== $link ) {
+            return $link;
+        }
+    }
+
+    $slug = ! empty( $fallback_slug ) ? sanitize_title( $fallback_slug ) : 'category';
+    $permalink_structure = get_option( 'permalink_structure' );
+
+    if ( ! empty( $permalink_structure ) ) {
+        return home_url( '/category/' . urlencode( $slug ) . '/' );
+    }
+
+    return add_query_arg( 'category_name', urlencode( $slug ), home_url( '/' ) );
+}
+
+/**
  * Query posts for a specific category.
  *
  * @param string $cat_slug Category slug or name.
  * @param int $count Number of posts.
  * @param array $exclude_ids IDs to exclude.
+ * @param string $title Optional title for fallback matching.
  * @return WP_Query
  */
-function buzzmag_query_category_posts( $cat_slug, $count = 5, $exclude_ids = array() ) {
-    $term = get_term_by( 'slug', $cat_slug, 'category' );
-    if ( ! $term ) {
-        $term = get_term_by( 'name', $cat_slug, 'category' );
-    }
+function buzzmag_query_category_posts( $cat_slug, $count = 5, $exclude_ids = array(), $title = '' ) {
+    $term = buzzmag_resolve_category_term( $cat_slug, $title );
 
     $args = array(
         'post_type'           => 'post',
@@ -226,7 +387,7 @@ function buzzmag_query_category_posts( $cat_slug, $count = 5, $exclude_ids = arr
         'ignore_sticky_posts' => 1,
     );
 
-    if ( $term ) {
+    if ( $term && ! is_wp_error( $term ) ) {
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'category',
@@ -240,7 +401,15 @@ function buzzmag_query_category_posts( $cat_slug, $count = 5, $exclude_ids = arr
         $args['post__not_in'] = $exclude_ids;
     }
 
-    return new WP_Query( $args );
+    $query = new WP_Query( $args );
+
+    // If specific category has no posts, fallback to published posts so layout never breaks
+    if ( ! $query->have_posts() && $term ) {
+        unset( $args['tax_query'] );
+        $query = new WP_Query( $args );
+    }
+
+    return $query;
 }
 
 /**
@@ -372,23 +541,41 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
  * @param string $accent_color Accent color hex.
  */
 function buzzmag_render_category_3d_card( $title, $slug, $count = 5, $icon = 'fa-newspaper-o', $accent_color = '#ed0e28' ) {
-    $term = get_term_by( 'slug', $slug, 'category' );
-    if ( ! $term ) {
-        $term = get_term_by( 'name', $slug, 'category' );
+    $term  = buzzmag_resolve_category_term( $slug, $title );
+    $query = buzzmag_query_category_posts( $slug, $count, array(), $title );
+
+    // If term was not found directly, deduce category from the posts returned
+    if ( ! $term && $query->have_posts() && ! empty( $query->posts[0] ) ) {
+        $post_cats = get_the_category( $query->posts[0]->ID );
+        if ( ! empty( $post_cats ) ) {
+            foreach ( $post_cats as $pc ) {
+                if ( 'uncategorized' !== strtolower( $pc->slug ) ) {
+                    $term = $pc;
+                    break;
+                }
+            }
+            if ( ! $term && ! empty( $post_cats[0] ) ) {
+                $term = $post_cats[0];
+            }
+        }
     }
 
-    $term_link = $term ? get_category_link( $term->term_id ) : '#';
-    $display_title = $term ? $term->name : $title;
-
-    $query = buzzmag_query_category_posts( $slug, $count );
+    $term_link     = buzzmag_get_category_link( $term, $slug );
+    $display_title = ! empty( $title ) ? $title : ( $term ? $term->name : ucfirst( $slug ) );
     ?>
     <div class="fl-3d-card fl-category-card-3d" style="--cat-accent: <?php echo esc_attr( $accent_color ); ?>;">
         <div class="fl-cat-card-header">
             <div class="fl-cat-header-left">
-                <span class="fl-cat-icon" style="background: <?php echo esc_attr( $accent_color ); ?>;">
-                    <i class="fa <?php echo esc_attr( $icon ); ?>"></i>
-                </span>
-                <h3 class="fl-cat-name"><?php echo esc_html( $display_title ); ?></h3>
+                <a href="<?php echo esc_url( $term_link ); ?>" class="fl-cat-icon-link" aria-label="<?php echo esc_attr( $display_title ); ?>">
+                    <span class="fl-cat-icon" style="background: <?php echo esc_attr( $accent_color ); ?>;">
+                        <i class="fa <?php echo esc_attr( $icon ); ?>"></i>
+                    </span>
+                </a>
+                <h3 class="fl-cat-name">
+                    <a href="<?php echo esc_url( $term_link ); ?>" title="<?php echo esc_attr( $display_title ); ?>">
+                        <?php echo esc_html( $display_title ); ?>
+                    </a>
+                </h3>
             </div>
             <a href="<?php echo esc_url( $term_link ); ?>" class="fl-cat-more" title="<?php esc_attr_e( 'View All Posts', 'buzzmag' ); ?>">
                 <span><?php esc_html_e( 'තවත් (More)', 'buzzmag' ); ?></span>
@@ -427,6 +614,13 @@ function buzzmag_render_category_3d_card( $title, $slug, $count = 5, $icon = 'fa
                 <p class="fl-no-posts"><?php esc_html_e( 'පුවත් නොමැත (No posts found in this category)', 'buzzmag' ); ?></p>
             <?php endif; ?>
         </div>
+
+        <div class="fl-cat-card-footer">
+            <a href="<?php echo esc_url( $term_link ); ?>" class="fl-cat-footer-more" title="<?php esc_attr_e( 'View All Posts', 'buzzmag' ); ?>">
+                <span><?php esc_html_e( 'සියලු පුවත් බලන්න (View All)', 'buzzmag' ); ?></span>
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </div>
     </div>
     <?php
 }
@@ -435,24 +629,36 @@ function buzzmag_render_category_3d_card( $title, $slug, $count = 5, $icon = 'fa
  * Render Below Sections (Politics & Featured) - Desktop only (6 posts each)
  */
 function buzzmag_render_below_sections() {
-    $pol_slug  = get_theme_mod( 'politics_cat_slug', 'politics' );
-    $feat_slug = get_theme_mod( 'featured_cat_slug', 'featured' );
+    $pol_slug  = get_theme_mod( 'cat_slug_politics', get_theme_mod( 'politics_cat_slug', 'politics' ) );
+    $feat_slug = get_theme_mod( 'cat_slug_featured', get_theme_mod( 'featured_cat_slug', 'featured' ) );
 
     $pol_title  = get_theme_mod( 'politics_cat_title', 'දේශපාලන (Politics)' );
     $feat_title = get_theme_mod( 'featured_cat_title', 'විශේෂාංග (Featured Stories)' );
 
-    $pol_query  = buzzmag_query_category_posts( $pol_slug, 6 );
-    $feat_query = buzzmag_query_category_posts( $feat_slug, 6 );
+    $pol_term  = buzzmag_resolve_category_term( $pol_slug, $pol_title );
+    $feat_term = buzzmag_resolve_category_term( $feat_slug, $feat_title );
+
+    $pol_link  = buzzmag_get_category_link( $pol_term, $pol_slug );
+    $feat_link = buzzmag_get_category_link( $feat_term, $feat_slug );
+
+    $pol_query  = buzzmag_query_category_posts( $pol_slug, 6, array(), $pol_title );
+    $feat_query = buzzmag_query_category_posts( $feat_slug, 6, array(), $feat_title );
     ?>
     <section class="fl-below-sections fl-desktop-only">
         <!-- Politics Section -->
         <div class="fl-below-block fl-politics-block">
             <div class="fl-section-header">
                 <div class="fl-header-title">
-                    <span class="fl-badge" style="background:#8e44ad;"><i class="fa fa-balance-scale"></i></span>
-                    <h2><?php echo esc_html( $pol_title ); ?></h2>
+                    <a href="<?php echo esc_url( $pol_link ); ?>" class="fl-section-header-link">
+                        <span class="fl-badge" style="background:#8e44ad;"><i class="fa fa-balance-scale"></i></span>
+                        <h2><?php echo esc_html( $pol_title ); ?></h2>
+                    </a>
                 </div>
                 <div class="fl-header-line"></div>
+                <a href="<?php echo esc_url( $pol_link ); ?>" class="fl-section-more" title="<?php esc_attr_e( 'View All Posts', 'buzzmag' ); ?>">
+                    <span><?php esc_html_e( 'තවත් (More)', 'buzzmag' ); ?></span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
             </div>
             <div class="fl-3d-grid-6">
                 <?php if ( $pol_query->have_posts() ) :
@@ -471,10 +677,16 @@ function buzzmag_render_below_sections() {
         <div class="fl-below-block fl-featured-block">
             <div class="fl-section-header">
                 <div class="fl-header-title">
-                    <span class="fl-badge" style="background:#d35400;"><i class="fa fa-star"></i></span>
-                    <h2><?php echo esc_html( $feat_title ); ?></h2>
+                    <a href="<?php echo esc_url( $feat_link ); ?>" class="fl-section-header-link">
+                        <span class="fl-badge" style="background:#d35400;"><i class="fa fa-star"></i></span>
+                        <h2><?php echo esc_html( $feat_title ); ?></h2>
+                    </a>
                 </div>
                 <div class="fl-header-line"></div>
+                <a href="<?php echo esc_url( $feat_link ); ?>" class="fl-section-more" title="<?php esc_attr_e( 'View All Posts', 'buzzmag' ); ?>">
+                    <span><?php esc_html_e( 'තවත් (More)', 'buzzmag' ); ?></span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
             </div>
             <div class="fl-3d-grid-6">
                 <?php if ( $feat_query->have_posts() ) :

@@ -63,6 +63,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - **Actionable CI/CD Workflow**: Upgraded `.github/workflows/php.yml` into a fully automated pipeline running composer validation, PHP parallel syntax checks, WordPress theme structure audits, automated zip packaging, artifact upload, and GitHub Releases on tags. Added root `composer.json` with `php-parallel-lint`. Updated `build-zip.ps1` to exclude `.github/`, `vendor/`, and `composer.*` from distribution zips.
 
 ### Fixed & Security
+- **Category Card "More" Button & Navigation**:
+  - Fixed issue where clicking the "More" button (`.fl-cat-more` / `තවත් (More)`) in Column 2 category cards failed to navigate due to `$term_link = '#'` when category terms did not have an exact matching slug in the database.
+  - Created `buzzmag_resolve_category_term()` providing robust multi-stage resolution: numeric IDs, exact slugs, sanitized slugs, exact term names, title parenthesis parsing, and fuzzy keyword mappings (`local` -> `deshiya`/`lanka`, `sports` -> `krida`, `business` -> `vyaparika`, `offroad` -> `foreign`/`pitarata`, etc.).
+  - Created `buzzmag_get_category_link()` ensuring all category links generate valid, canonical URLs based on the site's permalink structure and never return `#`.
+  - Added dynamic fallback to resolve category from the first query post if not matched in advance.
+  - Upgraded category card interactivity with 4 navigation touchpoints: clickable category icon (`.fl-cat-icon-link`), clickable title (`.fl-cat-name a`), prominent 3D pill button (`.fl-cat-more`), and dedicated card footer button (`.fl-cat-card-footer` / `.fl-cat-footer-more`).
+  - Added clickable section header links and "More" action buttons to the desktop below sections (`.fl-section-header-link`, `.fl-section-more`).
 - **Security**: Added nonce and integer validation to post views AJAX counter (`buzzmag_setpostviews`).
 - **View Counter**: Fixed million view count bug where posts over 1M showed "1000 K" instead of "M", and eliminated duplicate database writes during read requests.
 - **Performance**: Removed secondary unconstrained `WP_Query` in `search.php`, leveraging `$wp_query->found_posts`.
