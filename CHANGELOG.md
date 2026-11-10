@@ -12,6 +12,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 
 ## [Unreleased]
 
+### Added
+- **Atmospheric Site Canvas & Sunlight Aura** (`css/3d-components.css`):
+  - Replaced the flat `#ffffff` canvas with a light, warm morning sunbeam aura radiating from the top behind the header, diffusing into a soft `#f6f8fb` tone.
+  - Layered with an ultra-fine 20px micro-texture grid (`rgba(15, 23, 42, 0.032)`) to eliminate the "empty" stark look across wide desktop gutters while maximizing 3D card elevation and contrast.
+  - Added glassmorphic backdrop-blur (`12px`) and soft ambient shadows to `#fl-header` so the sunlight glow filters through naturally.
+  - Implemented automatic dark mode translation with deep obsidian/crimson/sapphire ambient glows.
+
 ### Fixed
 - **Lead Hero News Card Full-Image Dark Mask**:
   - Fixed issue where a black transparent overlay (`rgba(0, 0, 0, 0.75)`) covered the entire image on the desktop and mobile Lead Hero news card (`.fl-lead-hero-card`).

@@ -1568,6 +1568,7 @@
     align-items: flex-start;
     gap: 32px;
     width: 100%;
+    margin-top: 1em;
 }
 
 .fl-single-columns-wrap.fl-sidebar-left-layout {
