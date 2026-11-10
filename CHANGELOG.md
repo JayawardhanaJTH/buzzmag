@@ -20,6 +20,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Implemented automatic dark mode translation with deep obsidian/crimson/sapphire ambient glows.
 
 ### Fixed
+- **Homepage Lead Section & 3-Column Grid Alignment**:
+  - Fixed horizontal misalignment where the 3-column section (`.fl-home-3col-grid`) was 44px wider than the Lead Hero card (`.fl-lead-section`) and stuck out past the right boundary.
+  - Root cause: `grid-template-columns: 31% 40% 29%` combined with `gap: 22px` produced an effective width of `100% + 44px`.
+  - Replaced percentage track definitions with fractional units `minmax(0, 31fr) minmax(0, 40fr) minmax(0, 29fr)` so column tracks are computed strictly within 100% of the container width minus the gaps, aligning the lead hero card, the 3-column grid, and the bottom sections perfectly flush on both left and right edges.
 - **Footer "Back to Top" Button Desktop Interaction**:
   - Fixed issue where clicking the `.fl-back-to-top` pill button in the modern footer did not scroll to the top of the page on desktop.
   - Bound delegated click handler `$( document ).on( 'click', '#fl-top, .fl-back-to-top' )` in `js/buzzmag.js` with smooth animated scroll (`scrollTop: 0`).

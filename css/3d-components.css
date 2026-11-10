@@ -70,7 +70,9 @@
    2. Lead Post 3D Hero Card
    ========================================================================== */
 .fl-lead-section {
+    width: 100%;
     margin-bottom: 25px;
+    box-sizing: border-box;
 }
 
 .fl-lead-hero-card {
@@ -78,6 +80,8 @@
     flex-direction: row;
     align-items: stretch;
     min-height: 380px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .fl-lead-media {
@@ -273,11 +277,24 @@
 /* ==========================================================================
    3. Desktop 3-Column Grid Layout (Ada Derana style)
    ========================================================================== */
+.fl-home-desktop-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .fl-home-3col-grid {
     display: grid;
-    grid-template-columns: 31% 40% 29%;
+    grid-template-columns: minmax(0, 31fr) minmax(0, 40fr) minmax(0, 29fr);
     gap: 22px;
+    width: 100%;
+    box-sizing: border-box;
     margin-bottom: 35px;
+}
+
+.fl-home-col {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Column Headers */
