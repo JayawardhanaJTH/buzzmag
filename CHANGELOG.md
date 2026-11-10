@@ -20,6 +20,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Implemented automatic dark mode translation with deep obsidian/crimson/sapphire ambient glows.
 
 ### Fixed
+- **Footer "Back to Top" Button Desktop Interaction**:
+  - Fixed issue where clicking the `.fl-back-to-top` pill button in the modern footer did not scroll to the top of the page on desktop.
+  - Bound delegated click handler `$( document ).on( 'click', '#fl-top, .fl-back-to-top' )` in `js/buzzmag.js` with smooth animated scroll (`scrollTop: 0`).
+  - Updated anchor link target in `footer.php` from `#fl-top` (`position: fixed`) to `#fl-header` for reliable native fallback.
+  - Added dynamic `filemtime` cache-busting to `buzzmag-script` in `functions.php`.
 - **Lead Hero News Card Full-Image Dark Mask**:
   - Fixed issue where a black transparent overlay (`rgba(0, 0, 0, 0.75)`) covered the entire image on the desktop and mobile Lead Hero news card (`.fl-lead-hero-card`).
   - Root cause: `.fl-lead-media a` applied `width: 100%; height: 100%` across all child links, forcing the category badge link (`.fl-cat-pill`) to stretch across the entire media container and intercept click events.

@@ -1880,11 +1880,16 @@
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
-    transition: background 0.2s ease;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
 }
 
 .fl-back-to-top:hover {
     background: #ed0e28;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transform: translateY(-2px);
 }
 
 @media (max-width: 991px) {

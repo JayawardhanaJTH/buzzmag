@@ -118,7 +118,7 @@ jQuery(document).ready(function( $ ) {
         additionalMarginTop: headerOffset,
     });
 
-    //Scroll To top
+    // Scroll To Top
     var offset = 250; 
     $( window ).scroll(function() {     
         if ( $(this).scrollTop() > offset ) {         
@@ -127,9 +127,9 @@ jQuery(document).ready(function( $ ) {
             $( '#fl-top' ).animate( { bottom:'-48px' }, 0 );
         }
     }); 
-    $( '#fl-top' ).click(function(event) { 
+    $( document ).on( 'click', '#fl-top, .fl-back-to-top', function(event) { 
         event.preventDefault(); 
-        $( 'html, body' ).animate( { scrollTop: 0 }, 500 ); 
+        $( 'html, body' ).stop().animate( { scrollTop: 0 }, 500 ); 
         return false; 
     });
     

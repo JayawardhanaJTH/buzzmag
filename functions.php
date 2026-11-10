@@ -96,7 +96,9 @@ function buzzmag_addons_scripts() {
     wp_enqueue_script( 'owl-carousel', fl_theme_path . '/js/owl.carousel.min.js', array('jquery'), '2.3.4', true );
 
     // BuzzMag Script
-    wp_enqueue_script( 'buzzmag-script', fl_theme_path . '/js/buzzmag.js', array('jquery'), fl_theme_version, true );
+    $js_script_path = get_template_directory() . '/js/buzzmag.js';
+    $js_script_ver  = file_exists( $js_script_path ) ? filemtime( $js_script_path ) : fl_theme_version;
+    wp_enqueue_script( 'buzzmag-script', fl_theme_path . '/js/buzzmag.js', array('jquery'), $js_script_ver, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

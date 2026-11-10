@@ -141,7 +141,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     ?>
                 </div>
                 <div class="footer-powered">
-                    <a href="#fl-top" class="fl-back-to-top" title="<?php esc_attr_e( 'Back to Top', 'buzzmag' ); ?>">
+                    <a href="#fl-header" class="fl-back-to-top" title="<?php esc_attr_e( 'Back to Top', 'buzzmag' ); ?>">
                         <span><?php esc_html_e( 'ඉහළට', 'buzzmag' ); ?></span>
                         <i class="fa fa-arrow-up"></i>
                     </a>
