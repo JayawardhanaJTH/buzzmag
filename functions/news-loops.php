@@ -436,7 +436,7 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
     if ( 'lead' === $style ) : ?>
         <article class="fl-3d-card fl-lead-hero-card">
             <div class="fl-lead-media">
-                <a href="<?php echo esc_url( $permalink ); ?>" title="<?php echo esc_attr( $title ); ?>">
+                <a href="<?php echo esc_url( $permalink ); ?>" class="fl-lead-thumb-link" title="<?php echo esc_attr( $title ); ?>">
                     <?php if ( has_post_thumbnail( $post_id ) ) : ?>
                         <?php echo get_the_post_thumbnail( $post_id, 'buzzmag_large' ); ?>
                     <?php else : ?>

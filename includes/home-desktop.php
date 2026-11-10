@@ -63,7 +63,7 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
             <div class="fl-most-viewed-4days-wrap">
                 <div class="fl-col-header sub-header">
                     <span class="fl-col-badge orange"><i class="fa fa-fire"></i></span>
-                    <h4><?php esc_html_e( 'වැඩිම පිරිසක් නැරඹූ (Top Viewed - 4 Days)', 'buzzmag' ); ?></h4>
+                    <h4><?php esc_html_e( 'වැඩිම පිරිසක් නැරඹූ (Top Viewed)', 'buzzmag' ); ?></h4>
                 </div>
                 <?php
                 $top_4days = buzzmag_query_most_viewed_days( 4, 10 );

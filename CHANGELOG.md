@@ -10,6 +10,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 
 ---
 
+## [Unreleased]
+
+### Fixed
+- **Lead Hero News Card Full-Image Dark Mask**:
+  - Fixed issue where a black transparent overlay (`rgba(0, 0, 0, 0.75)`) covered the entire image on the desktop and mobile Lead Hero news card (`.fl-lead-hero-card`).
+  - Root cause: `.fl-lead-media a` applied `width: 100%; height: 100%` across all child links, forcing the category badge link (`.fl-cat-pill`) to stretch across the entire media container and intercept click events.
+  - Scoped full dimensions strictly to the post thumbnail anchor (`.fl-lead-thumb-link`), explicitly sized `.fl-cat-pill` to `width: auto !important; height: auto !important; display: inline-flex;` at the bottom-left corner, and disabled rogue pseudo-element overlays.
+
 ## [3.0.0] - 2026-11-09
 
 ### Added
