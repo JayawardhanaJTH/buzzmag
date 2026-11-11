@@ -335,7 +335,7 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 2. On release → bump `Version:` in `style.css` **and** `fl_theme_version` in `functions.php` (busts JS cache), then move `[Unreleased]` to a version heading.
 3. Build the upload zip with `build-zip.ps1` (see `DEPLOYMENT.md`). Never zip by hand from Explorer with `.git` inside.
 4. Test locally at `http://localhost/wordpress` before uploading.
-5. Commit to git after each logical step.
+5. **No auto-commits**: Do NOT auto-commit to git. Build the distribution zip (`build-zip.ps1`) when work is ready so it can be tested, and leave changes uncommitted in the working tree for the user to review first.
 
 ---
 
@@ -354,3 +354,5 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 | 2026-11-11 | Back to Top Button Desktop Fix: Fixed `.fl-back-to-top` footer button not scrolling to top on desktop by delegating click event in `buzzmag.js` to both `#fl-top` and `.fl-back-to-top`, retargeting fallback anchor to `#fl-header`, adding cursor pointer and hover elevation in CSS, and enabling automatic `filemtime` cache-busting for scripts. |
 | 2026-11-11 | Lead Hero Card & 3-Column Grid Flush Alignment: Replaced `grid-template-columns: 31% 40% 29%` with `minmax(0, 31fr) minmax(0, 40fr) minmax(0, 29fr)` in `.fl-home-3col-grid` to eliminate the 44px gap overflow, perfectly aligning the Lead hero card, 3-column grid, and below sections flush on both left and right edges. |
 | 2026-11-12 | Timezone Drift & Sri Lankan Astrological/Calendar Alignment: Fixed theme evaluating dates/times in UTC rather than Asia/Colombo (+05:30). Added `buzzmag_ensure_default_timezone()` in `functions.php` to bootstrap default WordPress options to Sri Lanka time. Created unified `DateTimeImmutable` helpers (`buzzmag_get_timezone`, `buzzmag_current_datetime`, `buzzmag_date`) in `functions/sri-lankan-utilities.php`, re-anchored Rahu Kalaya, astrological directions, daily cartoon, and monthly calendar widget calculations, eliminated drift in post time-ago (`buzzmag_get_time_ago`) and query boundaries, and added a `site_timezone` Customizer control. |
+| 2026-11-12 | Rebranding Credit Tag in Footer: Added modern rebranding tag badge (`.fl-rebrand-tag`) to footer bottom bar beside copyright line, attributing "Rebranded by Tiran Jayawardhana" with mailto link, subtle theme accent pill styling, and Customizer controls (`show_rebrand_tag`, `rebrand_tag_text`, `rebrand_author_name`, `rebrand_author_url`). |
+| 2026-11-12 | Theme Header Comments & Metadata: Added HTML source header banner comment in `header.php`, `<meta name="author">` in `<head>`, and standard PHP file docblocks to `header.php` and `functions.php`. |

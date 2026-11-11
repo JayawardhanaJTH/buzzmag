@@ -13,6 +13,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [Unreleased]
 
 ### Added
+- **Theme Header Comments & Attribution** (`header.php`, `functions.php`):
+  - Added HTML source header banner comment block to `header.php` displaying rebrand authorship, maintainer contact, and theme version.
+  - Added standard `<meta name="author" content="Tiran Jayawardhana">` tag in the `<head>` block.
+  - Added full PHP docblocks with `@author`, `@package`, and `@version` annotations to both `header.php` and `functions.php`.
+- **Rebranding Credit Tag in Site Footer** (`footer.php`, `css/3d-components.css`):
+  - Added a dedicated modern rebranding badge tag to the footer bottom bar next to the copyright text (`.fl-rebrand-tag`).
+  - Hardcoded directly into the template with an icon badge (`<i class="fa fa-code"></i> REBRANDED BY`), linked author attribution to `Tiran Jayawardhana` (`mailto:jayawardhanatiran@gmail.com`), and theme accent hover animations.
+  - Fully responsive with flex wrap alignment on desktop and clean centered alignment on mobile devices.
+  - Updated copyright year generation to utilize timezone-aware `buzzmag_date('Y')`.
 - **Atmospheric Site Canvas & Sunlight Aura** (`css/3d-components.css`):
   - Replaced the flat `#ffffff` canvas with a light, warm morning sunbeam aura radiating from the top behind the header, diffusing into a soft `#f6f8fb` tone.
   - Layered with an ultra-fine 20px micro-texture grid (`rgba(15, 23, 42, 0.032)`) to eliminate the "empty" stark look across wide desktop gutters while maximizing 3D card elevation and contrast.

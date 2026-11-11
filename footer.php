@@ -135,10 +135,19 @@ if ( ! defined( 'ABSPATH' ) ) {
             <!-- Footer Bottom Copyright Bar -->
             <div id="fl-copyright" class="clearfix">
                 <div class="copyright">
-                    <?php
-                    $default_copy = '© ' . date( 'Y' ) . ' ' . esc_html( get_bloginfo( 'name', 'display' ) ) . '. ' . esc_html__( 'සියලුම හිමිකම් ඇවිරිණි (All Rights Reserved).', 'buzzmag' );
-                    echo wp_kses_post( get_theme_mod( 'copyrights', $default_copy ) );
-                    ?>
+                    <span class="fl-copyright-line">
+                        <?php
+                        $year_str     = function_exists( 'buzzmag_date' ) ? buzzmag_date( 'Y' ) : date( 'Y' );
+                        $default_copy = '© ' . $year_str . ' ' . esc_html( get_bloginfo( 'name', 'display' ) ) . '. ' . esc_html__( 'සියලුම හිමිකම් ඇවිරිණි (All Rights Reserved).', 'buzzmag' );
+                        echo wp_kses_post( get_theme_mod( 'copyrights', $default_copy ) );
+                        ?>
+                    </span>
+                    <span class="fl-rebrand-tag">
+                        <span class="fl-rebrand-badge"><i class="fa fa-code"></i> <?php esc_html_e( 'Rebranded by', 'buzzmag' ); ?></span>
+                        <a href="mailto:jayawardhanatiran@gmail.com" rel="author" class="fl-rebrand-author">
+                            <strong>Tiran Jayawardhana</strong>
+                        </a>
+                    </span>
                 </div>
                 <div class="footer-powered">
                     <a href="#fl-header" class="fl-back-to-top" title="<?php esc_attr_e( 'Back to Top', 'buzzmag' ); ?>">

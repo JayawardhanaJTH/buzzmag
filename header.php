@@ -1,10 +1,33 @@
+<?php
+/**
+ * The template for displaying the theme header
+ *
+ * Displays all of the <head> section, top bar, navigation, and drawer.
+ *
+ * @package BuzzMag
+ * @subpackage Templates
+ * @author Tiran Jayawardhana (Rebrander & Maintainer)
+ * @link mailto:jayawardhanatiran@gmail.com
+ * @version 3.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!DOCTYPE html>
+<!-- ================================================================================ -->
+<!--   BuzzMag - Modern 3D News & Magazine Portal                                     -->
+<!--   Rebranded & Maintained by: Tiran Jayawardhana (jayawardhanatiran@gmail.com)    -->
+<!--   Version: 3.0.0                                                                 -->
+<!-- ================================================================================ -->
 <html <?php language_attributes(); ?>>
 <head>
 
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+	<meta name="author" content="Tiran Jayawardhana">
 
 	<?php wp_head(); ?>
 
