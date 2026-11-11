@@ -75,14 +75,14 @@ flowchart LR
     end
 
     subgraph Parts["includes/"]
-        FEAT["home-desktop.php (Ada Derana 3-Col)<br/>home-mobile.php (Unusuma.lk Single-Stream)"]
+        FEAT["home-desktop.php<br/>home-mobile.php (Single-Stream)"]
         LEAD["Lead Post 3D Hero<br/>(_buzzmag_is_lead_post checkbox)"]
         CARD["Horizontal 3D Post Cards<br/>[Image] - [Title / Date]"]
         CHANNELS["Standalone 4-Channel 3D Cards<br/>(5 Videos Each - No Tabs)"]
         UTIL["sri-lankan-utilities.php<br/>Calendar · Rahu Kalaya · Subha/Maru · Cartoon · WhatsApp"]
         SINGW["single-post-widgets.php<br/>Latest 6 · Most Read 36h 6 · 6-Cat Sidebar"]
         AUTH["author-box.php"]
-        FOOT["footer.php (Unusuma.lk modern footer)"]
+        FOOT["footer.php (modern footer)"]
     end
 
     IDX --> FEAT

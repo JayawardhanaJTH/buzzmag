@@ -13,6 +13,76 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Get the active timezone for BuzzMag.
+ *
+ * Checks:
+ * 1. Customizer setting 'site_timezone' (if set and not 'auto').
+ * 2. WordPress site timezone from Settings > General via wp_timezone().
+ * 3. Default fallback to 'Asia/Colombo' (Sri Lanka Standard Time UTC+05:30)
+ *    if WordPress is still at default unconfigured UTC/0.
+ *
+ * @return DateTimeZone
+ */
+function buzzmag_get_timezone() {
+    $custom_tz = get_theme_mod( 'site_timezone', 'auto' );
+
+    if ( 'wp_default' === $custom_tz ) {
+        return wp_timezone();
+    }
+
+    if ( ! empty( $custom_tz ) && 'auto' !== $custom_tz ) {
+        try {
+            return new DateTimeZone( $custom_tz );
+        } catch ( Exception $e ) {
+            // fallback
+        }
+    }
+
+    // When 'auto' (default):
+    // If WordPress has a configured timezone other than bare UTC, respect it
+    $wp_tz = wp_timezone();
+    $name  = $wp_tz->getName();
+    if ( 'UTC' !== $name && '+00:00' !== $name && 'Z' !== $name && '-00:00' !== $name ) {
+        return $wp_tz;
+    }
+
+    // Default to Sri Lanka / Asia/Colombo (UTC+05:30)
+    return new DateTimeZone( 'Asia/Colombo' );
+}
+
+/**
+ * Get current DateTime in the active timezone.
+ *
+ * @return DateTimeImmutable
+ */
+function buzzmag_current_datetime() {
+    return new DateTimeImmutable( 'now', buzzmag_get_timezone() );
+}
+
+/**
+ * Format a timestamp or 'now' in the active timezone.
+ *
+ * @param string $format Date format string (e.g. 'Y-m-d', 'U', 'w').
+ * @param int|DateTimeInterface|null $timestamp Optional timestamp or DateTime. Defaults to now.
+ * @return string Formatted date string.
+ */
+function buzzmag_date( $format, $timestamp = null ) {
+    $tz = buzzmag_get_timezone();
+
+    if ( null === $timestamp ) {
+        $dt = new DateTimeImmutable( 'now', $tz );
+        return $dt->format( $format );
+    }
+
+    if ( $timestamp instanceof DateTimeInterface ) {
+        return $timestamp->setTimezone( $tz )->format( $format );
+    }
+
+    $dt = new DateTimeImmutable( '@' . (int) $timestamp );
+    return $dt->setTimezone( $tz )->format( $format );
+}
+
+/**
  * Extract YouTube / Video metadata and thumbnail from URL.
  *
  * @param string $url Video URL.
@@ -60,7 +130,7 @@ function buzzmag_get_video_meta( $url ) {
  */
 function buzzmag_get_rahu_kalaya( $day = null ) {
     if ( null === $day ) {
-        $day = (int) current_time( 'w' );
+        $day = (int) buzzmag_date( 'w' );
     }
 
     $days_data = array(
@@ -150,14 +220,18 @@ function buzzmag_render_calendar_card() {
         return;
     }
 
-    $now       = current_time( 'timestamp' );
-    $year      = (int) date( 'Y', $now );
-    $month     = (int) date( 'm', $now );
-    $today     = (int) date( 'j', $now );
-    $days_in_m = (int) date( 't', $now );
-    $first_day = (int) date( 'w', mktime( 0, 0, 0, $month, 1, $year ) );
+    $dt        = buzzmag_current_datetime();
+    $year      = (int) $dt->format( 'Y' );
+    $month     = (int) $dt->format( 'm' );
+    $today     = (int) $dt->format( 'j' );
+    $days_in_m = (int) $dt->format( 't' );
 
-    $month_name_en = date( 'F Y', $now );
+    // Calculate first day of this month in the active timezone (0=Sunday ... 6=Saturday)
+    $first_dt  = $dt->setDate( $year, $month, 1 )->setTime( 0, 0, 0 );
+    $first_day = (int) $first_dt->format( 'w' );
+
+    $month_name_en = $dt->format( 'F Y' );
+    $day_name_en   = $dt->format( 'l' );
     $month_names_si = array(
         1 => 'ජනවාරි', 2 => 'පෙබරවාරි', 3 => 'මාර්තු', 4 => 'අප්‍රේල්',
         5 => 'මැයි', 6 => 'ජූනි', 7 => 'ජූලි', 8 => 'අගෝස්තු',
@@ -177,7 +251,7 @@ function buzzmag_render_calendar_card() {
                 <h4><?php echo esc_html( $display_title ); ?></h4>
                 <small><?php echo esc_html( $month_name_en ); ?></small>
             </div>
-            <span class="fl-header-badge"><?php echo esc_html( date( 'l', $now ) ); ?></span>
+            <span class="fl-header-badge"><?php echo esc_html( $day_name_en ); ?></span>
         </div>
         <div class="fl-calendar-grid">
             <div class="fl-cal-row fl-cal-head">
@@ -213,7 +287,7 @@ function buzzmag_render_astrology_card() {
     }
 
     $info = buzzmag_get_rahu_kalaya();
-    $astro_title = get_theme_mod( 'astrology_title', esc_html__( 'අද දිනයේ ලග්න සහ නැකැත්', 'buzzmag' ) );
+    $astro_title = get_theme_mod( 'astrology_title', esc_html__( 'අද දවස‌ේ ‌ජෝතිෂ්‍ය', 'buzzmag' ) );
     ?>
     <div class="fl-3d-card fl-utility-card fl-astro-card" id="rahu-kalaya">
         <div class="fl-card-header">
@@ -286,7 +360,7 @@ function buzzmag_render_cartoon_card() {
             <span class="fl-header-icon" style="background:#e67e22;"><i class="fa fa-paint-brush"></i></span>
             <div class="fl-header-title">
                 <h4><?php echo esc_html( $cartoon_title ); ?></h4>
-                <small><?php echo esc_html( current_time( 'Y-m-d' ) ); ?></small>
+                <small><?php echo esc_html( buzzmag_date( 'Y-m-d' ) ); ?></small>
             </div>
         </div>
         <div class="fl-cartoon-body">

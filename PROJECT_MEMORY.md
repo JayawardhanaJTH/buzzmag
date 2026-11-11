@@ -310,19 +310,20 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 
 | Decision | Value | Date |
 |---|---|---|
-| Theme Identity & Concept | 3D News & Magazine (Ada Derana Desktop + Unusuma.lk Mobile) | 2026-11-09 |
+| Theme Identity & Concept | 3D News & Magazine | 2026-11-09 |
 | Design Glossary | 3D Cards: rounded edges (`14px`) + multi-layer elevation shadows | 2026-11-09 |
 | Keep folder `buzzmag` or rename? | Keep `buzzmag` (safest: zero database/customizer loss) | 2026-11-09 |
 | Lead Post System | Post edit screen meta box checkbox (`_buzzmag_is_lead_post`) | 2026-11-09 |
-| Desktop Homepage Architecture | Ada Derana Sinhala 3-column grid + below sections (Politics & Featured) | 2026-11-09 |
-| Mobile Homepage Architecture | Unusuma.lk single-stream flow (Lead -> Latest 10 -> Top Story 6 -> Categories 3-each -> Videos/Utilities) | 2026-11-09 |
+| Desktop Homepage Architecture 3-column grid + below sections (Politics & Featured) | 2026-11-09 |
+| Mobile Homepage Architecture single-stream flow (Lead -> Latest 10 -> Top Story 6 -> Categories 3-each -> Videos/Utilities) | 2026-11-09 |
 | Single Post Architecture | Desktop: Under post (Latest 6, Most Read 36h 6) + 6-Category Sidebar (3-each)<br/>Mobile: Under post (Latest 6, Most Read 6) | 2026-11-09 |
-| Footer Style | Unusuma.lk modern news portal footer with Sinhala/English brand & quick links | 2026-11-09 |
+| Footer Style modern news portal footer with Sinhala/English brand & quick links | 2026-11-09 |
 | Sri Lankan Utilities | Interactive Calendar, Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa, Cartoon, WhatsApp Banner | 2026-11-09 |
 | 4 Channels x 5 Videos Section | Channel-wise separated 3D layout (4 channels, 5 videos each = 20 total) with interactive channel filter tabs & Customizer settings | 2026-11-09 |
 | Standalone Channel 3D Cards | Removed channel filter tabs; each of the 4 channels rendered as a distinct standalone 3D card with badge pill, featured lead video, and 4 compact rows | 2026-11-09 |
-| Post Card Layout Optimization | Columns 1 & 2 post cards updated to Image - [Title / Date] format (`.fl-post-card-horizontal` & `.fl-cat-post-item`) with calendar icon, matching Unusuma.lk desktop reference | 2026-11-09 |
+| Post Card Layout Optimization | Columns 1 & 2 post cards updated to Image - [Title / Date] format (`.fl-post-card-horizontal` & `.fl-cat-post-item`) with calendar icon, matching desktop reference | 2026-11-09 |
 | Full Feature Customization | Visibility toggles and Customizer overrides for Calendar, Rahu Kalaya, Directions, Cartoon, WhatsApp & Channels | 2026-11-09 |
+| Timezone & Sri Lankan DateTime System | Pinned to `Asia/Colombo` (+05:30) with `DateTimeImmutable` helpers (`buzzmag_get_timezone`, `buzzmag_current_datetime`, `buzzmag_date`), automatic WP options default bootstrap, and Customizer override | 2026-11-12 |
 | Tech debt & security fixes | Approved & completed in v3.0.0 | 2026-11-09 |
 | Version scheme | `3.0.0` (First rebranded release) | 2026-11-09 |
 
@@ -343,8 +344,8 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 | Date | Summary |
 |---|---|
 | 2026-11-09 | Full theme analysis. Created PROJECT_MEMORY.md, COMPONENT_MAP.md, DEPLOYMENT.md, CHANGELOG.md, build-zip.ps1, .gitignore. |
-| 2026-11-09 | Implemented v3.0.0 Rebrand: 3D card styling, Lead post checkbox, Ada Derana desktop 3-col layout, Unusuma.lk mobile layout, 36hr/4-day/week query filters, single post under-post/sidebar blocks, Unusuma.lk modern footer, astrology/calendar/cartoon/whatsapp utilities, Customizer controls, and bug/security fixes. Zip built cleanly in dist/buzzmag-3.0.0.zip. |
-| 2026-11-09 | Visual Optimization: Updated Columns 1 & 2 to Image - [Title / Date] card format with calendar date icon matching Unusuma.lk desktop image; converted Column 3 to 4 distinct standalone 3D Channel cards (removed tabs); rebuilt dist/buzzmag-3.0.0.zip. |
+| 2026-11-09 | Implemented v3.0.0 Rebrand: 3D card styling, Lead post checkbox, 3-col layout, mobile layout, 36hr/4-day/week query filters, single post under-post/sidebar blocks, modern footer, astrology/calendar/cartoon/whatsapp utilities, Customizer controls, and bug/security fixes. Zip built cleanly in dist/buzzmag-3.0.0.zip. |
+| 2026-11-09 | Visual Optimization: Updated Columns 1 & 2 to Image - [Title / Date] card format with calendar date icon matching  desktop image; converted Column 3 to 4 distinct standalone 3D Channel cards (removed tabs); rebuilt dist/buzzmag-3.0.0.zip. |
 | 2026-11-09 | Visual Gap & Alignment Fixes: Increased spacing between columns and bottom sections (margin-top 60px, padding-top 40px) and expanded Politics vs Featured gap to 70px; set height 205px and object-position: top center on bottom cards to stop top image cropping; added 25px bottom margin to inner sidebar category cards; aligned single post image and sidebar to start at the exact same horizontal top baseline; removed transparent category badge overlay (.fl-cat-badge) and filtered out "Uncategorized" pills. |
 | 2026-11-09 | Actionable CI/CD Pipeline: Configured .github/workflows/php.yml for automated PHP linting, theme structure/version checks, automated zip compilation, artifact upload, and GitHub Releases on tags; added composer.json with php-parallel-lint; excluded dev CI files from production zip. |
 | 2026-11-10 | Category Card "More" Button & Navigation Fix: Resolved non-functioning "More" buttons in Column 2 category cards. Built `buzzmag_resolve_category_term()` with multi-stage resolution (IDs, exact/sanitized slugs, names, title parsing, fuzzy keywords) and `buzzmag_get_category_link()` (never returns `#`). Added 4 clickable touchpoints (category icon, title header link, 3D pill button, bottom card footer link) and below sections archive links. |
@@ -352,3 +353,4 @@ WordPress stores Customizer settings under `theme_mods_<folder-name>`. If the fo
 | 2026-11-11 | Atmospheric Background Canvas: Replaced flat #ffffff background with a warm morning sunlight aura and subtle 20px editorial micro-texture; added 12px glassmorphism to #fl-header; implemented cohesive dark mode ambient glows. Eliminates the stark "empty" margin look while dramatically increasing 3D card elevation and contrast. |
 | 2026-11-11 | Back to Top Button Desktop Fix: Fixed `.fl-back-to-top` footer button not scrolling to top on desktop by delegating click event in `buzzmag.js` to both `#fl-top` and `.fl-back-to-top`, retargeting fallback anchor to `#fl-header`, adding cursor pointer and hover elevation in CSS, and enabling automatic `filemtime` cache-busting for scripts. |
 | 2026-11-11 | Lead Hero Card & 3-Column Grid Flush Alignment: Replaced `grid-template-columns: 31% 40% 29%` with `minmax(0, 31fr) minmax(0, 40fr) minmax(0, 29fr)` in `.fl-home-3col-grid` to eliminate the 44px gap overflow, perfectly aligning the Lead hero card, 3-column grid, and below sections flush on both left and right edges. |
+| 2026-11-12 | Timezone Drift & Sri Lankan Astrological/Calendar Alignment: Fixed theme evaluating dates/times in UTC rather than Asia/Colombo (+05:30). Added `buzzmag_ensure_default_timezone()` in `functions.php` to bootstrap default WordPress options to Sri Lanka time. Created unified `DateTimeImmutable` helpers (`buzzmag_get_timezone`, `buzzmag_current_datetime`, `buzzmag_date`) in `functions/sri-lankan-utilities.php`, re-anchored Rahu Kalaya, astrological directions, daily cartoon, and monthly calendar widget calculations, eliminated drift in post time-ago (`buzzmag_get_time_ago`) and query boundaries, and added a `site_timezone` Customizer control. |

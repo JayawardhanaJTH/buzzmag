@@ -61,6 +61,26 @@ function buzzmag_query_latest_posts_ex_lead( $lead_id = 0, $count = 10 ) {
 }
 
 /**
+ * Get human-readable time ago string for a post (timezone drift-free).
+ *
+ * @param int|WP_Post|null $post Post ID or post object.
+ * @return string
+ */
+function buzzmag_get_time_ago( $post = null ) {
+    $post = get_post( $post );
+    if ( ! $post ) {
+        return '';
+    }
+
+    $post_time = get_post_time( 'U', true, $post );
+    if ( ! $post_time ) {
+        $post_time = get_post_time( 'U', false, $post );
+    }
+
+    return human_time_diff( (int) $post_time, time() ) . esc_html__( ' ago', 'buzzmag' );
+}
+
+/**
  * Query Top Viewed Posts within a given number of days.
  *
  * @param int $days Number of days (default 4).
@@ -68,7 +88,9 @@ function buzzmag_query_latest_posts_ex_lead( $lead_id = 0, $count = 10 ) {
  * @return WP_Query
  */
 function buzzmag_query_most_viewed_days( $days = 4, $count = 1 ) {
-    $date_after = $days . ' days ago';
+    $date_after = function_exists( 'buzzmag_current_datetime' )
+        ? buzzmag_current_datetime()->modify( "-{$days} days" )->format( 'Y-m-d H:i:s' )
+        : $days . ' days ago';
 
     $args = array(
         'post_type'           => 'post',
@@ -115,7 +137,9 @@ function buzzmag_query_most_viewed_days( $days = 4, $count = 1 ) {
  * @return WP_Query
  */
 function buzzmag_query_most_viewed_hours( $hours = 36, $count = 6, $exclude_ids = array() ) {
-    $date_after = $hours . ' hours ago';
+    $date_after = function_exists( 'buzzmag_current_datetime' )
+        ? buzzmag_current_datetime()->modify( "-{$hours} hours" )->format( 'Y-m-d H:i:s' )
+        : $hours . ' hours ago';
 
     $args = array(
         'post_type'           => 'post',
@@ -175,7 +199,9 @@ function buzzmag_query_top_stories_week( $count = 6, $exclude_ids = array() ) {
         'ignore_sticky_posts' => 1,
         'date_query'          => array(
             array(
-                'after' => '7 days ago',
+                'after' => function_exists( 'buzzmag_current_datetime' )
+                    ? buzzmag_current_datetime()->modify( '-7 days' )->format( 'Y-m-d H:i:s' )
+                    : '7 days ago',
             ),
         ),
     );
@@ -429,7 +455,7 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
     $permalink = get_permalink( $post_id );
     $title     = get_the_title( $post_id );
     $views     = buzzmag_getpostviews( $post_id );
-    $time_ago  = human_time_diff( get_the_time( 'U', $post_id ), current_time( 'timestamp' ) ) . esc_html__( ' ago', 'buzzmag' );
+    $time_ago  = buzzmag_get_time_ago( $post_id );
     $categories = get_the_category( $post_id );
     $first_cat = ! empty( $categories ) ? $categories[0] : null;
 

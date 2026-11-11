@@ -20,6 +20,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Implemented automatic dark mode translation with deep obsidian/crimson/sapphire ambient glows.
 
 ### Fixed
+- **Timezone Drift & Sri Lankan Astrological/Calendar Alignment**:
+  - Fixed issue where the theme evaluated dates and times in UTC instead of the site's local Sri Lankan timezone (`Asia/Colombo` / UTC+05:30), causing the interactive calendar widget, Rahu Kalaya, astrological directions (Subha/Maru Sitina Dishawa), daily cartoon, and relative query filters to drift or show yesterday's values during early morning hours.
+  - Added `buzzmag_ensure_default_timezone()` in `functions.php` on `after_setup_theme` (priority 5) to automatically configure WordPress options `timezone_string` to `'Asia/Colombo'` and `gmt_offset` to `'5.5'` if left unconfigured at fresh WordPress / XAMPP defaults.
+  - Implemented unified, timezone-aware helpers in `functions/sri-lankan-utilities.php`:
+    - `buzzmag_get_timezone()`: Returns a `DateTimeZone` object adhering to Customizer choice, `wp_timezone()`, with automatic fallback to `Asia/Colombo`.
+    - `buzzmag_current_datetime()`: Returns a `DateTimeImmutable` pinned to the localized site timezone.
+    - `buzzmag_date($format, $timestamp)`: Reliable date/time formatter unaffected by PHP core `date_default_timezone_set('UTC')`.
+  - Re-anchored Rahu Kalaya day-of-week indexing to `(int) buzzmag_date('w')` and Cartoon query to `buzzmag_date('Y-m-d')`.
+  - Rebuilt the Interactive Monthly Calendar card calculations with `buzzmag_current_datetime()`, eliminating UTC day boundary skews for today's highlighted day, month lengths, first day of the month offset, and Sinhala/English localized labels.
+  - Fixed relative post age in news loops (`functions/news-loops.php`) by creating `buzzmag_get_time_ago()` with exact epoch seconds `get_post_time('U', true, $post)` and `time()`, and aligned `buzzmag_query_most_viewed_days()`, `buzzmag_query_most_viewed_hours()`, and `buzzmag_query_top_stories_week()` date queries with `buzzmag_current_datetime()`.
+  - Added `site_timezone` setting and dropdown control to the WordPress Customizer (`Appearance > Customize > Rebrand 3D Settings > Site Timezone`), giving site administrators full control (`Auto / Sri Lanka`, `Asia/Colombo`, `WordPress Default`, `UTC`).
 - **Homepage Lead Section & 3-Column Grid Alignment**:
   - Fixed horizontal misalignment where the 3-column section (`.fl-home-3col-grid`) was 44px wider than the Lead Hero card (`.fl-lead-section`) and stuck out past the right boundary.
   - Root cause: `grid-template-columns: 31% 40% 29%` combined with `gap: 22px` produced an effective width of `100% + 44px`.
@@ -44,14 +55,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 - **Lead Post Checkbox**:
   - Meta box in post edit screen (`functions/lead-post.php`) allowing editors to mark any post as "Lead Post" (`_buzzmag_is_lead_post`).
   - Automated fallback query helper `buzzmag_get_lead_post()`.
-- **Desktop Homepage (Ada Derana Sinhala style)** (`includes/home-desktop.php`):
+- **Desktop Homepage** (`includes/home-desktop.php`):
   - Hero Lead Post 3D card.
   - 3-Column Grid:
     - Col 1: Latest 10 posts (excluding lead) + Top Viewed post from last 4 days.
     - Col 2: Category blocks (5 posts each) - Local, Off road / Foreign, Business, Sports (3D overall card).
     - Col 3: Sri Lankan utility cards - Biz Today / Video channels, Calendar, Rahu Kalaya (රාහු කාලය), Subha Dishawa (සුබ දිශාව), Maru Sitina Dishawa (මරු සිටින දිශාව), Cartoon of the Day, WhatsApp Community Banner.
   - Below Sections (Desktop only): Politics (6 posts) and Featured (6 posts) in equal 3D grid cards.
-- **Mobile Homepage (Unusuma.lk style)** (`includes/home-mobile.php`):
+- **Mobile Homepage** (`includes/home-mobile.php`):
   - Lead post as main post.
   - Latest 10 posts list (3D each).
   - Top Story (6 posts within the past week).
@@ -61,7 +72,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Main article enclosed in 3D elevated card.
   - Under-post sections: Latest (6 posts) and Most Read (last 36 hours, 6 posts).
   - Desktop sidebar: Main 6 categories with 3 posts from each (Local, Off road, Business, Sports, Foreign, Featured) in 3D category cards.
-- **Modern Portal Footer (Unusuma.lk style)** (`footer.php`):
+- **Modern Portal Footer** (`footer.php`):
   - Top brand section with Sinhala / English mission description and round social pills.
   - 4-column quick news links (Main News, Categories, Utilities & Astrology, About & Legal).
   - Clean bottom copyright bar with "Back to Top" pill.
@@ -74,7 +85,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - **WhatsApp Community Banner**: Channel/group link, title, description, custom button label, and visibility toggle.
   - Footer description text.
 - **Visual Optimization & Column Layout Polish**:
-  - **Columns 1 & 2 News Cards**: Refactored post cards to the `[Image] - [Title / Date]` format (`.fl-post-card-horizontal`) with calendar date icon (`fa-calendar`), bold headline, and rounded thumbnail matching the Unusuma.lk desktop reference.
+  - **Columns 1 & 2 News Cards**: Refactored post cards to the `[Image] - [Title / Date]` format (`.fl-post-card-horizontal`) with calendar date icon (`fa-calendar`), bold headline, and rounded thumbnail.
   - **Column 2 Category Cards**: Updated each 3D category card to render all 5 posts with the horizontal `[Image] - [Title / Date]` layout (`.fl-cat-post-item`).
   - **Column 3 Channel Cards**: Removed channel filter tabs; separated each of the 4 channels into its own standalone 3D card (`.fl-channel-card`) featuring channel badge pill, lead video with playable overlay, and 4 compact video rows.
   - **Mobile Responsive Polish**: Tuned horizontal card proportions for mobile devices (<576px) ensuring clean title typography and responsive thumbnail scaling.

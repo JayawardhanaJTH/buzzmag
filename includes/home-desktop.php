@@ -1,6 +1,6 @@
 <?php
 /**
- * Desktop Homepage Layout (Ada Derana Sinhala style)
+ * Desktop Homepage Layout
  *
  * Structure:
  * - Lead Post Section (3D Hero card)

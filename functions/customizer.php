@@ -1151,6 +1151,27 @@ function buzzmag_customizer( $wp_customize ) {
 		}
 
 		// ==========================================
+		// Portal Timezone Settings
+		// ==========================================
+		$wp_customize->add_setting( 'site_timezone', array(
+			'default'           => 'auto',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'site_timezone', array(
+			'label'       => esc_html__( 'Portal Timezone (වේලා කලාපය)', 'buzzmag' ),
+			'description' => esc_html__( 'Controls timezone for Sri Lankan Calendar, Rahu Kalaya, Astrology, and News timestamps.', 'buzzmag' ),
+			'section'     => 'rebrand_3d_settings',
+			'type'        => 'select',
+			'choices'     => array(
+				'auto'         => esc_html__( 'Automatic / Sri Lanka (Asia/Colombo UTC+05:30)', 'buzzmag' ),
+				'Asia/Colombo' => esc_html__( 'Asia/Colombo (Sri Lanka Time UTC+05:30)', 'buzzmag' ),
+				'wp_default'   => esc_html__( 'Use WordPress Timezone (Settings > General)', 'buzzmag' ),
+				'UTC'          => esc_html__( 'UTC (Coordinated Universal Time)', 'buzzmag' ),
+			),
+			'priority'    => 5,
+		) );
+
+		// ==========================================
 		// Calendar Settings
 		// ==========================================
 		$wp_customize->add_setting( 'hide_calendar', array(

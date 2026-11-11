@@ -1,6 +1,6 @@
 <?php
 /**
- * Mobile Homepage Layout (Unusuma.lk Mobile View)
+ * Mobile Homepage Layout
  *
  * Structure:
  * - Lead Post as Main Post (3D)
@@ -40,7 +40,7 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
     <section class="fl-mobile-section fl-mobile-latest">
         <div class="fl-mobile-section-header">
             <span class="fl-badge" style="background:#ed0e28;"><i class="fa fa-bolt"></i></span>
-            <h3><?php esc_html_e( 'නවතම පුවත් 10 (Latest News)', 'buzzmag' ); ?></h3>
+            <h3><?php esc_html_e( 'නවතම පුවත් (Latest News)', 'buzzmag' ); ?></h3>
         </div>
         <div class="fl-mobile-posts-list">
             <?php
@@ -60,7 +60,7 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
     <section class="fl-mobile-section fl-mobile-top-stories">
         <div class="fl-mobile-section-header">
             <span class="fl-badge" style="background:#e67e22;"><i class="fa fa-star"></i></span>
-            <h3><?php esc_html_e( 'ප්‍රමුඛ පුවත් (Top Stories - This Week)', 'buzzmag' ); ?></h3>
+            <h3><?php esc_html_e( 'ප්‍රමුඛ පුවත් (Top Stories)', 'buzzmag' ); ?></h3>
         </div>
         <div class="fl-mobile-grid-cards">
             <?php

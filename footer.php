@@ -1,6 +1,6 @@
 <?php
 /**
- * Modern Footer Template (Unusuma.lk Inspired)
+ * Modern Footer Template
  *
  * @package BuzzMag
  */
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
     <?php } ?>
 
-    <!-- Modern News Portal Footer (Unusuma.lk inspired) -->
+    <!-- Modern News Portal Footer -->
     <footer id="fl-footer" class="fl-modern-footer">
         <div class="fl-container">
             <!-- Footer Top Brand & Socials -->
@@ -125,7 +125,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             <ul>
                                 <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'අප ගැන (About Us)', 'buzzmag' ); ?></a></li>
                                 <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'සම්බන්ධ වන්න (Contact Us)', 'buzzmag' ); ?></a></li>
-                                <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'රහස්‍යතා ප්‍රතිපත්තිය', 'buzzmag' ); ?></a></li>
+                                <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'රහස්‍යතා ප්‍රතිපත්තිය (Privacy Policy)', 'buzzmag' ); ?></a></li>
                             </ul>
                         <?php endif; ?>
                     </div>

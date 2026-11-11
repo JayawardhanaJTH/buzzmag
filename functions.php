@@ -67,6 +67,22 @@ function buzzmag_theme_setup() {
 }
 add_action( 'after_setup_theme', 'buzzmag_theme_setup' );
 
+/**
+ * Automatically set default timezone to Sri Lanka (Asia/Colombo / UTC+05:30)
+ * if WordPress timezone setting is unconfigured on default UTC.
+ */
+function buzzmag_ensure_default_timezone() {
+    $tz_string  = (string) get_option( 'timezone_string' );
+    $gmt_offset = get_option( 'gmt_offset' );
+
+    // If WordPress has never configured a timezone (empty string and 0 offset)
+    if ( empty( $tz_string ) && ( '0' === (string) $gmt_offset || 0 === $gmt_offset || '' === (string) $gmt_offset ) ) {
+        update_option( 'timezone_string', 'Asia/Colombo' );
+        update_option( 'gmt_offset', '5.5' );
+    }
+}
+add_action( 'after_setup_theme', 'buzzmag_ensure_default_timezone', 5 );
+
 // Block Dynamic Style
 function buzzmag_block_style() {
     wp_add_inline_style( 'wp-block-editor', buzzmag_customizer_output() );

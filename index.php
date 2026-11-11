@@ -3,8 +3,8 @@
  * Main Homepage Template (Rebranded 3D News Layout)
  *
  * Renders:
- * - Desktop View (Ada Derana Sinhala 3-column & below sections format)
- * - Mobile View (Unusuma.lk responsive format)
+ * - Desktop View (3-column & below sections format)
+ * - Mobile View
  *
  * @package BuzzMag
  */
@@ -27,10 +27,10 @@ if ( ! empty( $home_ad ) ) { ?>
 <div id="fl-content" class="fl-home-rebranded-content">
     <div class="fl-container clearfix">
         <?php
-        // 1. Desktop View (Ada Derana 3-Column + Below sections)
+        // 1. Desktop View
         get_template_part( 'includes/home-desktop' );
 
-        // 2. Mobile View (Unusuma.lk style)
+        // 2. Mobile View
         get_template_part( 'includes/home-mobile' );
         ?>
     </div>

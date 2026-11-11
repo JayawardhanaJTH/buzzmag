@@ -3,8 +3,8 @@
  *
  * Implements:
  * - 3D Card Architecture (Rounded edges, multi-layer elevation, hover physics)
- * - Desktop 3-Column Layout (Ada Derana style)
- * - Mobile Single-Stream Layout (Unusuma.lk style)
+ * - Desktop 3-Column Layout
+ * - Mobile Single-Stream Layout
  * - Sri Lankan Utility Widgets (Calendar, Rahu Kalaya, Subha/Maru Dishawa, Cartoon, WhatsApp)
  * - Modern News Portal Footer
  * - Full Dark Mode Support
@@ -275,7 +275,7 @@
 }
 
 /* ==========================================================================
-   3. Desktop 3-Column Grid Layout (Ada Derana style)
+   3. Desktop 3-Column Grid Layout
    ========================================================================== */
 .fl-home-desktop-wrapper {
     width: 100%;
@@ -1510,7 +1510,7 @@
 }
 
 /* ==========================================================================
-   9. Mobile Single-Stream View (Unusuma.lk style)
+   9. Mobile Single-Stream View
    ========================================================================== */
 .fl-home-mobile-wrapper {
     padding: 5px 0 25px 0;
@@ -1713,7 +1713,7 @@
 }
 
 /* ==========================================================================
-   11. Modern Footer (Unusuma.lk Inspired)
+   11. Modern Footer
    ========================================================================== */
 .fl-modern-footer {
     background: #151515;

@@ -1,7 +1,7 @@
 # BuzzMag 3D News Portal — User & Administrator Guide
 
 > **Theme Version:** 3.0.0  
-> **Architecture:** Modern 3D Card Sri Lankan News Portal (Ada Derana Desktop + Unusuma.lk Mobile)  
+> **Architecture:** Modern 3D Card Sri Lankan News Portal
 > **Rebrander & Maintainer:** Tiran Jayawardhana ([jayawardhanatiran@gmail.com](mailto:jayawardhanatiran@gmail.com))  
 > **Directory Slug:** `buzzmag`  
 > **Release Package:** `dist/buzzmag-3.0.0.zip`
@@ -12,8 +12,8 @@
 
 BuzzMag has been redesigned into a high-performance **3D Card Sri Lankan News & Magazine Portal**.
 - **Visual Design:** Elevated 3D cards with rounded corners (`12px–14px`), subtle multi-layer drop shadows, and responsive hover physics.
-- **Desktop Homepage Layout:** 3-column Ada Derana Sinhala layout with Lead Story hero, 10 Latest News + 4-Day Most Viewed, 4 Category blocks (5 posts each), 4 standalone Video Channels, Astrology (Rahu Kalaya, Subha/Maru Dishawa), Calendar, Cartoon of the Day, WhatsApp Community Banner, and Below Sections (Politics & Featured Stories).
-- **Mobile Homepage Layout:** Unusuma.lk single-stream flow optimized for smartphones: Lead Story → Latest 10 → Top Stories of the Week (6) → Category blocks (3 each) → Video Channels & Utilities stream.
+- **Desktop Homepage Layout:** 3-column layout with Lead Story hero, 10 Latest News + 4-Day Most Viewed, 4 Category blocks (5 posts each), 4 standalone Video Channels, Astrology (Rahu Kalaya, Subha/Maru Dishawa), Calendar, Cartoon of the Day, WhatsApp Community Banner, and Below Sections (Politics & Featured Stories).
+- **Mobile Homepage Layout:** single-stream flow optimized for smartphones: Lead Story → Latest 10 → Top Stories of the Week (6) → Category blocks (3 each) → Video Channels & Utilities stream.
 - **Inner Post Layout:** 70/30 split layout where the post image and the sidebar start at the **exact same vertical top baseline**. Below the article: Latest 6 News and Most Read in Last 36 Hours (6 posts).
 
 ---
@@ -41,7 +41,7 @@ Automatically activates on screens smaller than `992px`:
 3. **Top Stories (This Week)**: 6 highest-viewed posts published in the past 7 days.
 4. **Category Blocks**: 3 posts from each of the 6 categories (Local, Off road, Business, Sports, Foreign, Featured).
 5. **Video & Utility Stream**: Standalone cards for the 4 Video Channels, Astrology (Rahu Kalaya), WhatsApp Community Banner, and Cartoon of the Day.
-6. **Modern Unusuma.lk Footer**.
+6. **Modern Footer**.
 
 ---
 
@@ -122,8 +122,8 @@ buzzmag/
 │   ├── sri-lankan-utilities.php   Astrology, Rahu Kalaya, Calendar, Cartoon, WhatsApp, and 4 standalone Channel cards
 │   └── customizer.php             Customizer settings panel with all portal controls
 ├── includes/
-│   ├── home-desktop.php           Desktop 3-column Ada Derana layout & below sections
-│   ├── home-mobile.php            Mobile Unusuma.lk single-stream layout
+│   ├── home-desktop.php           Desktop 3-column layout & below sections
+│   ├── home-mobile.php            Mobile single-stream layout
 │   └── single-post-widgets.php    Single post under-post blocks (Latest 6, Most Read 36h 6) and 6-cat sidebar
 ├── css/
 │   └── 3d-components.css          3D card physics, horizontal news cards, standalone channel cards, dark mode
@@ -131,7 +131,7 @@ buzzmag/
 │   └── cartoon-placeholder.svg    Clean fallback graphic for cartoon widget
 ├── single.php                     Single post template (image and sidebar aligned at top)
 ├── templates/                     Post and page layout templates
-├── footer.php                     Modern Unusuma.lk footer
+├── footer.php                     Modern footer
 └── build-zip.ps1                  Build script for generating uploadable zip
 ```
 
