@@ -342,10 +342,15 @@
 /* ==========================================================================
    4. Horizontal / Compact Post Cards (Column 1 - Latest 10 & Most Viewed)
    ========================================================================== */
-.fl-latest-10-stack {
+.fl-latest-10-stack,
+.fl-most-viewed-stack {
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.fl-most-viewed-4days-wrap article.fl-3d-card + article.fl-3d-card {
+    margin-top: 12px;
 }
 
 .fl-post-card-horizontal,

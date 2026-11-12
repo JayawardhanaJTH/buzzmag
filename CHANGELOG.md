@@ -34,6 +34,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - Implemented automatic dark mode translation with deep obsidian/crimson/sapphire ambient glows.
 
 ### Fixed
+- **Homepage Column 1 Most Viewed Cards Gap**:
+  - Fixed issue where the cards in the "වැඩිම පිරිසක් නැරඹූ (Top Viewed)" section in Column 1 were rendered directly without vertical separation, causing cards to touch with 0px gap.
+  - Wrapped loop items in `.fl-most-viewed-stack` in `includes/home-desktop.php` and defined `display: flex; flex-direction: column; gap: 12px;` in `css/3d-components.css` with a sibling selector fallback, matching the exact clean 12px card spacing of the Latest 10 section.
 - **Timezone Drift & Sri Lankan Astrological/Calendar Alignment**:
   - Fixed issue where the theme evaluated dates and times in UTC instead of the site's local Sri Lankan timezone (`Asia/Colombo` / UTC+05:30), causing the interactive calendar widget, Rahu Kalaya, astrological directions (Subha/Maru Sitina Dishawa), daily cartoon, and relative query filters to drift or show yesterday's values during early morning hours.
   - Added `buzzmag_ensure_default_timezone()` in `functions.php` on `after_setup_theme` (priority 5) to automatically configure WordPress options `timezone_string` to `'Asia/Colombo'` and `gmt_offset` to `'5.5'` if left unconfigured at fresh WordPress / XAMPP defaults.

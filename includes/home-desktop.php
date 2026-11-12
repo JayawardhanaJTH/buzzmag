@@ -65,16 +65,18 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
                     <span class="fl-col-badge orange"><i class="fa fa-fire"></i></span>
                     <h4><?php esc_html_e( 'වැඩිම පිරිසක් නැරඹූ (Top Viewed)', 'buzzmag' ); ?></h4>
                 </div>
-                <?php
-                $top_4days = buzzmag_query_most_viewed_days( 4, 10 );
-                if ( $top_4days->have_posts() ) :
-                    while ( $top_4days->have_posts() ) :
-                        $top_4days->the_post();
-                        buzzmag_render_3d_post_card( get_the_ID(), 'horizontal-card' );
-                    endwhile;
-                    wp_reset_postdata();
-                endif;
-                ?>
+                <div class="fl-most-viewed-stack">
+                    <?php
+                    $top_4days = buzzmag_query_most_viewed_days( 4, 10 );
+                    if ( $top_4days->have_posts() ) :
+                        while ( $top_4days->have_posts() ) :
+                            $top_4days->the_post();
+                            buzzmag_render_3d_post_card( get_the_ID(), 'horizontal-card' );
+                        endwhile;
+                        wp_reset_postdata();
+                    endif;
+                    ?>
+                </div>
             </div>
         </div>
 
