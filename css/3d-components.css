@@ -17,31 +17,31 @@
    ========================================================================== */
 .fl-3d-card {
     background: #ffffff;
-    border-radius: 14px;
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
-    transition: transform 0.28s cubic-bezier(0.165, 0.84, 0.44, 1),
-        box-shadow 0.28s cubic-bezier(0.165, 0.84, 0.44, 1),
-        border-color 0.28s ease;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 1px 1px 10px 1px #abb8c3;
+    transition: transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
     overflow: hidden;
     position: relative;
 }
 
 .fl-3d-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
-    border-color: rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+    box-shadow: 1px 3px 12px 1px #9aaab6;
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Dark Theme Overrides for 3D Cards */
 [data-theme="dark"] .fl-3d-card {
     background: #212121;
     border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.6), 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.65);
 }
 
 [data-theme="dark"] .fl-3d-card:hover {
-    box-shadow: 0 12px 26px -4px rgba(0, 0, 0, 0.8), 0 4px 10px -2px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 3px 14px 2px rgba(0, 0, 0, 0.85);
     border-color: rgba(255, 255, 255, 0.16);
 }
 

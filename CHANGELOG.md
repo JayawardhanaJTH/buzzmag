@@ -13,6 +13,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [Unreleased]
 
 ### Added
+- **Unusuma.lk Inspired Card Shadow System** (`css/3d-components.css`):
+  - Updated `.fl-3d-card` with the exact compact, crisp shadow styling used on Unusuma.lk (`box-shadow: 1px 1px 10px 1px #abb8c3`).
+  - Eliminates excessive spread and wide blur, providing a sharp, defined contour outline around cards.
+  - Hover elevation updated to `1px 3px 12px 1px #9aaab6` with `translateY(-3px)`.
+  - Added dark theme equivalent (`box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.65)`).
 - **Theme Header Comments & Attribution** (`header.php`, `functions.php`):
   - Added HTML source header banner comment block to `header.php` displaying rebrand authorship, maintainer contact, and theme version.
   - Added standard `<meta name="author" content="Tiran Jayawardhana">` tag in the `<head>` block.
