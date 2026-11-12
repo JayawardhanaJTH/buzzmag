@@ -287,7 +287,7 @@ function buzzmag_render_astrology_card() {
     }
 
     $info = buzzmag_get_rahu_kalaya();
-    $astro_title = get_theme_mod( 'astrology_title', esc_html__( 'අද දවස‌ේ ‌ජෝතිෂ්‍ය', 'buzzmag' ) );
+    $astro_title = get_theme_mod( 'astrology_title', esc_html__( 'අද දවසේ ජෝතිෂය', 'buzzmag' ) );
     ?>
     <div class="fl-3d-card fl-utility-card fl-astro-card" id="rahu-kalaya">
         <div class="fl-card-header">
