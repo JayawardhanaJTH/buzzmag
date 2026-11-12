@@ -57,7 +57,7 @@ function buzzmag_render_single_under_post( $current_post_id = 0 ) {
         <div class="fl-under-block fl-under-most-read">
             <div class="fl-block-header">
                 <span class="fl-badge" style="background:#e67e22;"><i class="fa fa-fire"></i></span>
-                <h3><?php esc_html_e( 'පැය 36 තුළ වැඩිම පිරිසක් කියවූ (Most Read - Last 36h)', 'buzzmag' ); ?></h3>
+                <h3><?php esc_html_e( 'වැඩිම පිරිසක් කියවූ (Most Read)', 'buzzmag' ); ?></h3>
             </div>
             <div class="fl-3d-grid-3">
                 <?php if ( $most_read_6->have_posts() ) :
