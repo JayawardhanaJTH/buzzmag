@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Modern News Portal Footer -->
     <footer id="fl-footer" class="fl-modern-footer">
         <div class="fl-container">
-            <!-- Footer Top Brand & Socials -->
-            <div class="fl-footer-top-brand clearfix">
+            <!-- Footer Main Top: Brand & Quick Support Links -->
+            <div class="fl-footer-main-row clearfix">
                 <div class="fl-footer-brand-left">
                     <div class="fl-footer-logo">
                         <?php if ( get_theme_mod( 'logo' ) ) : ?>
@@ -49,29 +49,21 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </p>
                 </div>
 
-                <div class="fl-footer-social-connect">
-                    <span class="social-title"><?php esc_html_e( 'අප හා එක්වන්න (Connect With Us)', 'buzzmag' ); ?></span>
-                    <div class="fl-footer-social-icons">
-                        <?php if ( get_theme_mod( 'facebook' ) ) : ?>
-                            <a href="<?php echo esc_url( get_theme_mod( 'facebook' ) ); ?>" target="_blank" rel="noopener" class="social-fb" title="Facebook"><i class="fa fa-facebook"></i></a>
-                        <?php endif; ?>
-                        <?php if ( get_theme_mod( 'youtube' ) ) : ?>
-                            <a href="<?php echo esc_url( get_theme_mod( 'youtube' ) ); ?>" target="_blank" rel="noopener" class="social-yt" title="YouTube"><i class="fa fa-youtube-play"></i></a>
-                        <?php endif; ?>
-                        <?php if ( get_theme_mod( 'whatsapp_link', 'https://chat.whatsapp.com/' ) ) : ?>
-                            <a href="<?php echo esc_url( get_theme_mod( 'whatsapp_link', 'https://chat.whatsapp.com/' ) ); ?>" target="_blank" rel="noopener" class="social-wa" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
-                        <?php endif; ?>
-                        <?php if ( get_theme_mod( 'twitter' ) ) : ?>
-                            <a href="<?php echo esc_url( get_theme_mod( 'twitter' ) ); ?>" target="_blank" rel="noopener" class="social-tw" title="Twitter"><i class="fa fa-twitter"></i></a>
-                        <?php endif; ?>
-                        <?php if ( get_theme_mod( 'instagram' ) ) : ?>
-                            <a href="<?php echo esc_url( get_theme_mod( 'instagram' ) ); ?>" target="_blank" rel="noopener" class="social-ig" title="Instagram"><i class="fa fa-instagram"></i></a>
-                        <?php endif; ?>
-                    </div>
+                <!-- Footer Quick Nav -->
+                <div class="fl-footer-quick-nav">
+                    <span class="nav-title"><?php esc_html_e( 'Information & Support', 'buzzmag' ); ?></span>
+                    <?php if ( has_nav_menu( 'footer-menu' ) ) : ?>
+                        <?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'depth' => 1 ) ); ?>
+                    <?php else : ?>
+                        <ul>
+                            <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'About Us', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Privacy Policy', 'buzzmag' ); ?></a></li>
+                        </ul>
+                    <?php endif; ?>
                 </div>
             </div>
 
-            <!-- Optional Dynamic Footer Widgets -->
+            <!-- Optional Dynamic Footer Widgets (If Active) -->
             <?php if ( ! get_theme_mod( 'hide_footer_widgets' ) && ( is_active_sidebar( 'buzzmag_footer1' ) || is_active_sidebar( 'buzzmag_footer2' ) || is_active_sidebar( 'buzzmag_footer3' ) ) ) : ?>
                 <div id="fl-footer-widgets" class="clearfix">
                     <div class="widget-column">
@@ -82,54 +74,6 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </div>
                     <div class="widget-column">
                         <?php if ( is_active_sidebar( 'buzzmag_footer3' ) ) { dynamic_sidebar( 'buzzmag_footer3' ); } ?>
-                    </div>
-                </div>
-            <?php else : ?>
-                <!-- Default News Portal Quick Links -->
-                <div class="fl-footer-nav-columns clearfix">
-                    <?php /*
-                    <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'Main News', 'buzzmag' ); ?></h4>
-                        <ul>
-                            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Home', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'local' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Local News', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'foreign' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Foreign News', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'politics' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Politics', 'buzzmag' ); ?></a></li>
-                        </ul>
-                    </div>
-
-                    <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'Categories & Features', 'buzzmag' ); ?></h4>
-                        <ul>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'business' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Business', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'sports' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Sports', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'featured' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Featured Stories', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'off-road' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Off Road', 'buzzmag' ); ?></a></li>
-                        </ul>
-                    </div>
-
-                    <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'Services & Utilities', 'buzzmag' ); ?></h4>
-                        <ul>
-                            <li><a href="#rahu-kalaya"><i class="fa fa-clock-o"></i> <?php esc_html_e( 'Rahu Kalaya', 'buzzmag' ); ?></a></li>
-                            <li><a href="#subha-dishawa"><i class="fa fa-compass"></i> <?php esc_html_e( 'Subha & Maru Dishawa', 'buzzmag' ); ?></a></li>
-                            <li><a href="#cartoon-section"><i class="fa fa-paint-brush"></i> <?php esc_html_e( 'Cartoon of the Day', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_theme_mod( 'whatsapp_link', 'https://chat.whatsapp.com/' ) ); ?>" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i> <?php esc_html_e( 'WhatsApp Alerts', 'buzzmag' ); ?></a></li>
-                        </ul>
-                    </div>
-                    */ ?>
-
-                    <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'Information & Support', 'buzzmag' ); ?></h4>
-                        <?php if ( has_nav_menu( 'footer-menu' ) ) : ?>
-                            <?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'depth' => 1 ) ); ?>
-                        <?php else : ?>
-                            <ul>
-                                <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'About Us', 'buzzmag' ); ?></a></li>
-                                <?php /* <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Contact Us', 'buzzmag' ); ?></a></li> */ ?>
-                                <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Privacy Policy', 'buzzmag' ); ?></a></li>
-                            </ul>
-                        <?php endif; ?>
                     </div>
                 </div>
             <?php endif; ?>
