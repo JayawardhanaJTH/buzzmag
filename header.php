@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<button class="icon">
 					<span><?php esc_html_e( 'Menu', 'buzzmag' ); ?></span>
 				</button>
-				<span class="text"><?php esc_html_e( 'Menu', 'buzzmag' ); ?></span>
+				<?php /* <span class="text"><?php esc_html_e( 'Menu', 'buzzmag' ); ?></span> */ ?>
 			</div>
 			<div id="fl-logo">			    
 			    <?php if ( get_theme_mod( 'logo' ) ) { ?>
