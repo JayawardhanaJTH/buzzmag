@@ -2006,6 +2006,16 @@
     box-shadow: 0 3px 8px rgba(237, 14, 40, 0.35);
 }
 
+.fl-category-pagination .nav-links .page-numbers.prev i,
+.fl-category-pagination .nav-links .prev i {
+    margin-right: 10px;
+}
+
+.fl-category-pagination .nav-links .page-numbers.next i,
+.fl-category-pagination .nav-links .next i {
+    margin-left: 10px;
+}
+
 [data-theme="dark"] .fl-category-pagination .nav-links .page-numbers {
     background: #212121;
     color: #ffffff;

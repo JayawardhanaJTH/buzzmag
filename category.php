@@ -93,8 +93,8 @@ get_header();
                     <div class="fl-category-pagination">
                         <?php
                         the_posts_pagination( array(
-                            'prev_text'          => '<i class="fa fa-angle-left"></i> ' . esc_html__( 'Previous', 'buzzmag' ),
-                            'next_text'          => esc_html__( 'Next', 'buzzmag' ) . ' <i class="fa fa-angle-right"></i>',
+                            'prev_text'          => '<i class="fa fa-angle-left" style="margin-right: 10px;"></i>' . esc_html__( 'Previous', 'buzzmag' ),
+                            'next_text'          => esc_html__( 'Next', 'buzzmag' ) . '<i class="fa fa-angle-right" style="margin-left: 10px;"></i>',
                             'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Page', 'buzzmag' ) . ' </span>',
                             'mid_size'           => 2,
                         ) );
