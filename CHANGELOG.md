@@ -11,6 +11,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ---
 
 ## [Unreleased]
+- **Modern 3D Page Templates Architecture** (`page.php`, `templates/page-*.php`):
+  - Upgraded standard pages and page templates (`page.php`, `page-sidebar-right.php`, `page-sidebar-left.php`, `page-full-width.php`) to the modern 70/30 baseline-aligned 3D layout matching `category.php` and `single.php`.
+  - Added `.fl-3d-card.fl-single-article-card` styling with media wrap and clean typography, removed comments template, and preserved WooCommerce cart/checkout/account full-width handling.
+  - Integrated the sticky 6-Category 3D sidebar (`buzzmag_render_single_sidebar_categories()`) and Under-Page modules (Latest News 6 & Most Read 6 via `buzzmag_render_single_under_post()`).
+  - Added mobile utilities stack support on page views at the bottom of the sidebar.
+- **Homepage 3rd Column Utilities on Mobile Single Post View** (`functions/sri-lankan-utilities.php`, `includes/single-post-widgets.php`, `css/3d-components.css`):
+  - Created centralized helper `buzzmag_render_column_3_utilities()` uniting 4 Video Channels, Top Stories of the Day, Daily Cartoon, WhatsApp Community, Rahu Kalaya/Astrology, Advertise With Us, Facebook, and TikTok cards.
+  - Added the entire utility card sequence to the bottom of the mobile single post view below the 6 sidebar category cards (`.fl-single-mobile-utilities-wrap`), maintaining a clean, clutter-free desktop sidebar.
+- **Homepage 3rd Column Utilities on Mobile Single Post View** (`functions/sri-lankan-utilities.php`, `includes/single-post-widgets.php`, `css/3d-components.css`):
+  - Created centralized helper `buzzmag_render_column_3_utilities()` uniting 4 Video Channels, Top Stories of the Day, Daily Cartoon, WhatsApp Community, Rahu Kalaya/Astrology, Advertise With Us, Facebook, and TikTok cards.
+  - Added the entire utility card sequence to the bottom of the mobile single post view below the 6 sidebar category cards (`.fl-single-mobile-utilities-wrap`), maintaining a clean, clutter-free desktop sidebar.
+- **Removed View Count from Category & Single Posts** (`functions/news-loops.php`, `single.php`, `templates/post-*.php`):
+  - Removed view count number and eye icon (`<i class="fa fa-eye"></i>`) from standard 3D post cards (`.fl-post-card-standard`), eliminating view counts from category archive grids and the under-post modules (Latest 6 & Most Read 6 on single posts and category pages).
+  - Removed view count metadata from single post page headers (`single.php`, `post-full-width.php`, `post-sidebar-left.php`, `post-sidebar-right.php`).
+  - Preserved background post view tracking (`post_views_count`) to ensure "Most Read" / "Top Viewed" query ordering continues functioning accurately.
 
 ## [3.1.0] - 2026-11-14
 

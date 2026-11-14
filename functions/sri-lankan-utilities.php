@@ -700,3 +700,34 @@ function buzzmag_render_video_channels_card() {
         buzzmag_render_single_channel_card( $ch );
     }
 }
+
+/**
+ * Render Homepage 3rd Column / Mobile Utilities Stack
+ * Includes: 4 Video Channels, Top Stories, Cartoon, WhatsApp, Rahu Kalaya, Advertise, Facebook, TikTok
+ */
+function buzzmag_render_column_3_utilities() {
+    // 1. Video Channels (4 Standalone Cards)
+    buzzmag_render_video_channels_card();
+
+    // 2. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
+    buzzmag_render_top_stories_card();
+
+    // 3. Cartoon of the Day
+    buzzmag_render_cartoon_card();
+
+    // 4. WhatsApp Community Banner
+    buzzmag_render_whatsapp_banner();
+
+    // 5. Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa
+    buzzmag_render_astrology_card();
+
+    // 6. Advertise With Us (Links to WhatsApp)
+    buzzmag_render_advertise_banner();
+
+    // 7. Facebook Page Card
+    buzzmag_render_facebook_banner();
+
+    // 8. TikTok Banner
+    buzzmag_render_tiktok_banner();
+}
+

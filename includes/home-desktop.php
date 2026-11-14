@@ -129,32 +129,7 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
 
         <!-- ================= Column 3: Videos & Sri Lankan Utility Cards ================= -->
         <div class="fl-home-col fl-col-utilities">
-            <!-- Biz Today & 4 Video Channels -->
-            <?php buzzmag_render_video_channels_card(); ?>
-
-            <!-- Calendar Widget -->
-            <?php /*buzzmag_render_calendar_card();*/ ?>
-
-            <!-- Top Stories of the Day (දවසේ ප්‍රධාන පුවත්) -->
-            <?php buzzmag_render_top_stories_card(); ?>
-
-            <!-- Cartoon of the Day -->
-            <?php buzzmag_render_cartoon_card(); ?>
-            
-            <!-- WhatsApp Community Banner -->
-            <?php buzzmag_render_whatsapp_banner(); ?>
-            
-            <!-- Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa -->
-            <?php buzzmag_render_astrology_card(); ?>
-
-            <!-- Advertise With Us (Links to WhatsApp) -->
-            <?php buzzmag_render_advertise_banner(); ?>
-
-            <!-- Facebook Page Card -->
-            <?php buzzmag_render_facebook_banner(); ?>
-
-            <!-- TikTok Banner -->
-            <?php buzzmag_render_tiktok_banner(); ?>
+            <?php buzzmag_render_column_3_utilities(); ?>
         </div>
     </div>
 

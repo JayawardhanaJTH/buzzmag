@@ -63,10 +63,6 @@
 
 					                <?php if ( !get_theme_mod( 'hide_meta_date' ) ) { ?>
 						                <span class="fl-meta"><i class="fa fa-clock-o"></i><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__( ' ago', 'buzzmag' ); ?></span>
-						            <?php }
-
-					                if ( !get_theme_mod( 'hide_meta_views' ) ) { ?>
-						                <span class="fl-meta"><i class="fa fa-eye"></i><?php echo buzzmag_getpostviews(get_the_ID()); ?></span>
 						            <?php } ?>
 						        </div>
 							</article>

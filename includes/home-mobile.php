@@ -147,31 +147,7 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
 
     <!-- 5. End of Page: Video / YouTube column (as desktop 3rd column) & Utilities -->
     <section class="fl-mobile-section fl-mobile-videos-utilities">
-        <!-- Video Channels -->
-        <?php buzzmag_render_video_channels_card(); ?>
-
-        <!-- Top Stories of the Day (දවසේ ප්‍රධාන පුවත්) -->
-        <?php buzzmag_render_top_stories_card(); ?>
-
-        <!-- Cartoon of the Day -->
-        <?php buzzmag_render_cartoon_card(); ?>
-
-        <!-- WhatsApp Banner -->
-        <?php buzzmag_render_whatsapp_banner(); ?>
-        
-        <!-- Rahu Kalaya & Astrological info -->
-        <?php buzzmag_render_astrology_card(); ?>
-
-        <!-- Advertise With Us (Links to WhatsApp) -->
-        <?php buzzmag_render_advertise_banner(); ?>
-
-        <!-- Facebook Page Card -->
-        <?php buzzmag_render_facebook_banner(); ?>
-
-        <!-- TikTok Banner -->
-        <?php buzzmag_render_tiktok_banner(); ?>
-
-
+        <?php buzzmag_render_column_3_utilities(); ?>
     </section>
 </div>
 

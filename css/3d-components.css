@@ -1812,6 +1812,11 @@
         width: 100%;
     }
 
+    .fl-single-mobile-utilities-wrap {
+        margin-top: 25px;
+        width: 100%;
+    }
+
     .fl-single-body-wrap {
         padding: 18px;
     }

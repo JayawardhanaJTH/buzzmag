@@ -567,9 +567,6 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
             <div class="fl-lead-content">
                 <div class="fl-lead-meta">
                     <span class="meta-item"><i class="fa fa-clock-o"></i> <?php echo esc_html( $time_ago ); ?></span>
-                    <?php if ( ! empty( $views ) ) : ?>
-                        <span class="meta-item views"><i class="fa fa-eye"></i> <?php echo esc_html( $views ); ?></span>
-                    <?php endif; ?>
                 </div>
                 <h2 class="fl-lead-title">
                     <a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $title ); ?></a>
@@ -636,9 +633,6 @@ function buzzmag_render_3d_post_card( $post = null, $style = 'card', $options = 
                 </h3>
                 <div class="fl-card-meta">
                     <span><i class="fa fa-clock-o"></i> <?php echo esc_html( $time_ago ); ?></span>
-                    <?php if ( ! empty( $views ) ) : ?>
-                        <span><i class="fa fa-eye"></i> <?php echo esc_html( $views ); ?></span>
-                    <?php endif; ?>
                 </div>
             </div>
         </article>

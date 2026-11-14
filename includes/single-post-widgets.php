@@ -134,6 +134,13 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
             </div>
         <?php endforeach; ?>
     </div>
+
+    <!-- Mobile-Only: Homepage 3rd Column Utilities (Videos & Sri Lankan Utilities) at bottom of single post view -->
+    <div class="fl-mobile-only fl-single-mobile-utilities-wrap">
+        <div class="fl-mobile-videos-utilities">
+            <?php buzzmag_render_column_3_utilities(); ?>
+        </div>
+    </div>
     <?php
 }
 

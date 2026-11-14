@@ -102,11 +102,7 @@ get_header();
                                             <a href="<?php comments_link(); ?>" class="comments"><i class="fa fa-comment-o"></i><?php comments_number( esc_html__( '0', 'buzzmag' ), esc_html__( '1', 'buzzmag' ), esc_html__( '%', 'buzzmag' ) ); ?></a>
                                         </span>
                                     <?php }
-                                }
-
-                                if ( ! get_theme_mod( 'hide_meta_views' ) ) { ?>
-                                    <span class="fl-meta"><i class="fa fa-eye"></i><?php echo buzzmag_getpostviews( get_the_ID() ); ?></span>
-                                <?php } ?>
+                                } ?>
                             </div>
 
                             <div class="fl-post-content clearfix">
