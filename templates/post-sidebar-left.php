@@ -159,9 +159,6 @@ get_header();
                         <?php
                         // Author Section
                         get_template_part( 'includes/author-box' );
-
-                        // Comments
-                        comments_template();
                         ?>
                     </div>
                 </div>
