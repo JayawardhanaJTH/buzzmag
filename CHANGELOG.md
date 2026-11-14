@@ -15,6 +15,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [3.1.0] - 2026-11-14
 
 ### Added
+- **Staged 96-Hour Window Strategy for Most Read Posts** (`functions/news-loops.php`):
+  - Updated `buzzmag_query_most_viewed_hours()` with a multi-stage backfill architecture.
+  - Posts published in the primary 96-hour window (0 to 96 hours ago) are strictly preserved at the top of the list.
+  - If fewer than 6 posts exist in that window, it queries the preceding 96-hour window (96 to 192 hours ago) to backfill slots rather than discarding the recent posts.
+  - Only fills any remaining unfilled slots with all-time most viewed or latest posts, maintaining strict chronological priority and eliminating abrupt all-time post replacement.
 - **3rd Column Promotional Cards: "Advertise With Us", "Facebook Page", & "TikTok"** (`functions/sri-lankan-utilities.php`, `includes/home-desktop.php`, `includes/home-mobile.php`, `functions/customizer.php`, `css/3d-components.css`):
   - Added **"Advertise With Us"** card styled identically to the WhatsApp community card with an energetic amber-orange gradient (`linear-gradient(135deg, #f39c12 0%, #d35400 100%)`), megaphone icon (`fa-bullhorn`), and WhatsApp CTA button with green hover feedback.
   - Added **"Facebook Page"** card with official Facebook blue gradient (`linear-gradient(135deg, #1877f2 0%, #0d5cb6 100%)`), Facebook icon badge (`fa-facebook`), and "Follow on Facebook" action button.

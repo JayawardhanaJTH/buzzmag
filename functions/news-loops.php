@@ -129,19 +129,31 @@ function buzzmag_query_most_viewed_days( $days = 4, $count = 1 ) {
 }
 
 /**
- * Query Top Viewed Posts within a given number of hours (e.g. 36 hours for single view).
+ * Query Top Viewed Posts within a given number of hours (e.g. 96 hours).
  *
- * @param int $hours Number of hours (default 36).
- * @param int $count Number of posts (default 6).
+ * Staged Window Strategy (Option B):
+ * 1. Primary window: Query top viewed posts within the first $hours (e.g. 0 to 96 hours ago).
+ * 2. Secondary window: If fewer than $count found, query the previous $hours window (e.g. 96 to 192 hours ago)
+ *    to preserve recent posts and fill remaining slots.
+ * 3. Final fallback: If still fewer than $count, backfill any remaining slots from all-time most viewed or latest posts.
+ *
+ * @param int   $hours       Number of hours (default 96).
+ * @param int   $count       Number of posts (default 6).
  * @param array $exclude_ids Array of post IDs to exclude.
  * @return WP_Query
  */
-function buzzmag_query_most_viewed_hours( $hours = 36, $count = 6, $exclude_ids = array() ) {
-    $date_after = function_exists( 'buzzmag_current_datetime' )
-        ? buzzmag_current_datetime()->modify( "-{$hours} hours" )->format( 'Y-m-d H:i:s' )
+function buzzmag_query_most_viewed_hours( $hours = 96, $count = 6, $exclude_ids = array() ) {
+    $exclude_ids   = array_map( 'intval', (array) $exclude_ids );
+    $collected_ids = array();
+
+    $now = function_exists( 'buzzmag_current_datetime' ) ? buzzmag_current_datetime() : null;
+
+    // --- Stage 1: Primary window (0 to $hours ago) ---
+    $date_after_1 = $now
+        ? $now->modify( "-{$hours} hours" )->format( 'Y-m-d H:i:s' )
         : $hours . ' hours ago';
 
-    $args = array(
+    $args_1 = array(
         'post_type'           => 'post',
         'post_status'         => 'publish',
         'posts_per_page'      => $count,
@@ -149,36 +161,112 @@ function buzzmag_query_most_viewed_hours( $hours = 36, $count = 6, $exclude_ids 
         'orderby'             => 'meta_value_num',
         'order'               => 'DESC',
         'ignore_sticky_posts' => 1,
+        'fields'              => 'ids',
         'date_query'          => array(
             array(
-                'after' => $date_after,
+                'after' => $date_after_1,
             ),
         ),
     );
-
     if ( ! empty( $exclude_ids ) ) {
-        $args['post__not_in'] = $exclude_ids;
+        $args_1['post__not_in'] = $exclude_ids;
     }
 
-    $query = new WP_Query( $args );
-
-    // Fallback if not enough views in 36 hours
-    if ( $query->post_count < $count ) {
-        unset( $args['date_query'] );
-        $query = new WP_Query( $args );
+    $q1 = new WP_Query( $args_1 );
+    if ( ! empty( $q1->posts ) ) {
+        $collected_ids = array_map( 'intval', $q1->posts );
     }
 
-    if ( ! $query->have_posts() ) {
-        $query = new WP_Query( array(
+    // --- Stage 2: Secondary window (another $hours window: $hours to 2*$hours ago) ---
+    if ( count( $collected_ids ) < $count ) {
+        $needed      = $count - count( $collected_ids );
+        $all_exclude = array_unique( array_merge( $exclude_ids, $collected_ids ) );
+
+        $double_hours = $hours * 2;
+        $date_after_2 = $now
+            ? $now->modify( "-{$double_hours} hours" )->format( 'Y-m-d H:i:s' )
+            : $double_hours . ' hours ago';
+
+        $args_2 = array(
             'post_type'           => 'post',
             'post_status'         => 'publish',
-            'posts_per_page'      => $count,
-            'post__not_in'        => $exclude_ids,
+            'posts_per_page'      => $needed,
+            'meta_key'            => 'post_views_count',
+            'orderby'             => 'meta_value_num',
+            'order'               => 'DESC',
             'ignore_sticky_posts' => 1,
-        ) );
+            'fields'              => 'ids',
+            'date_query'          => array(
+                array(
+                    'after' => $date_after_2,
+                ),
+            ),
+            'post__not_in'        => $all_exclude,
+        );
+
+        $q2 = new WP_Query( $args_2 );
+        if ( ! empty( $q2->posts ) ) {
+            $collected_ids = array_merge( $collected_ids, array_map( 'intval', $q2->posts ) );
+        }
     }
 
-    return $query;
+    // --- Stage 3: Tertiary fallback (All-time most viewed to fill remaining slots) ---
+    if ( count( $collected_ids ) < $count ) {
+        $needed      = $count - count( $collected_ids );
+        $all_exclude = array_unique( array_merge( $exclude_ids, $collected_ids ) );
+
+        $args_3 = array(
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'posts_per_page'      => $needed,
+            'meta_key'            => 'post_views_count',
+            'orderby'             => 'meta_value_num',
+            'order'               => 'DESC',
+            'ignore_sticky_posts' => 1,
+            'fields'              => 'ids',
+            'post__not_in'        => $all_exclude,
+        );
+
+        $q3 = new WP_Query( $args_3 );
+        if ( ! empty( $q3->posts ) ) {
+            $collected_ids = array_merge( $collected_ids, array_map( 'intval', $q3->posts ) );
+        }
+    }
+
+    // --- Stage 4: Ultimate fallback (Latest published posts if views meta missing) ---
+    if ( count( $collected_ids ) < $count ) {
+        $needed      = $count - count( $collected_ids );
+        $all_exclude = array_unique( array_merge( $exclude_ids, $collected_ids ) );
+
+        $args_4 = array(
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'posts_per_page'      => $needed,
+            'ignore_sticky_posts' => 1,
+            'fields'              => 'ids',
+            'post__not_in'        => $all_exclude,
+        );
+
+        $q4 = new WP_Query( $args_4 );
+        if ( ! empty( $q4->posts ) ) {
+            $collected_ids = array_merge( $collected_ids, array_map( 'intval', $q4->posts ) );
+        }
+    }
+
+    // Return empty query if no posts in database
+    if ( empty( $collected_ids ) ) {
+        return new WP_Query( array( 'post__in' => array( 0 ) ) );
+    }
+
+    // Build the final WP_Query strictly preserving the collected sequence
+    return new WP_Query( array(
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'post__in'            => $collected_ids,
+        'orderby'             => 'post__in',
+        'posts_per_page'      => count( $collected_ids ),
+        'ignore_sticky_posts' => 1,
+    ) );
 }
 
 /**

@@ -33,7 +33,7 @@ function buzzmag_render_single_under_post( $current_post_id = 0 ) {
         'ignore_sticky_posts' => 1,
     ) );
 
-    $most_read_6 = buzzmag_query_most_viewed_hours( 36, 6, $exclude );
+    $most_read_6 = buzzmag_query_most_viewed_hours( 96, 6, $exclude );
     ?>
     <div class="fl-single-under-post-blocks">
         <!-- 1. Latest Posts (6 posts) -->
@@ -53,7 +53,7 @@ function buzzmag_render_single_under_post( $current_post_id = 0 ) {
             </div>
         </div>
 
-        <!-- 2. Most Read Posts (Under 36 hours, 6 posts) -->
+        <!-- 2. Most Read Posts (Most Viewed in 96h, 6 posts) -->
         <div class="fl-under-block fl-under-most-read">
             <div class="fl-block-header">
                 <span class="fl-badge" style="background:#e67e22;"><i class="fa fa-fire"></i></span>
