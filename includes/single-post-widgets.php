@@ -127,7 +127,7 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
         ),
     );
     ?>
-    <div class="fl-single-sidebar-categories fl-desktop-only">
+    <div class="fl-single-sidebar-categories">
         <?php foreach ( $categories as $cat ) : ?>
             <div class="fl-sidebar-cat-widget">
                 <?php buzzmag_render_category_3d_card( $cat['title'], $cat['slug'], 3, $cat['icon'], $cat['color'] ); ?>

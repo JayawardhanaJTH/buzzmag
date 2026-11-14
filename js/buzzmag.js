@@ -33,15 +33,14 @@ jQuery(document).ready(function( $ ) {
             $('.push-overlay').removeClass('open');
             $('#fl-drawer').removeClass('open');
             $('#fl-drawer-icon').removeClass('active');
-            $('html, body').removeClass('fl-drawer-open');
+            unlockBodyScroll();
         } else {
             $.when( $('#fl-topsearch .fa-times').fadeOut(100) ).done(function() {
                 $('#fl-search-overlay').fadeOut(200);
                 $('#fl-topsearch .fa-search').fadeIn(200);
                 $('.overlay-search .searchform input[type="text"]').blur(); 
 
-                $('body').css('overflow-y', 'auto');
-                $('html, body').removeClass('fl-drawer-open');
+                unlockBodyScroll();
             });
         }
 	});
@@ -53,20 +52,59 @@ jQuery(document).ready(function( $ ) {
             $('#fl-topsearch .fa-search').delay(100).fadeIn(100);
             $('.overlay-search .searchform input[type="text"]').blur();
 
-            $('body').css('overflow-y', 'auto');
+            unlockBodyScroll();
         }
     });
 
-    // Drawer
+    // Body Scroll-Lock Management (Position-Fixed Pattern for Mobile WebKit & Chrome)
+    var scrollLockY = 0;
+    var isScrollLocked = false;
+
+    function lockBodyScroll() {
+        if (isScrollLocked) return;
+        scrollLockY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        isScrollLocked = true;
+        $('body').css({
+            'position': 'fixed',
+            'top': -scrollLockY + 'px',
+            'left': '0',
+            'right': '0',
+            'width': '100%',
+            'overflow': 'hidden'
+        });
+        $('html').css('overflow', 'hidden');
+        $('html, body').addClass('fl-drawer-open');
+    }
+
+    function unlockBodyScroll() {
+        if (!isScrollLocked) return;
+        isScrollLocked = false;
+        var prevScroll = scrollLockY;
+        var prevScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+
+        $('body').css({
+            'position': '',
+            'top': '',
+            'left': '',
+            'right': '',
+            'width': '',
+            'overflow': ''
+        });
+        $('html').css('overflow', '');
+        $('html, body').removeClass('fl-drawer-open');
+
+        window.scrollTo(0, prevScroll);
+        document.documentElement.style.scrollBehavior = prevScrollBehavior;
+    }
+
+    // Drawer Toggle
 	$('#fl-drawer-icon').click(function() {
         if( $('#fl-drawer-icon').is('.active') ) {
             $('.push-overlay').removeClass('open');
             $('#fl-drawer').removeClass('open');
             $('#fl-drawer-icon').removeClass('active');
-
-            $('body').css('overflow-y', 'auto');
-            $('html, body').removeClass('fl-drawer-open');
-
+            unlockBodyScroll();
         } else {            
             setTimeout(function(){
                 $('.push-overlay').addClass('open');
@@ -80,8 +118,7 @@ jQuery(document).ready(function( $ ) {
             $('#fl-topsearch .fa-search').delay(100).fadeIn(200);            
             $('.overlay-search .searchform input[type="text"]').blur();
 
-            $('body').css('overflow-y', 'hidden');
-            $('html, body').addClass('fl-drawer-open');
+            lockBodyScroll();
         }
 	});
 
@@ -89,19 +126,45 @@ jQuery(document).ready(function( $ ) {
 		$('.push-overlay').removeClass('open');
 		$('#fl-drawer').removeClass('open');
         $('#fl-drawer-icon').removeClass('active');
-
-        $('body').css('overflow-y', 'auto');
-        $('html, body').removeClass('fl-drawer-open');
+        unlockBodyScroll();
 	});
 
-    // Prevent background touch scrolling through the backdrop or outside the drawer
-    $(document).on('touchmove', function (e) {
-        if ($('body').hasClass('fl-drawer-open')) {
-            if ($(e.target).closest('#fl-drawer').length === 0) {
+    // Native non-passive touchmove listener to block backdrop & background touch scrolling
+    document.addEventListener('touchmove', function (e) {
+        if (isScrollLocked) {
+            var drawer = document.getElementById('fl-drawer');
+            if (!drawer || !drawer.contains(e.target)) {
                 e.preventDefault();
             }
         }
-    });
+    }, { passive: false });
+
+    // Prevent iOS rubber-band overscroll from chaining to background at drawer boundaries
+    var drawerEl = document.getElementById('fl-drawer');
+    if (drawerEl) {
+        var drawerTouchStartY = 0;
+        drawerEl.addEventListener('touchstart', function (e) {
+            if (e.touches && e.touches.length > 0) {
+                drawerTouchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        drawerEl.addEventListener('touchmove', function (e) {
+            if (!isScrollLocked) return;
+            var currentY = e.touches[0].clientY;
+            var scrollTop = drawerEl.scrollTop;
+            var maxScroll = drawerEl.scrollHeight - drawerEl.clientHeight;
+
+            // Swiping down at the very top edge
+            if (scrollTop <= 0 && currentY > drawerTouchStartY) {
+                e.preventDefault();
+            }
+            // Swiping up at the very bottom edge
+            if (scrollTop >= maxScroll && currentY < drawerTouchStartY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    }
 
 	// FitVids
     $('.fl-media-wrap').fitVids();
