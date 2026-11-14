@@ -87,45 +87,47 @@ if ( ! defined( 'ABSPATH' ) ) {
             <?php else : ?>
                 <!-- Default News Portal Quick Links -->
                 <div class="fl-footer-nav-columns clearfix">
+                    <?php /*
                     <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'ප්‍රධාන පුවත්', 'buzzmag' ); ?></h4>
+                        <h4><?php esc_html_e( 'Main News', 'buzzmag' ); ?></h4>
                         <ul>
-                            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'මුල් පිටුව (Home)', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'local' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'දේශීය පුවත් (Local)', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'foreign' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'විදේශීය පුවත් (Foreign)', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'politics' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'දේශපාලන (Politics)', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Home', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'local' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Local News', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'foreign' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Foreign News', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'politics' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Politics', 'buzzmag' ); ?></a></li>
                         </ul>
                     </div>
 
                     <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'අංශ සහ විශේෂාංග', 'buzzmag' ); ?></h4>
+                        <h4><?php esc_html_e( 'Categories & Features', 'buzzmag' ); ?></h4>
                         <ul>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'business' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'ව්‍යාපාරික (Business)', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'sports' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'ක්‍රීඩා පුවත් (Sports)', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'featured' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'විශේෂාංග (Featured)', 'buzzmag' ); ?></a></li>
-                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'off-road' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'පිටරට / Off Road', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'business' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Business', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'sports' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Sports', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'featured' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Featured Stories', 'buzzmag' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( get_category_link( get_cat_ID( 'off-road' ) ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Off Road', 'buzzmag' ); ?></a></li>
                         </ul>
                     </div>
 
                     <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'සේවා සහ නැකැත්', 'buzzmag' ); ?></h4>
+                        <h4><?php esc_html_e( 'Services & Utilities', 'buzzmag' ); ?></h4>
                         <ul>
-                            <li><a href="#rahu-kalaya"><i class="fa fa-clock-o"></i> <?php esc_html_e( 'රාහු කාලය (Rahu Kalaya)', 'buzzmag' ); ?></a></li>
-                            <li><a href="#subha-dishawa"><i class="fa fa-compass"></i> <?php esc_html_e( 'සුබ සහ මරු සිටින දිශාව', 'buzzmag' ); ?></a></li>
-                            <li><a href="#cartoon-section"><i class="fa fa-paint-brush"></i> <?php esc_html_e( 'දවසේ කාටූනය (Cartoon)', 'buzzmag' ); ?></a></li>
+                            <li><a href="#rahu-kalaya"><i class="fa fa-clock-o"></i> <?php esc_html_e( 'Rahu Kalaya', 'buzzmag' ); ?></a></li>
+                            <li><a href="#subha-dishawa"><i class="fa fa-compass"></i> <?php esc_html_e( 'Subha & Maru Dishawa', 'buzzmag' ); ?></a></li>
+                            <li><a href="#cartoon-section"><i class="fa fa-paint-brush"></i> <?php esc_html_e( 'Cartoon of the Day', 'buzzmag' ); ?></a></li>
                             <li><a href="<?php echo esc_url( get_theme_mod( 'whatsapp_link', 'https://chat.whatsapp.com/' ) ); ?>" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i> <?php esc_html_e( 'WhatsApp Alerts', 'buzzmag' ); ?></a></li>
                         </ul>
                     </div>
+                    */ ?>
 
                     <div class="fl-fcol">
-                        <h4><?php esc_html_e( 'තොරතුරු සහ සහාය', 'buzzmag' ); ?></h4>
+                        <h4><?php esc_html_e( 'Information & Support', 'buzzmag' ); ?></h4>
                         <?php if ( has_nav_menu( 'footer-menu' ) ) : ?>
                             <?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'depth' => 1 ) ); ?>
                         <?php else : ?>
                             <ul>
-                                <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'අප ගැන (About Us)', 'buzzmag' ); ?></a></li>
-                                <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'සම්බන්ධ වන්න (Contact Us)', 'buzzmag' ); ?></a></li>
-                                <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'රහස්‍යතා ප්‍රතිපත්තිය (Privacy Policy)', 'buzzmag' ); ?></a></li>
+                                <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'About Us', 'buzzmag' ); ?></a></li>
+                                <?php /* <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Contact Us', 'buzzmag' ); ?></a></li> */ ?>
+                                <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><i class="fa fa-angle-right"></i> <?php esc_html_e( 'Privacy Policy', 'buzzmag' ); ?></a></li>
                             </ul>
                         <?php endif; ?>
                     </div>
@@ -138,7 +140,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <span class="fl-copyright-line">
                         <?php
                         $year_str     = function_exists( 'buzzmag_date' ) ? buzzmag_date( 'Y' ) : date( 'Y' );
-                        $default_copy = '© ' . $year_str . ' ' . esc_html( get_bloginfo( 'name', 'display' ) ) . '. ' . esc_html__( 'සියලුම හිමිකම් ඇවිරිණි (All Rights Reserved).', 'buzzmag' );
+                        $default_copy = '© ' . $year_str . ' ' . esc_html( get_bloginfo( 'name', 'display' ) ) . '. ' . esc_html__( 'All Rights Reserved.', 'buzzmag' );
                         echo wp_kses_post( get_theme_mod( 'copyrights', $default_copy ) );
                         ?>
                     </span>
@@ -151,7 +153,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
                 <div class="footer-powered">
                     <a href="#fl-header" class="fl-back-to-top" title="<?php esc_attr_e( 'Back to Top', 'buzzmag' ); ?>">
-                        <span><?php esc_html_e( 'ඉහළට', 'buzzmag' ); ?></span>
+                        <span><?php esc_html_e( 'Back to Top', 'buzzmag' ); ?></span>
                         <i class="fa fa-arrow-up"></i>
                     </a>
                 </div>

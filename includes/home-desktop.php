@@ -82,10 +82,10 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
 
         <!-- ================= Column 2: Category Blocks (5 Posts each) ================= -->
         <div class="fl-home-col fl-col-categories">
-            <!-- 1. Local (දේශීය) -->
+            <!-- 1. Local News -->
             <?php
             buzzmag_render_category_3d_card(
-                get_theme_mod( 'cat_title_local', 'දේශීය පුවත් (Local News)' ),
+                get_theme_mod( 'cat_title_local', 'Local News' ),
                 $local_slug,
                 5,
                 'fa-map-marker',
@@ -93,10 +93,10 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
             );
             ?>
 
-            <!-- 2. Off Road / Foreign (පිටරට / Off Road) -->
+            <!-- 2. Off Road / Foreign -->
             <?php
             buzzmag_render_category_3d_card(
-                get_theme_mod( 'cat_title_offroad', 'පිටරට / Off Road (Foreign)' ),
+                get_theme_mod( 'cat_title_offroad', 'Off Road' ),
                 $offroad_slug,
                 5,
                 'fa-globe',
@@ -104,10 +104,10 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
             );
             ?>
 
-            <!-- 3. Business (ව්‍යාපාරික) -->
+            <!-- 3. Business -->
             <?php
             buzzmag_render_category_3d_card(
-                get_theme_mod( 'cat_title_business', 'ව්‍යාපාරික පුවත් (Business)' ),
+                get_theme_mod( 'cat_title_business', 'Business' ),
                 $biz_slug,
                 5,
                 'fa-line-chart',
@@ -115,10 +115,10 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
             );
             ?>
 
-            <!-- 4. Sports (ක්‍රීඩා) -->
+            <!-- 4. Sports -->
             <?php
             buzzmag_render_category_3d_card(
-                get_theme_mod( 'cat_title_sports', 'ක්‍රීඩා පුවත් (Sports)' ),
+                get_theme_mod( 'cat_title_sports', 'Sports' ),
                 $sports_slug,
                 5,
                 'fa-trophy',
@@ -133,7 +133,7 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
             <?php buzzmag_render_video_channels_card(); ?>
 
             <!-- Calendar Widget -->
-            <?php buzzmag_render_calendar_card(); ?>
+            <?php /*buzzmag_render_calendar_card();*/ ?>
 
             <!-- Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa -->
             <?php buzzmag_render_astrology_card(); ?>

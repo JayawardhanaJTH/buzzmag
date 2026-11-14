@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function buzzmag_add_lead_post_meta_box() {
     add_meta_box(
         'buzzmag_lead_post_box',
-        esc_html__( 'Lead Post Option (ප්‍රධාන පුවත)', 'buzzmag' ),
+        esc_html__( 'Lead Post Option', 'buzzmag' ),
         'buzzmag_render_lead_post_meta_box',
         'post',
         'side',
@@ -39,7 +39,7 @@ function buzzmag_render_lead_post_meta_box( $post ) {
     <p>
         <label for="buzzmag_is_lead_post" style="display:flex; align-items:center; gap:8px; font-weight:600; cursor:pointer;">
             <input type="checkbox" name="buzzmag_is_lead_post" id="buzzmag_is_lead_post" value="1" <?php checked( $is_lead, '1' ); ?> />
-            <span><?php esc_html_e( 'Mark as Lead Post (ප්‍රධාන පුවත ලෙස සකසන්න)', 'buzzmag' ); ?></span>
+            <span><?php esc_html_e( 'Mark as Lead Post', 'buzzmag' ); ?></span>
         </label>
     </p>
     <p class="description" style="font-size:12px; color:#666; margin-top:4px;">

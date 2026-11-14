@@ -1,6 +1,10 @@
 # Build output
 dist/
 
+# Dependencies
+vendor/
+composer.lock
+
 # OS / editor junk
 Thumbs.db
 desktop.ini

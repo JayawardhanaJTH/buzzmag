@@ -78,10 +78,10 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
 
     <!-- 4. Category Blocks (3 Posts from each): Local, Off road, Business, Sports, Foreign, Featured -->
     <section class="fl-mobile-section fl-mobile-categories">
-        <!-- 1. Local (දේශීය) -->
+        <!-- 1. Local News -->
         <?php
         buzzmag_render_category_3d_card(
-            get_theme_mod( 'cat_title_local', 'දේශීය පුවත් (Local)' ),
+            get_theme_mod( 'cat_title_local', 'Local News' ),
             $local_slug,
             3,
             'fa-map-marker',
@@ -89,10 +89,10 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         );
         ?>
 
-        <!-- 2. Off Road (පිටරට / Off Road) -->
+        <!-- 2. Off Road -->
         <?php
         buzzmag_render_category_3d_card(
-            get_theme_mod( 'cat_title_offroad', 'පිටරට / Off Road' ),
+            get_theme_mod( 'cat_title_offroad', 'Off Road' ),
             $offroad_slug,
             3,
             'fa-road',
@@ -100,10 +100,10 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         );
         ?>
 
-        <!-- 3. Business (ව්‍යාපාරික) -->
+        <!-- 3. Business -->
         <?php
         buzzmag_render_category_3d_card(
-            get_theme_mod( 'cat_title_business', 'ව්‍යාපාරික (Business)' ),
+            get_theme_mod( 'cat_title_business', 'Business' ),
             $biz_slug,
             3,
             'fa-line-chart',
@@ -111,10 +111,10 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         );
         ?>
 
-        <!-- 4. Sports (ක්‍රීඩා) -->
+        <!-- 4. Sports -->
         <?php
         buzzmag_render_category_3d_card(
-            get_theme_mod( 'cat_title_sports', 'ක්‍රීඩා (Sports)' ),
+            get_theme_mod( 'cat_title_sports', 'Sports' ),
             $sports_slug,
             3,
             'fa-trophy',
@@ -122,10 +122,10 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         );
         ?>
 
-        <!-- 5. Foreign (විදේශීය) -->
+        <!-- 5. Foreign -->
         <?php
         buzzmag_render_category_3d_card(
-            get_theme_mod( 'cat_title_foreign', 'විදේශීය පුවත් (Foreign)' ),
+            get_theme_mod( 'cat_title_foreign', 'Foreign' ),
             $foreign_slug,
             3,
             'fa-globe',
@@ -133,10 +133,10 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         );
         ?>
 
-        <!-- 6. Featured (විශේෂාංග) -->
+        <!-- 6. Featured -->
         <?php
         buzzmag_render_category_3d_card(
-            get_theme_mod( 'cat_title_featured', 'විශේෂාංග (Featured)' ),
+            get_theme_mod( 'cat_title_featured', 'Featured' ),
             $featured_slug,
             3,
             'fa-bookmark',

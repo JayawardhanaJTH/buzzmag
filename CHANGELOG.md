@@ -114,6 +114,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
   - **Category Overlay Removal**: Removed the dark transparent category badge mask (`.fl-cat-badge`) overlaid across bottom card images and filtered out "Uncategorized" pills from lead posts to ensure clean, unmasked visuals.
   - **Actionable CI/CD Workflow**: Upgraded `.github/workflows/php.yml` into a fully automated pipeline running composer validation, PHP parallel syntax checks, WordPress theme structure audits, automated zip packaging, artifact upload, and GitHub Releases on tags. Added root `composer.json` with `php-parallel-lint`. Updated `build-zip.ps1` to exclude `.github/`, `vendor/`, and `composer.*` from distribution zips.
 
+### Changed
+- **Footer Navigation Columns Simplification**:
+  - Commented out the `Main News`, `Categories & Features`, and `Services & Utilities` footer link columns in `footer.php`.
+  - In `Information & Support`, commented out the `Contact Us` link, keeping only `About Us` and `Privacy Policy`.
+  - Updated footer navigation columns CSS grid to `repeat(auto-fit, minmax(220px, 1fr))` with `max-width: 340px` on `.fl-fcol` so single-column display renders cleanly without artificial empty slots.
+- **Removed Sinhala Wording across Portal (Category Cards, Footer, Post Side Panel)**:
+  - Cleaned all category cards in Column 2, mobile loops, and single post sidebar by replacing Sinhala labels with clean English equivalents (`Local News`, `Off Road`, `Business`, `Sports`, `Foreign`, `Featured Stories`, `More`, `View All`).
+  - Updated homepage hero and below sections: `Lead Story`, `Read Story`, `Latest News`, `Top Viewed`, `Politics`, `Featured Stories`.
+  - Converted the entire modern footer (`footer.php`) to professional English: mission description, navigation column headers (`Main News`, `Categories & Features`, `Services & Utilities`, `Information & Support`), quick links, and copyright text.
+  - Retained 3rd column utilities (`functions/sri-lankan-utilities.php` - astrology, calendar, cartoon, channels) untouched per roadmap instructions.
+
 ### Fixed & Security
 - **Category Card "More" Button & Navigation**:
   - Fixed issue where clicking the "More" button (`.fl-cat-more` / `තවත් (More)`) in Column 2 category cards failed to navigate due to `$term_link = '#'` when category terms did not have an exact matching slug in the database.

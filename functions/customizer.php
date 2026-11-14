@@ -1115,23 +1115,23 @@ function buzzmag_customizer( $wp_customize ) {
 //.............................. End Social Media Section
 
 	// =========================================================================
-	// 3D News & Sri Lankan Portal Settings (පුවත් අඩවි සැකසුම්)
+	// 3D News & Sri Lankan Portal Settings
 	// =========================================================================
 	$wp_customize->add_section( 'rebrand_3d_settings' , array(
-	    'title'       => esc_html__( '3D News Portal Settings (පුවත් සැකසුම්)', 'buzzmag' ),
+	    'title'       => esc_html__( '3D News Portal Settings', 'buzzmag' ),
 	    'priority'    => 42,
 		'description' => esc_html__( 'Configure Category mappings, Video channels, Cartoon of the day, and WhatsApp community.', 'buzzmag' ),
 	) );
 
 		// Category Slugs Mapping
 		$categories_map = array(
-			'cat_slug_local'    => array( 'label' => 'Local Category Slug (දේශීය)', 'default' => 'local' ),
-			'cat_slug_offroad'  => array( 'label' => 'Off Road / Foreign Slug (පිටරට / Off Road)', 'default' => 'off-road' ),
-			'cat_slug_business' => array( 'label' => 'Business Category Slug (ව්‍යාපාරික)', 'default' => 'business' ),
-			'cat_slug_sports'   => array( 'label' => 'Sports Category Slug (ක්‍රීඩා)', 'default' => 'sports' ),
-			'cat_slug_foreign'  => array( 'label' => 'Foreign Category Slug (විදේශීය)', 'default' => 'foreign' ),
-			'cat_slug_featured' => array( 'label' => 'Featured Category Slug (විශේෂාංග)', 'default' => 'featured' ),
-			'cat_slug_politics' => array( 'label' => 'Politics Category Slug (දේශපාලන)', 'default' => 'politics' ),
+			'cat_slug_local'    => array( 'label' => 'Local Category Slug', 'default' => 'local' ),
+			'cat_slug_offroad'  => array( 'label' => 'Off Road / Foreign Slug', 'default' => 'off-road' ),
+			'cat_slug_business' => array( 'label' => 'Business Category Slug', 'default' => 'business' ),
+			'cat_slug_sports'   => array( 'label' => 'Sports Category Slug', 'default' => 'sports' ),
+			'cat_slug_foreign'  => array( 'label' => 'Foreign Category Slug', 'default' => 'foreign' ),
+			'cat_slug_featured' => array( 'label' => 'Featured Category Slug', 'default' => 'featured' ),
+			'cat_slug_politics' => array( 'label' => 'Politics Category Slug', 'default' => 'politics' ),
 		);
 
 		$p_idx = 1;
@@ -1143,7 +1143,7 @@ function buzzmag_customizer( $wp_customize ) {
 
 			$wp_customize->add_control( $c_key, array(
 				'label'       => esc_html__( $c_val['label'], 'buzzmag' ),
-				'description' => esc_html__( 'Enter category slug, category name, or category ID (e.g. local, දේශීය, 5). The "More" button dynamically links to its archive.', 'buzzmag' ),
+				'description' => esc_html__( 'Enter category slug, category name, or category ID (e.g. local, 5). The "More" button dynamically links to its archive.', 'buzzmag' ),
 				'section'     => 'rebrand_3d_settings',
 				'type'        => 'text',
 				'priority'    => $p_idx++,

@@ -76,7 +76,7 @@ function buzzmag_render_single_under_post( $current_post_id = 0 ) {
 /**
  * Render Single Post Sidebar 6 Main Categories (3 posts each in 3D category cards)
  *
- * Categories: Local, Off road, Business, Sports, Foreign, Featured
+ * Categories: Local, Off road, Business, Sports, Foreign, Political
  *
  * @param int $current_post_id Current post ID.
  */
@@ -86,44 +86,44 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
     $biz_slug      = get_theme_mod( 'cat_slug_business', 'business' );
     $sports_slug   = get_theme_mod( 'cat_slug_sports', 'sports' );
     $foreign_slug  = get_theme_mod( 'cat_slug_foreign', 'foreign' );
-    $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
+    $political_slug = get_theme_mod( 'cat_slug_political', get_theme_mod( 'cat_slug_politics', 'political' ) );
 
     $categories = array(
         array(
-            'title' => get_theme_mod( 'cat_title_local', 'දේශීය පුවත් (Local)' ),
+            'title' => get_theme_mod( 'cat_title_local', 'Local News' ),
             'slug'  => $local_slug,
             'icon'  => 'fa-map-marker',
             'color' => '#2980b9',
         ),
         array(
-            'title' => get_theme_mod( 'cat_title_offroad', 'පිටරට / Off Road' ),
+            'title' => get_theme_mod( 'cat_title_political', get_theme_mod( 'cat_title_politics', 'Political' ) ),
+            'slug'  => $political_slug,
+            'icon'  => 'fa-institution',
+            'color' => '#8e44ad',
+        ),
+        array(
+            'title' => get_theme_mod( 'cat_title_offroad', 'Off Road' ),
             'slug'  => $offroad_slug,
             'icon'  => 'fa-road',
             'color' => '#e67e22',
         ),
         array(
-            'title' => get_theme_mod( 'cat_title_business', 'ව්‍යාපාරික (Business)' ),
+            'title' => get_theme_mod( 'cat_title_business', 'Business' ),
             'slug'  => $biz_slug,
             'icon'  => 'fa-line-chart',
             'color' => '#27ae60',
         ),
         array(
-            'title' => get_theme_mod( 'cat_title_sports', 'ක්‍රීඩා (Sports)' ),
+            'title' => get_theme_mod( 'cat_title_sports', 'Sports' ),
             'slug'  => $sports_slug,
             'icon'  => 'fa-trophy',
             'color' => '#ed0e28',
         ),
         array(
-            'title' => get_theme_mod( 'cat_title_foreign', 'විදේශීය පුවත් (Foreign)' ),
+            'title' => get_theme_mod( 'cat_title_foreign', 'Foreign' ),
             'slug'  => $foreign_slug,
             'icon'  => 'fa-globe',
             'color' => '#16a085',
-        ),
-        array(
-            'title' => get_theme_mod( 'cat_title_featured', 'විශේෂාංග (Featured)' ),
-            'slug'  => $featured_slug,
-            'icon'  => 'fa-bookmark',
-            'color' => '#8e44ad',
         ),
     );
     ?>

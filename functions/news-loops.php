@@ -294,7 +294,7 @@ function buzzmag_resolve_category_term( $slug_or_id_or_name, $fallback_title = '
             return $term;
         }
 
-        // Extract inside parentheses, e.g. "Local" from "දේශීය පුවත් (Local News)"
+        // Extract inside parentheses, e.g. "Local" from "Local News (Local)"
         if ( preg_match( '/\((.*?)\)/u', $clean_title, $m ) ) {
             $inner = trim( $m[1] );
             if ( ! empty( $inner ) ) {
@@ -658,8 +658,8 @@ function buzzmag_render_below_sections() {
     $pol_slug  = get_theme_mod( 'cat_slug_politics', get_theme_mod( 'politics_cat_slug', 'politics' ) );
     $feat_slug = get_theme_mod( 'cat_slug_featured', get_theme_mod( 'featured_cat_slug', 'featured' ) );
 
-    $pol_title  = get_theme_mod( 'politics_cat_title', 'දේශපාලන (Politics)' );
-    $feat_title = get_theme_mod( 'featured_cat_title', 'විශේෂාංග (Featured Stories)' );
+    $pol_title  = get_theme_mod( 'politics_cat_title', 'Politics' );
+    $feat_title = get_theme_mod( 'featured_cat_title', 'Featured Stories' );
 
     $pol_term  = buzzmag_resolve_category_term( $pol_slug, $pol_title );
     $feat_term = buzzmag_resolve_category_term( $feat_slug, $feat_title );

@@ -460,6 +460,12 @@
     color: #f3f4f6;
 }
 
+/* FontAwesome 4.7 Compatibility Aliases */
+.fa-landmark:before {
+    font-family: 'FontAwesome' !important;
+    content: "\f19c" !important; /* FA 4.7 fa-institution / fa-university */
+}
+
 /* ==========================================================================
    5. Standard 3D Post Card
    ========================================================================== */
@@ -1823,10 +1829,14 @@
 /* 4 Navigation Columns */
 .fl-footer-nav-columns {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
     padding-bottom: 35px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fl-fcol {
+    max-width: 340px;
 }
 
 .fl-fcol h4 {
