@@ -1,8 +1,9 @@
 # BuzzMag 3D News Portal — User & Administrator Guide
 
 > **Theme Version:** 3.1.0  
-> **Architecture:** Modern 3D Card Sri Lankan News Portal
-> **Rebrander & Maintainer:** Tiran Jayawardhana ([jayawardhanatiran@gmail.com](mailto:jayawardhanatiran@gmail.com))  
+> **Original Author:** FlatLayers  
+> **Rebranded by:** Tiran Jayawardhana  
+> **Architecture:** Modern 3D Card Sri Lankan News Portal  
 > **Directory Slug:** `buzzmag`  
 > **Release Package:** `dist/buzzmag-3.1.0.zip`
 

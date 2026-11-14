@@ -1015,19 +1015,22 @@
     display: block;
 }
 
-/* Cartoon Card */
-.fl-cartoon-body {
+/* Cartoon & Top Stories Image Cards */
+.fl-cartoon-body,
+.fl-top-stories-body {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
 }
 
-.fl-cartoon-lightbox {
+.fl-cartoon-lightbox,
+.fl-top-stories-lightbox {
     position: relative;
     display: block;
 }
 
-.fl-cartoon-lightbox img {
+.fl-cartoon-lightbox img,
+.fl-top-stories-lightbox img {
     width: 100%;
     height: auto;
     display: block;
@@ -1035,7 +1038,8 @@
     transition: transform 0.3s ease;
 }
 
-.fl-cartoon-lightbox:hover img {
+.fl-cartoon-lightbox:hover img,
+.fl-top-stories-lightbox:hover img {
     transform: scale(1.02);
 }
 
@@ -1054,7 +1058,8 @@
     font-size: 12px;
 }
 
-.fl-cartoon-caption {
+.fl-cartoon-caption,
+.fl-top-stories-caption {
     margin-top: 8px;
     font-size: 12px;
     color: #666;

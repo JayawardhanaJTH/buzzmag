@@ -839,8 +839,8 @@ function buzzmag_get_category_badge_meta( $term = null ) {
 
     $map = array(
         get_theme_mod( 'cat_slug_local', 'local' )           => array( 'icon' => 'fa-map-marker',   'color' => '#2980b9' ),
-        get_theme_mod( 'cat_slug_political', get_theme_mod( 'cat_slug_politics', 'political' ) ) => array( 'icon' => 'fa-institution',  'color' => '#8e44ad' ),
-        'politics'                                            => array( 'icon' => 'fa-institution',  'color' => '#8e44ad' ),
+        get_theme_mod( 'cat_slug_political', get_theme_mod( 'cat_slug_politics', 'political' ) ) => array( 'icon' => 'fa-balance-scale',  'color' => '#8e44ad' ),
+        'politics'                                            => array( 'icon' => 'fa-balance-scale',  'color' => '#8e44ad' ),
         get_theme_mod( 'cat_slug_offroad', 'off-road' )       => array( 'icon' => 'fa-road',         'color' => '#e67e22' ),
         'offroad'                                             => array( 'icon' => 'fa-road',         'color' => '#e67e22' ),
         get_theme_mod( 'cat_slug_business', 'business' )      => array( 'icon' => 'fa-line-chart',   'color' => '#27ae60' ),

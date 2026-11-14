@@ -150,11 +150,17 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         <!-- Video Channels -->
         <?php buzzmag_render_video_channels_card(); ?>
 
-        <!-- Rahu Kalaya & Astrological info -->
-        <?php buzzmag_render_astrology_card(); ?>
+        <!-- Top Stories of the Day (දවසේ ප්‍රධාන පුවත්) -->
+        <?php buzzmag_render_top_stories_card(); ?>
+
+        <!-- Cartoon of the Day -->
+        <?php buzzmag_render_cartoon_card(); ?>
 
         <!-- WhatsApp Banner -->
         <?php buzzmag_render_whatsapp_banner(); ?>
+        
+        <!-- Rahu Kalaya & Astrological info -->
+        <?php buzzmag_render_astrology_card(); ?>
 
         <!-- Advertise With Us (Links to WhatsApp) -->
         <?php buzzmag_render_advertise_banner(); ?>
@@ -165,8 +171,7 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         <!-- TikTok Banner -->
         <?php buzzmag_render_tiktok_banner(); ?>
 
-        <!-- Cartoon of the Day -->
-        <?php buzzmag_render_cartoon_card(); ?>
+
     </section>
 </div>
 

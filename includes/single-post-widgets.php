@@ -98,7 +98,7 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
         array(
             'title' => get_theme_mod( 'cat_title_political', get_theme_mod( 'cat_title_politics', 'Political' ) ),
             'slug'  => $political_slug,
-            'icon'  => 'fa-institution',
+            'icon'  => 'fa-balance-scale',
             'color' => '#8e44ad',
         ),
         array(

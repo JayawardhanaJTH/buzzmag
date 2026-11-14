@@ -1,19 +1,19 @@
 {
-    "name": "tiranjayawardhana/buzzmag",
+    "name": "flatlayers/buzzmag",
     "description": "Modern 3D Card Sri Lankan News Portal WordPress Theme",
     "type": "wordpress-theme",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
+            "name": "FlatLayers",
+            "homepage": "https://flatlayers.com",
+            "role": "Original Author"
+        },
+        {
             "name": "Tiran Jayawardhana",
-            "email": "jayawardhanatiran@gmail.com",
-            "role": "Rebrander & Maintainer"
+            "role": "Rebrander"
         }
     ],
-    "homepage": "https://todaynews.lk/",
-    "support": {
-        "email": "jayawardhanatiran@gmail.com"
-    },
     "require": {
         "php": ">=7.4"
     },

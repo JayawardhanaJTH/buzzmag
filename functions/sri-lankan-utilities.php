@@ -287,7 +287,7 @@ function buzzmag_render_astrology_card() {
     }
 
     $info = buzzmag_get_rahu_kalaya();
-    $astro_title = get_theme_mod( 'astrology_title', esc_html__( 'අද දවසේ ජෝතිෂය', 'buzzmag' ) );
+    $astro_title = get_theme_mod( 'astrology_title', esc_html__( 'අද දවසේ ජ්‍යොතිෂ්‍ය', 'buzzmag' ) );
     ?>
     <div class="fl-3d-card fl-utility-card fl-astro-card" id="rahu-kalaya">
         <div class="fl-card-header">
@@ -370,6 +370,46 @@ function buzzmag_render_cartoon_card() {
             </a>
             <?php if ( ! empty( $cartoon_desc ) ) : ?>
                 <p class="fl-cartoon-caption"><?php echo esc_html( $cartoon_desc ); ?></p>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * Render Top Stories of the Day Card (Customizable)
+ */
+function buzzmag_render_top_stories_card() {
+    if ( get_theme_mod( 'hide_top_stories', false ) ) {
+        return;
+    }
+
+    $top_stories_img   = get_theme_mod( 'top_stories_image' );
+    $top_stories_title = get_theme_mod( 'top_stories_title', esc_html__( 'දවසේ ප්‍රධාන පුවත් (Top Stories of the Day)', 'buzzmag' ) );
+    $top_stories_desc  = get_theme_mod( 'top_stories_desc', '' );
+    $top_stories_link  = get_theme_mod( 'top_stories_link', '' );
+
+    if ( empty( $top_stories_img ) ) {
+        $top_stories_img = get_template_directory_uri() . '/img/top-stories-placeholder.svg';
+    }
+
+    $target_link = ! empty( $top_stories_link ) ? $top_stories_link : $top_stories_img;
+    ?>
+    <div class="fl-3d-card fl-utility-card fl-top-stories-card" id="top-stories-section">
+        <div class="fl-card-header">
+            <span class="fl-header-icon" style="background:#ed0e28;"><i class="fa fa-newspaper-o"></i></span>
+            <div class="fl-header-title">
+                <h4><?php echo esc_html( $top_stories_title ); ?></h4>
+                <small><?php echo esc_html( buzzmag_date( 'Y-m-d' ) ); ?></small>
+            </div>
+        </div>
+        <div class="fl-top-stories-body">
+            <a href="<?php echo esc_url( $target_link ); ?>" target="_blank" rel="noopener noreferrer" class="fl-top-stories-lightbox" title="<?php echo esc_attr( $top_stories_title ); ?>">
+                <img src="<?php echo esc_url( $top_stories_img ); ?>" alt="<?php echo esc_attr( $top_stories_title ); ?>" loading="lazy" />
+                <span class="fl-zoom-icon"><i class="fa fa-search-plus"></i></span>
+            </a>
+            <?php if ( ! empty( $top_stories_desc ) ) : ?>
+                <p class="fl-top-stories-caption"><?php echo esc_html( $top_stories_desc ); ?></p>
             <?php endif; ?>
         </div>
     </div>

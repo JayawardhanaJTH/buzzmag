@@ -1323,6 +1323,62 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		// ==========================================
+		// Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
+		// ==========================================
+		$wp_customize->add_setting( 'hide_top_stories', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_top_stories', array(
+			'label'    => esc_html__( 'Hide Top Stories of the Day', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 25,
+		) );
+
+		$wp_customize->add_setting( 'top_stories_image', array(
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'top_stories_image', array(
+		    'label'    => esc_html__( 'Top Stories Image (දවසේ ප්‍රධාන පුවත්)', 'buzzmag' ),
+		    'section'  => 'rebrand_3d_settings',
+		    'priority' => 26,
+		) ) );
+
+		$wp_customize->add_setting( 'top_stories_title', array(
+			'default'           => 'දවසේ ප්‍රධාන පුවත් (Top Stories of the Day)',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'top_stories_title', array(
+			'label'    => esc_html__( 'Top Stories Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 27,
+		) );
+
+		$wp_customize->add_setting( 'top_stories_desc', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'top_stories_desc', array(
+			'label'    => esc_html__( 'Top Stories Caption / Description', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 28,
+		) );
+
+		$wp_customize->add_setting( 'top_stories_link', array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'top_stories_link', array(
+			'label'    => esc_html__( 'Top Stories Link (Optional URL)', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 29,
+		) );
+
+		// ==========================================
 		// WhatsApp Community Banner
 		// ==========================================
 		$wp_customize->add_setting( 'hide_whatsapp_banner', array(
