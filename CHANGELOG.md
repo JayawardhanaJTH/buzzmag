@@ -15,6 +15,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [3.1.0] - 2026-11-14
 
 ### Added
+- **Modern 3D Category Page Architecture** (`category.php`, `css/3d-components.css`, `functions/news-loops.php`):
+  - Upgraded the category archive template to match the 70/30 baseline-aligned architecture of `single.php`.
+  - Added a modern **3D Category Header Card** (`.fl-category-header-card`) featuring dynamic icon badges, category accent colors (`buzzmag_get_category_badge_meta`), total article count pill, subcategories chips, and category descriptions.
+  - Rendered category posts in a responsive 2-column **3D Cards Grid** (`.fl-category-3d-grid`) with thumbnail hover physics and metadata.
+  - Implemented modern 3D pagination buttons (`.fl-category-pagination`) with smooth hover elevation and active page styling.
+  - Integrated the sticky **6-Category 3D Side Panel** (`buzzmag_render_single_sidebar_categories`) aligned flush with the category header.
+  - Integrated the **Below Sections** (`buzzmag_render_single_under_post`) rendering Latest News (6 posts) and Most Read (staged 96h, 6 posts) directly under the category archive feed.
 - **Staged 96-Hour Window Strategy for Most Read Posts** (`functions/news-loops.php`):
   - Updated `buzzmag_query_most_viewed_hours()` with a multi-stage backfill architecture.
   - Posts published in the primary 96-hour window (0 to 96 hours ago) are strictly preserved at the top of the list.
@@ -81,6 +88,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [3.0.0] - 2026-11-09
 
 ### Added
+- **Modern 3D Category Page Architecture** (`category.php`, `css/3d-components.css`, `functions/news-loops.php`):
+  - Upgraded the category archive template to match the 70/30 baseline-aligned architecture of `single.php`.
+  - Added a modern **3D Category Header Card** (`.fl-category-header-card`) featuring dynamic icon badges, category accent colors (`buzzmag_get_category_badge_meta`), total article count pill, subcategories chips, and category descriptions.
+  - Rendered category posts in a responsive 2-column **3D Cards Grid** (`.fl-category-3d-grid`) with thumbnail hover physics and metadata.
+  - Implemented modern 3D pagination buttons (`.fl-category-pagination`) with smooth hover elevation and active page styling.
+  - Integrated the sticky **6-Category 3D Side Panel** (`buzzmag_render_single_sidebar_categories`) aligned flush with the category header.
+  - Integrated the **Below Sections** (`buzzmag_render_single_under_post`) rendering Latest News (6 posts) and Most Read (staged 96h, 6 posts) directly under the category archive feed.
 - **3D Card Design System** (`css/3d-components.css`):
   - Elevated multi-layer box shadows and rounded edges (`border-radius: 14px`).
   - Hover physics (`translateY(-4px)` with depth transition).
