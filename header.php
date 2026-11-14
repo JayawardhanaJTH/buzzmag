@@ -8,7 +8,7 @@
  * @subpackage Templates
  * @author Tiran Jayawardhana (Rebrander & Maintainer)
  * @link mailto:jayawardhanatiran@gmail.com
- * @version 3.0.0
+ * @version 3.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- ================================================================================ -->
 <!--   BuzzMag - Modern 3D News & Magazine Portal                                     -->
 <!--   Rebranded & Maintained by: Tiran Jayawardhana (jayawardhanatiran@gmail.com)    -->
-<!--   Version: 3.0.0                                                                 -->
+<!--   Version: 3.1.0                                                                 -->
 <!-- ================================================================================ -->
 <html <?php language_attributes(); ?>>
 <head>

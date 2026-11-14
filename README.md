@@ -1,10 +1,10 @@
 # BuzzMag 3D News Portal — User & Administrator Guide
 
-> **Theme Version:** 3.0.0  
+> **Theme Version:** 3.1.0  
 > **Architecture:** Modern 3D Card Sri Lankan News Portal
 > **Rebrander & Maintainer:** Tiran Jayawardhana ([jayawardhanatiran@gmail.com](mailto:jayawardhanatiran@gmail.com))  
 > **Directory Slug:** `buzzmag`  
-> **Release Package:** `dist/buzzmag-3.0.0.zip`
+> **Release Package:** `dist/buzzmag-3.1.0.zip`
 
 ---
 
@@ -141,10 +141,10 @@ buzzmag/
 
 To deploy updates to your live WordPress hosting:
 1. Run `pwsh -File .\build-zip.ps1` in your terminal.
-2. Locate the output zip: `dist/buzzmag-3.0.0.zip`.
+2. Locate the output zip: `dist/buzzmag-3.1.0.zip`.
 3. In your live WordPress admin:
    - Go to **Appearance > Themes > Add New > Upload Theme**.
-   - Select `buzzmag-3.0.0.zip` and click **Install Now**.
+   - Select `buzzmag-3.1.0.zip` and click **Install Now**.
    - Click **Replace active with uploaded**.
 4. All existing Customizer settings, menus, and widgets are preserved because the directory slug remains `buzzmag`.
 

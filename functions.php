@@ -8,7 +8,7 @@
  * @package BuzzMag
  * @author Tiran Jayawardhana (Rebrander & Maintainer)
  * @link mailto:jayawardhanatiran@gmail.com
- * @version 3.0.0
+ * @version 3.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Constants
 	define('fl_theme_name','BuzzMag');
 	define('fl_theme_path', get_template_directory_uri());
-    define('fl_theme_version', '3.0.0');
+    define('fl_theme_version', '3.1.0');
 
 // Content Width
 if ( ! isset( $content_width ) ) {

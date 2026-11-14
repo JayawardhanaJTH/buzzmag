@@ -12,6 +12,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-11-14
+
 ### Added
 - **3rd Column Promotional Cards: "Advertise With Us", "Facebook Page", & "TikTok"** (`functions/sri-lankan-utilities.php`, `includes/home-desktop.php`, `includes/home-mobile.php`, `functions/customizer.php`, `css/3d-components.css`):
   - Added **"Advertise With Us"** card styled identically to the WhatsApp community card with an energetic amber-orange gradient (`linear-gradient(135deg, #f39c12 0%, #d35400 100%)`), megaphone icon (`fa-bullhorn`), and WhatsApp CTA button with green hover feedback.
