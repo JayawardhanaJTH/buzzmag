@@ -15,6 +15,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [3.1.0] - 2026-11-14
 
 ### Added
+- **Mobile Menu Drawer Scroll-Lock & Touch Containment** (`js/buzzmag.js`, `css/3d-components.css`):
+  - Fixed background scroll bleed on mobile touch devices when the menu drawer is opened.
+  - Added `.fl-drawer-open` class toggling to `html` and `body` preventing viewport scrolling on iOS/Android.
+  - Implemented CSS `overscroll-behavior: contain` and `touch-action: pan-y` on `#fl-drawer` preventing scroll-chaining to the document when reaching top or bottom drawer boundaries.
+  - Prevented touchmove events on the backdrop overlay (`.push-overlay.open`) and outside `#fl-drawer`, keeping the underlying website background completely stationary while the menu is open.
 - **Modern 3D Category Page Architecture** (`category.php`, `css/3d-components.css`, `functions/news-loops.php`):
   - Upgraded the category archive template to match the 70/30 baseline-aligned architecture of `single.php`.
   - Added a modern **3D Category Header Card** (`.fl-category-header-card`) featuring dynamic icon badges, category accent colors (`buzzmag_get_category_badge_meta`), total article count pill, subcategories chips, and category descriptions.
@@ -88,6 +93,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [3.0.0] - 2026-11-09
 
 ### Added
+- **Mobile Menu Drawer Scroll-Lock & Touch Containment** (`js/buzzmag.js`, `css/3d-components.css`):
+  - Fixed background scroll bleed on mobile touch devices when the menu drawer is opened.
+  - Added `.fl-drawer-open` class toggling to `html` and `body` preventing viewport scrolling on iOS/Android.
+  - Implemented CSS `overscroll-behavior: contain` and `touch-action: pan-y` on `#fl-drawer` preventing scroll-chaining to the document when reaching top or bottom drawer boundaries.
+  - Prevented touchmove events on the backdrop overlay (`.push-overlay.open`) and outside `#fl-drawer`, keeping the underlying website background completely stationary while the menu is open.
 - **Modern 3D Category Page Architecture** (`category.php`, `css/3d-components.css`, `functions/news-loops.php`):
   - Upgraded the category archive template to match the 70/30 baseline-aligned architecture of `single.php`.
   - Added a modern **3D Category Header Card** (`.fl-category-header-card`) featuring dynamic icon badges, category accent colors (`buzzmag_get_category_badge_meta`), total article count pill, subcategories chips, and category descriptions.

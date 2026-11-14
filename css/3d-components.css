@@ -2380,3 +2380,25 @@
         text-align: center;
     }
 }
+
+/* ==========================================================================
+   12. Mobile Drawer Scroll-Lock & Touch Containment
+   ========================================================================== */
+html.fl-drawer-open,
+body.fl-drawer-open {
+    overflow: hidden !important;
+    height: 100% !important;
+    touch-action: none;
+    -webkit-overflow-scrolling: auto;
+}
+
+#fl-drawer {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+}
+
+.push-overlay.open {
+    touch-action: none;
+    overscroll-behavior: none;
+}
