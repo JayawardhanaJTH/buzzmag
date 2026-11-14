@@ -1457,9 +1457,9 @@
    8. Below Sections (Politics & Featured) - Desktop Only
    ========================================================================== */
 .fl-below-sections {
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 50px;
-    padding-top: 40px;
+    padding-top: 30px;
     border-top: 2px solid rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
@@ -1806,13 +1806,21 @@
 /* ==========================================================================
    11. Modern Footer
    ========================================================================== */
+#fl-footer.fl-modern-footer,
 .fl-modern-footer {
-    background: #151515;
-    color: #cccccc;
+    background: #151515 !important;
+    color: #cccccc !important;
     padding: 45px 0 0 0;
-    margin-top: 50px;
+    margin-top: 50px !important;
     border-top: 3px solid #ed0e28;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] #fl-footer.fl-modern-footer,
+[data-theme="dark"] .fl-modern-footer {
+    background: #111111 !important;
+    color: #cccccc !important;
+    border-top-color: #ed0e28;
 }
 
 .fl-footer-top-brand {
@@ -1948,6 +1956,7 @@
     margin-bottom: 9px;
 }
 
+#fl-footer.fl-modern-footer .fl-fcol ul li a,
 .fl-fcol ul li a {
     color: #aaaaaa;
     text-decoration: none;
@@ -1958,6 +1967,7 @@
     transition: all 0.2s ease;
 }
 
+#fl-footer.fl-modern-footer .fl-fcol ul li a:hover,
 .fl-fcol ul li a:hover {
     color: #ed0e28;
     transform: translateX(3px);
