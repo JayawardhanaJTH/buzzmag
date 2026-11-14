@@ -13,10 +13,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ## [Unreleased]
 
 ### Added
-- **3rd Column Promotional Cards: "Advertise With Us" & "Facebook Page"** (`functions/sri-lankan-utilities.php`, `includes/home-desktop.php`, `includes/home-mobile.php`, `functions/customizer.php`, `css/3d-components.css`):
+- **3rd Column Promotional Cards: "Advertise With Us", "Facebook Page", & "TikTok"** (`functions/sri-lankan-utilities.php`, `includes/home-desktop.php`, `includes/home-mobile.php`, `functions/customizer.php`, `css/3d-components.css`):
   - Added **"Advertise With Us"** card styled identically to the WhatsApp community card with an energetic amber-orange gradient (`linear-gradient(135deg, #f39c12 0%, #d35400 100%)`), megaphone icon (`fa-bullhorn`), and WhatsApp CTA button with green hover feedback.
   - Added **"Facebook Page"** card with official Facebook blue gradient (`linear-gradient(135deg, #1877f2 0%, #0d5cb6 100%)`), Facebook icon badge (`fa-facebook`), and "Follow on Facebook" action button.
-  - Full WordPress Customizer controls added under *Rebrand 3D Settings* to customize titles, descriptions, links, button labels, or toggle visibility (`hide_advertise_banner`, `hide_facebook_banner`).
+  - Added **"TikTok"** card featuring dark obsidian styling (`linear-gradient(135deg, #010101 0%, #171822 60%, #0d0f18 100%)`), signature cyan/magenta chromatic offset icon badge, inline SVG vector graphic, and pink neon CTA button hover effect (`#fe2c55`).
+  - Full WordPress Customizer controls added under *Rebrand 3D Settings* to customize titles, descriptions, links, button labels, or toggle visibility (`hide_advertise_banner`, `hide_facebook_banner`, `hide_tiktok_banner`).
   - Seamlessly rendered on both desktop Column 3 and mobile layout utilities section.
 - **English-First Localization Across All Category Cards & Sidebars**:
   - Replaced Sinhala default labels across category cards, sidebar widgets, and footer with clean English labels (e.g. *Lead Story*, *Read Story*, *View All*, *Political News*).

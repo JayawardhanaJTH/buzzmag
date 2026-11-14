@@ -149,6 +149,9 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
 
             <!-- Facebook Page Card -->
             <?php buzzmag_render_facebook_banner(); ?>
+
+            <!-- TikTok Banner -->
+            <?php buzzmag_render_tiktok_banner(); ?>
         </div>
     </div>
 

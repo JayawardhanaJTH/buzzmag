@@ -1084,6 +1084,11 @@
     background: linear-gradient(135deg, #1877f2 0%, #0d5cb6 100%);
 }
 
+.fl-tiktok-banner {
+    background: linear-gradient(135deg, #010101 0%, #171822 60%, #0d0f18 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .fl-promo-content,
 .fl-wa-content {
     display: flex;
@@ -1173,6 +1178,32 @@
     color: #1877f2 !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(24, 119, 242, 0.3);
+}
+
+/* TikTok Banner Button & Visual Accents */
+.fl-tiktok-banner .fl-promo-icon-wrap {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    box-shadow: -1.5px -1.5px 0 rgba(37, 244, 238, 0.8), 1.5px 1.5px 0 rgba(254, 44, 85, 0.8);
+}
+
+.fl-promo-svg-icon {
+    display: block;
+}
+
+.fl-btn-svg-icon {
+    display: inline-block;
+}
+
+.fl-tiktok-banner .fl-promo-btn {
+    color: #010101 !important;
+}
+
+.fl-tiktok-banner .fl-promo-btn:hover {
+    background: #fe2c55;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(254, 44, 85, 0.45);
 }
 
 /* Standalone Channel 3D Cards (4 Channels x 5 Videos Each - No Tabs) */

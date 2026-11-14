@@ -1497,6 +1497,64 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		// ==========================================
+		// TikTok Banner Settings
+		// ==========================================
+		$wp_customize->add_setting( 'hide_tiktok_banner', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_tiktok_banner', array(
+			'label'    => esc_html__( 'Hide TikTok Banner', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 45,
+		) );
+
+		$wp_customize->add_setting( 'tiktok_card_title', array(
+			'default'           => 'Follow Us on TikTok',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'tiktok_card_title', array(
+			'label'    => esc_html__( 'TikTok Banner Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 46,
+		) );
+
+		$wp_customize->add_setting( 'tiktok_card_desc', array(
+			'default'           => 'Watch trending news shorts, exclusive highlights, and viral video updates.',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'tiktok_card_desc', array(
+			'label'    => esc_html__( 'TikTok Banner Description', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 47,
+		) );
+
+		$wp_customize->add_setting( 'tiktok_page_link', array(
+			'default'           => 'https://www.tiktok.com/',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'tiktok_page_link', array(
+			'label'    => esc_html__( 'TikTok Profile URL', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 48,
+		) );
+
+		$wp_customize->add_setting( 'tiktok_btn_text', array(
+			'default'           => 'Follow on TikTok',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'tiktok_btn_text', array(
+			'label'    => esc_html__( 'TikTok Button Label', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 49,
+		) );
+
+		// ==========================================
 		// 4 Video Channels with 5 Videos Each
 		// ==========================================
 		$wp_customize->add_setting( 'hide_video_channels', array(

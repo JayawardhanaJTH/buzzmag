@@ -162,6 +162,9 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         <!-- Facebook Page Card -->
         <?php buzzmag_render_facebook_banner(); ?>
 
+        <!-- TikTok Banner -->
+        <?php buzzmag_render_tiktok_banner(); ?>
+
         <!-- Cartoon of the Day -->
         <?php buzzmag_render_cartoon_card(); ?>
     </section>
