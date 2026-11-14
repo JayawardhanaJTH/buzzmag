@@ -92,7 +92,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="fl-copyright-center">
                     <span class="fl-rebrand-tag">
                         <span class="fl-rebrand-badge"><i class="fa fa-code"></i> <?php esc_html_e( 'Rebranded by', 'buzzmag' ); ?></span>
-                        <strong class="fl-rebrand-author">Tiran Jayawardhana</strong>
+                        <a href="mailto:jayawardhana.tiran@gmail.com" rel="author" class="fl-rebrand-author">
+                            <strong>Tiran Jayawardhana</strong>
+                        </a>
                     </span>
                 </div>
                 <div class="fl-copyright-right footer-powered">

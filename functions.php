@@ -3,7 +3,7 @@
  * BuzzMag Theme Functions and Definitions
  *
  * Modern 3D News & Magazine WordPress Theme with Sri Lankan News Portal Architecture.
- * Rebranded by Tiran Jayawardhana.
+ * Rebranded by Tiran Jayawardhana (jayawardhana.tiran@gmail.com).
  *
  * @package BuzzMag
  * @author FlatLayers

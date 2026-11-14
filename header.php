@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!DOCTYPE html>
 <!-- ================================================================================ -->
 <!--   BuzzMag - Modern 3D News & Magazine Portal                                     -->
-<!--   Rebranded by: Tiran Jayawardhana                                               -->
+<!--   Rebranded by: Tiran Jayawardhana (jayawardhana.tiran@gmail.com)                -->
 <!--   Version: 3.1.0                                                                 -->
 <!-- ================================================================================ -->
 <html <?php language_attributes(); ?>>

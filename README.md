@@ -2,7 +2,7 @@
 
 > **Theme Version:** 3.1.0  
 > **Original Author:** FlatLayers  
-> **Rebranded by:** Tiran Jayawardhana  
+> **Rebranded by:** Tiran Jayawardhana ([jayawardhana.tiran@gmail.com](mailto:jayawardhana.tiran@gmail.com))  
 > **Architecture:** Modern 3D Card Sri Lankan News Portal  
 > **Directory Slug:** `buzzmag`  
 > **Release Package:** `dist/buzzmag-3.1.0.zip`

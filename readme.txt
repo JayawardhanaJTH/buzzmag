@@ -1,7 +1,7 @@
 Theme Name: BuzzMag - 3D News & Magazine Portal
 Author: FlatLayers
 Author URI: https://flatlayers.com
-Description: Modern 3D Card Sri Lankan News Portal. Rebranded by Tiran Jayawardhana.
+Description: Modern 3D Card Sri Lankan News Portal. Rebranded by Tiran Jayawardhana (jayawardhana.tiran@gmail.com).
 Version: 3.1.0
 Tested up to: 6.7
 Requires PHP: 7.4
