@@ -385,23 +385,85 @@ function buzzmag_render_whatsapp_banner() {
     }
 
     $wa_link     = get_theme_mod( 'whatsapp_link', 'https://chat.whatsapp.com/' );
-    $wa_title    = get_theme_mod( 'whatsapp_title', esc_html__( 'අපගේ WhatsApp සමූහයට එක්වන්න', 'buzzmag' ) );
-    $wa_desc     = get_theme_mod( 'whatsapp_desc', esc_html__( 'නවතම උණුසුම් පුවත් එසැනින් ඔබගේ දුරකථනයටම ලබාගන්න', 'buzzmag' ) );
-    $wa_btn_text = get_theme_mod( 'whatsapp_btn_text', esc_html__( 'Join Channel (සම්බන්ධ වන්න)', 'buzzmag' ) );
+    $wa_title    = get_theme_mod( 'whatsapp_title', esc_html__( 'Join Our WhatsApp Community', 'buzzmag' ) );
+    $wa_desc     = get_theme_mod( 'whatsapp_desc', esc_html__( 'Get breaking news alerts and headlines delivered directly to your phone.', 'buzzmag' ) );
+    $wa_btn_text = get_theme_mod( 'whatsapp_btn_text', esc_html__( 'Join Channel', 'buzzmag' ) );
     ?>
-    <div class="fl-3d-card fl-whatsapp-banner" id="whatsapp-banner">
-        <div class="fl-wa-content">
-            <div class="fl-wa-icon-wrap">
+    <div class="fl-3d-card fl-whatsapp-banner fl-promo-banner" id="whatsapp-banner">
+        <div class="fl-wa-content fl-promo-content">
+            <div class="fl-wa-icon-wrap fl-promo-icon-wrap">
                 <i class="fa fa-whatsapp"></i>
             </div>
-            <div class="fl-wa-text">
+            <div class="fl-wa-text fl-promo-text">
                 <h4><?php echo esc_html( $wa_title ); ?></h4>
                 <p><?php echo esc_html( $wa_desc ); ?></p>
             </div>
         </div>
-        <a href="<?php echo esc_url( $wa_link ); ?>" target="_blank" rel="noopener noreferrer" class="fl-wa-btn">
+        <a href="<?php echo esc_url( $wa_link ); ?>" target="_blank" rel="noopener noreferrer" class="fl-wa-btn fl-promo-btn">
             <i class="fa fa-whatsapp"></i>
             <span><?php echo esc_html( $wa_btn_text ); ?></span>
+        </a>
+    </div>
+    <?php
+}
+
+/**
+ * Render "Advertise With Us" Banner (Links to WhatsApp)
+ */
+function buzzmag_render_advertise_banner() {
+    if ( get_theme_mod( 'hide_advertise_banner', false ) ) {
+        return;
+    }
+
+    $ad_wa_link = get_theme_mod( 'advertise_wa_link', get_theme_mod( 'whatsapp_link', 'https://chat.whatsapp.com/' ) );
+    $ad_title   = get_theme_mod( 'advertise_title', esc_html__( 'Advertise With Us', 'buzzmag' ) );
+    $ad_desc    = get_theme_mod( 'advertise_desc', esc_html__( 'Promote your brand or business to thousands of daily readers. Contact our advertising desk directly on WhatsApp.', 'buzzmag' ) );
+    $ad_btn     = get_theme_mod( 'advertise_btn_text', esc_html__( 'Chat on WhatsApp', 'buzzmag' ) );
+    ?>
+    <div class="fl-3d-card fl-promo-banner fl-advertise-banner" id="advertise-banner">
+        <div class="fl-promo-content">
+            <div class="fl-promo-icon-wrap">
+                <i class="fa fa-bullhorn"></i>
+            </div>
+            <div class="fl-promo-text">
+                <h4><?php echo esc_html( $ad_title ); ?></h4>
+                <p><?php echo esc_html( $ad_desc ); ?></p>
+            </div>
+        </div>
+        <a href="<?php echo esc_url( $ad_wa_link ); ?>" target="_blank" rel="noopener noreferrer" class="fl-promo-btn">
+            <i class="fa fa-whatsapp"></i>
+            <span><?php echo esc_html( $ad_btn ); ?></span>
+        </a>
+    </div>
+    <?php
+}
+
+/**
+ * Render "Facebook Page" Banner
+ */
+function buzzmag_render_facebook_banner() {
+    if ( get_theme_mod( 'hide_facebook_banner', false ) ) {
+        return;
+    }
+
+    $fb_link  = get_theme_mod( 'facebook_page_link', get_theme_mod( 'facebook', 'https://www.facebook.com/' ) );
+    $fb_title = get_theme_mod( 'facebook_card_title', esc_html__( 'Official Facebook Page', 'buzzmag' ) );
+    $fb_desc  = get_theme_mod( 'facebook_card_desc', esc_html__( 'Follow our official Facebook page for breaking updates, live videos, and community discussions.', 'buzzmag' ) );
+    $fb_btn   = get_theme_mod( 'facebook_btn_text', esc_html__( 'Follow on Facebook', 'buzzmag' ) );
+    ?>
+    <div class="fl-3d-card fl-promo-banner fl-facebook-banner" id="facebook-banner">
+        <div class="fl-promo-content">
+            <div class="fl-promo-icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div class="fl-promo-text">
+                <h4><?php echo esc_html( $fb_title ); ?></h4>
+                <p><?php echo esc_html( $fb_desc ); ?></p>
+            </div>
+        </div>
+        <a href="<?php echo esc_url( $fb_link ); ?>" target="_blank" rel="noopener noreferrer" class="fl-promo-btn">
+            <i class="fa fa-facebook-official"></i>
+            <span><?php echo esc_html( $fb_btn ); ?></span>
         </a>
     </div>
     <?php

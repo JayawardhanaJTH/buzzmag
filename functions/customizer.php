@@ -1348,7 +1348,7 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		$wp_customize->add_setting( 'whatsapp_title', array(
-			'default'           => 'අපගේ WhatsApp සමූහයට එක්වන්න',
+			'default'           => 'Join Our WhatsApp Community',
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
 		$wp_customize->add_control( 'whatsapp_title', array(
@@ -1359,7 +1359,7 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		$wp_customize->add_setting( 'whatsapp_desc', array(
-			'default'           => 'නවතම උණුසුම් පුවත් එසැනින් ඔබගේ දුරකථනයටම ලබාගන්න',
+			'default'           => 'Get breaking news alerts and headlines delivered directly to your phone.',
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
 		$wp_customize->add_control( 'whatsapp_desc', array(
@@ -1370,7 +1370,7 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		$wp_customize->add_setting( 'whatsapp_btn_text', array(
-			'default'           => 'Join Channel (සම්බන්ධ වන්න)',
+			'default'           => 'Join Channel',
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
 		$wp_customize->add_control( 'whatsapp_btn_text', array(
@@ -1378,6 +1378,122 @@ function buzzmag_customizer( $wp_customize ) {
 			'section'  => 'rebrand_3d_settings',
 			'type'     => 'text',
 			'priority' => 34,
+		) );
+
+		// ==========================================
+		// Advertise With Us Banner Settings
+		// ==========================================
+		$wp_customize->add_setting( 'hide_advertise_banner', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_advertise_banner', array(
+			'label'    => esc_html__( 'Hide Advertise With Us Banner', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 35,
+		) );
+
+		$wp_customize->add_setting( 'advertise_title', array(
+			'default'           => 'Advertise With Us',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'advertise_title', array(
+			'label'    => esc_html__( 'Advertise Banner Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 36,
+		) );
+
+		$wp_customize->add_setting( 'advertise_desc', array(
+			'default'           => 'Promote your brand or business to thousands of daily readers. Contact our advertising desk directly on WhatsApp.',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'advertise_desc', array(
+			'label'    => esc_html__( 'Advertise Banner Description', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 37,
+		) );
+
+		$wp_customize->add_setting( 'advertise_wa_link', array(
+			'default'           => 'https://chat.whatsapp.com/',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'advertise_wa_link', array(
+			'label'    => esc_html__( 'Advertise WhatsApp Link (e.g. https://wa.me/...)', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 38,
+		) );
+
+		$wp_customize->add_setting( 'advertise_btn_text', array(
+			'default'           => 'Chat on WhatsApp',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'advertise_btn_text', array(
+			'label'    => esc_html__( 'Advertise Button Label', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 39,
+		) );
+
+		// ==========================================
+		// Facebook Page Banner Settings
+		// ==========================================
+		$wp_customize->add_setting( 'hide_facebook_banner', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_facebook_banner', array(
+			'label'    => esc_html__( 'Hide Facebook Page Banner', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'checkbox',
+			'priority' => 40,
+		) );
+
+		$wp_customize->add_setting( 'facebook_card_title', array(
+			'default'           => 'Official Facebook Page',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'facebook_card_title', array(
+			'label'    => esc_html__( 'Facebook Banner Title', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 41,
+		) );
+
+		$wp_customize->add_setting( 'facebook_card_desc', array(
+			'default'           => 'Follow our official Facebook page for breaking updates, live videos, and community discussions.',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'facebook_card_desc', array(
+			'label'    => esc_html__( 'Facebook Banner Description', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 42,
+		) );
+
+		$wp_customize->add_setting( 'facebook_page_link', array(
+			'default'           => 'https://www.facebook.com/',
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( 'facebook_page_link', array(
+			'label'    => esc_html__( 'Facebook Page URL', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 43,
+		) );
+
+		$wp_customize->add_setting( 'facebook_btn_text', array(
+			'default'           => 'Follow on Facebook',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'facebook_btn_text', array(
+			'label'    => esc_html__( 'Facebook Button Label', 'buzzmag' ),
+			'section'  => 'rebrand_3d_settings',
+			'type'     => 'text',
+			'priority' => 44,
 		) );
 
 		// ==========================================

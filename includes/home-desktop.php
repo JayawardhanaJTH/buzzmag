@@ -143,6 +143,12 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
 
             <!-- WhatsApp Community Banner -->
             <?php buzzmag_render_whatsapp_banner(); ?>
+
+            <!-- Advertise With Us (Links to WhatsApp) -->
+            <?php buzzmag_render_advertise_banner(); ?>
+
+            <!-- Facebook Page Card -->
+            <?php buzzmag_render_facebook_banner(); ?>
         </div>
     </div>
 

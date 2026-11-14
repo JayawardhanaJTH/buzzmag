@@ -156,6 +156,12 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         <!-- WhatsApp Banner -->
         <?php buzzmag_render_whatsapp_banner(); ?>
 
+        <!-- Advertise With Us (Links to WhatsApp) -->
+        <?php buzzmag_render_advertise_banner(); ?>
+
+        <!-- Facebook Page Card -->
+        <?php buzzmag_render_facebook_banner(); ?>
+
         <!-- Cartoon of the Day -->
         <?php buzzmag_render_cartoon_card(); ?>
     </section>
