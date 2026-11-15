@@ -31,6 +31,9 @@ get_header();
 
         <div class="clearfix fl-single-columns-wrap">
             <div id="fl-post-container" class="<?php echo esc_attr( $layoutClass ); ?>">
+                <!-- Ad Space: Single Post Top -->
+                <?php buzzmag_render_ad_space( 'post_ad_top', 'fl-ad-post-top' ); ?>
+
                 <div id="post-<?php the_ID(); ?>" <?php post_class( $class ); ?>>
                     <!-- 1. Post Media aligned with sidebar start -->
                     <div class="fl-media-wrap">
@@ -133,14 +136,10 @@ get_header();
                                 </div>
                             <?php }
 
-                            // Post Ad
-                            $post_ad = get_theme_mod( 'post_ad', '' );
-                            if ( $post_ad ) { ?>
-                                <div class="fl-ad alignwide clearfix">
-                                    <span class="adtitle"><?php esc_html_e( '&ndash; Advertisement &ndash;', 'buzzmag' ); ?></span>
-                                    <?php echo wp_kses_post( $post_ad ); ?>
-                                </div>
-                            <?php } ?>
+                            // Post Ad (Content Bottom)
+                            if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+                                buzzmag_render_ad_space( 'post_ad', 'alignwide' );
+                            } ?>
                         </article>
 
                         <?php
@@ -154,6 +153,9 @@ get_header();
                 // Under Post Modules: Latest (6) and Most Read (last 36hr, 6)
                 buzzmag_render_single_under_post( get_the_ID() );
                 ?>
+
+                <!-- Ad Space: Single Post Page Bottom (Below Latest & Most Read) -->
+                <?php buzzmag_render_ad_space( 'post_ad_bottom', 'fl-ad-post-bottom' ); ?>
             </div>
 
             <!-- Post Sidebar with 6 Categories (Local, Off road, Business, Sports, Foreign, Featured) -->

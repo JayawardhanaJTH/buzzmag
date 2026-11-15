@@ -15,13 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <?php
     // Footer Ad (if configured)
-    $footer_ad = get_theme_mod( 'footer_ad', '' );
-    if ( ! empty( $footer_ad ) ) { ?>
-        <div class="fl-ad fl-container clearfix">
-            <span class="adtitle"><?php esc_html_e( '&ndash; Advertisement &ndash;', 'buzzmag' ); ?></span>
-            <?php echo wp_kses_post( $footer_ad ); ?>
-        </div>
-    <?php } ?>
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'footer_ad', 'fl-container clearfix' );
+    }
+    ?>
 
     <!-- Modern News Portal Footer -->
     <footer id="fl-footer" class="fl-modern-footer">
@@ -104,6 +101,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </a>
                 </div>
             </div>
+
+            <!-- Sticky Bottom Ad Clearance Spacer -->
+            <!-- <div id="fl-sticky-ad-footer-spacer" class="fl-sticky-ad-footer-spacer" aria-hidden="true"></div> -->
         </div>
     </footer>
 

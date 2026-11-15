@@ -1720,8 +1720,243 @@ function buzzmag_customizer( $wp_customize ) {
 			'priority'    => 1,
 		) );
 
+		// =========================================================================
+		// AD SPACES MANAGEMENT SECTION (Desktop & Mobile, Sticky Bottom Banner)
+		// =========================================================================
+		$wp_customize->add_section( 'buzzmag_ad_spaces_section', array(
+			'title'       => esc_html__( 'Ad Spaces (Desktop & Mobile)', 'buzzmag' ),
+			'description' => esc_html__( 'Manage all ~15 custom ad slots across Homepage, Single Posts, Sidebar, Mobile, and Global Sticky Bottom. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide.', 'buzzmag' ),
+			'priority'    => 35,
+		) );
+
+		$ad_p = 1;
+
+		// 1. Global Sticky Bottom Ad
+		$wp_customize->add_setting( 'sticky_bottom_ad', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'sticky_bottom_ad', array(
+			'label'       => esc_html__( '1. Global Sticky Bottom Ad (All Pages)', 'buzzmag' ),
+			'description' => esc_html__( 'Fixed at the bottom of the viewport on all pages with dismiss button (e.g. 728x90, 320x50, AdSense responsive).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'hide_sticky_bottom_ad', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_sticky_bottom_ad', array(
+			'label'       => esc_html__( 'Disable Sticky Bottom Ad', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'checkbox',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'hide_sticky_bottom_mobile', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_sticky_bottom_mobile', array(
+			'label'       => esc_html__( 'Hide Sticky Bottom Ad on Mobile Devices Only', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'checkbox',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'hide_sticky_bottom_close_btn', array(
+			'default'           => false,
+			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'hide_sticky_bottom_close_btn', array(
+			'label'       => esc_html__( 'Hide Close Button on Sticky Bottom Ad', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'checkbox',
+			'priority'    => $ad_p++,
+		) );
+
+		// 2. Homepage Desktop Slots
+		$wp_customize->add_setting( 'home_ad_top', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_top', array(
+			'label'       => esc_html__( '2. Home: Top Ad (Below Lead / Above Grid)', 'buzzmag' ),
+			'description' => esc_html__( 'Renders full width between the Lead Story hero and the 3-column grid.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_col2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_col2', array(
+			'label'       => esc_html__( '3. Home Desktop: Column 2 Mid Ad', 'buzzmag' ),
+			'description' => esc_html__( 'Renders in Column 2 between categories (after Off Road, before Business).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_col3', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_col3', array(
+			'label'       => esc_html__( '4. Home Desktop: Column 3 Mid Ad', 'buzzmag' ),
+			'description' => esc_html__( 'Renders in Column 3 below the Video Channels, before utilities.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_mid', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_mid', array(
+			'label'       => esc_html__( '5. Home: Mid-Page Leaderboard', 'buzzmag' ),
+			'description' => esc_html__( 'Full-width leaderboard between the 3-column grid and Politics/Featured sections.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_bottom', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_bottom', array(
+			'label'       => esc_html__( '6. Home: Bottom Ad (Below Featured)', 'buzzmag' ),
+			'description' => esc_html__( 'At the bottom of homepage below the Featured section.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		// 3. Homepage Mobile Slots
+		$wp_customize->add_setting( 'home_ad_mobile_1', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_mobile_1', array(
+			'label'       => esc_html__( '7. Home Mobile: After Latest 10 Posts', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_mobile_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_mobile_2', array(
+			'label'       => esc_html__( '8. Home Mobile: After Top Stories (7 Days)', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_mobile_3', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_mobile_3', array(
+			'label'       => esc_html__( '9. Home Mobile: Between Categories', 'buzzmag' ),
+			'description' => esc_html__( 'In Section 4, between Business and Sports.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'home_ad_mobile_bottom', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'home_ad_mobile_bottom', array(
+			'label'       => esc_html__( '10. Home Mobile: Bottom Ad', 'buzzmag' ),
+			'description' => esc_html__( 'At the bottom of mobile homepage below Section 5 utilities.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		// 4. Single Post & Page Slots
+		$wp_customize->add_setting( 'post_ad_top', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_ad_top', array(
+			'label'       => esc_html__( '11. Single Post: Top Ad', 'buzzmag' ),
+			'description' => esc_html__( 'Appears above the article title/image on single posts.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_ad_bottom', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_ad_bottom', array(
+			'label'       => esc_html__( '12. Single Post: Page Bottom Ad', 'buzzmag' ),
+			'description' => esc_html__( 'Appears below the Under-Post modules (Latest 6 & Most Read 6).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		// 5. Sidebar Slots (Desktop Sticky Sidebar & Mobile Category Scroll)
+		$wp_customize->add_setting( 'sidebar_ad_1', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'sidebar_ad_1', array(
+			'label'       => esc_html__( '13. Sidebar Ad 1 (After Political Category)', 'buzzmag' ),
+			'description' => esc_html__( 'Between Category 2 (Political) and Category 3 (Off Road). Appears in desktop sidebar and mobile scroll.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'sidebar_ad_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'sidebar_ad_2', array(
+			'label'       => esc_html__( '14. Sidebar Ad 2 (After Business Category)', 'buzzmag' ),
+			'description' => esc_html__( 'Between Category 4 (Business) and Category 5 (Sports). Appears in desktop sidebar and mobile scroll.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'sidebar_ad_3', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'sidebar_ad_3', array(
+			'label'       => esc_html__( '15. Sidebar Ad 3 (After Foreign Category)', 'buzzmag' ),
+			'description' => esc_html__( 'After Category 6 (Foreign), above mobile utilities.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
 }
 add_action( 'customize_register', 'buzzmag_customizer' );
+
+// Safe Ad Code Sanitizer
+function buzzmag_sanitize_ad_code( $input ) {
+    if ( current_user_can( 'unfiltered_html' ) ) {
+        return $input;
+    }
+    return wp_kses_post( $input );
+}
 
 // Textarea Escape
 function buzzmag_textarea_sanitize( $input ) {

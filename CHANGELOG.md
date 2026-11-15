@@ -11,6 +11,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Sem
 ---
 
 ## [Unreleased]
+- **Theme Ad Spaces Management Engine (15+ Custom Ad Slots & Global Sticky Bottom Banner)** (`functions/ads-management.php`, `functions/customizer.php`, `css/3d-components.css`):
+  - Created centralized ad rendering helper `buzzmag_render_ad_space()` supporting raw HTML, Google AdSense scripts, images, and shortcodes with zero empty whitespace when unused.
+  - Implemented **Global Sticky Bottom Banner Ad** (`sticky_bottom_ad`) hooked to `wp_footer` across all pages with a floating dismiss button, backdrop-filter blur, dark mode support, and mobile toggle (`hide_sticky_bottom_mobile`).
+  - Added **Homepage Desktop Ad Slots**: Home Top (`home_ad_top`), Column 2 Mid (`home_ad_col2`), Column 3 Mid (`home_ad_col3`), Mid-Page Leaderboard (`home_ad_mid`), and Home Bottom (`home_ad_bottom`).
+  - Added **Homepage Mobile Ad Slots**: After Latest 10 (`home_ad_mobile_1`), After Top Stories (`home_ad_mobile_2`), Between Category Blocks (`home_ad_mobile_3`), and Mobile Bottom (`home_ad_mobile_bottom`).
+  - Added **Single Post Ad Slots**: Top of Post (`post_ad_top`), Content Bottom (`post_ad`), and Below Under-Post Modules (`post_ad_bottom`).
+  - Added **Sidebar Ad Slots**: Between categories in the sticky sidebar on desktop and in mobile scroll view — `sidebar_ad_1` (after Political), `sidebar_ad_2` (after Business), and `sidebar_ad_3` (after Foreign).
+  - Added a dedicated Customizer section **"Ad Spaces (Desktop & Mobile)"** with `buzzmag_sanitize_ad_code` to safely preserve advertising scripts and ins tags for administrators.
 - **Modern 3D Page Templates Architecture** (`page.php`, `templates/page-*.php`):
   - Upgraded standard pages and page templates (`page.php`, `page-sidebar-right.php`, `page-sidebar-left.php`, `page-full-width.php`) to the modern 70/30 baseline-aligned 3D layout matching `category.php` and `single.php`.
   - Added `.fl-3d-card.fl-single-article-card` styling with media wrap and clean typography, removed comments template, and preserved WooCommerce cart/checkout/account full-width handling.

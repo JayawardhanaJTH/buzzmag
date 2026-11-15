@@ -709,6 +709,11 @@ function buzzmag_render_column_3_utilities() {
     // 1. Video Channels (4 Standalone Cards)
     buzzmag_render_video_channels_card();
 
+    // Ad Space: Column 3 Mid (Below Video Channels)
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_ad_col3', 'fl-ad-col3 fl-ad-sidebar' );
+    }
+
     // 2. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
     buzzmag_render_top_stories_card();
 

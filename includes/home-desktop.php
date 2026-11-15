@@ -35,6 +35,9 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
         </section>
     <?php endif; ?>
 
+    <!-- Ad: Home Top (Below Lead / Above Grid) -->
+    <?php buzzmag_render_ad_space( 'home_ad_top', 'fl-ad-home-top fl-ad-fullwidth' ); ?>
+
     <!-- 2. Main 3-Column Grid -->
     <div class="fl-home-3col-grid">
         <!-- ================= Column 1: Latest 10 & 4-Day Most Viewed ================= -->
@@ -104,6 +107,9 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
             );
             ?>
 
+            <!-- Ad: Column 2 Mid (Between Off Road & Business) -->
+            <?php buzzmag_render_ad_space( 'home_ad_col2', 'fl-ad-col2' ); ?>
+
             <!-- 3. Business -->
             <?php
             buzzmag_render_category_3d_card(
@@ -133,7 +139,13 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
         </div>
     </div>
 
+    <!-- Ad: Mid-Page Leaderboard (Between 3-Col Grid & Below Sections) -->
+    <?php buzzmag_render_ad_space( 'home_ad_mid', 'fl-ad-home-mid fl-ad-fullwidth' ); ?>
+
     <!-- 3. Below Sections: Politics (6 posts) & Featured (6 posts) -->
     <?php buzzmag_render_below_sections(); ?>
+
+    <!-- Ad: Home Bottom (Below Featured Section) -->
+    <?php buzzmag_render_ad_space( 'home_ad_bottom', 'fl-ad-home-bottom fl-ad-fullwidth' ); ?>
 </div>
 

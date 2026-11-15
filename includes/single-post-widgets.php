@@ -128,10 +128,27 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
     );
     ?>
     <div class="fl-single-sidebar-categories">
-        <?php foreach ( $categories as $cat ) : ?>
+        <?php foreach ( $categories as $idx => $cat ) : ?>
             <div class="fl-sidebar-cat-widget">
                 <?php buzzmag_render_category_3d_card( $cat['title'], $cat['slug'], 3, $cat['icon'], $cat['color'] ); ?>
             </div>
+
+            <?php
+            // Sidebar Ad 1: After Category 2 (Political)
+            if ( 1 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
+                buzzmag_render_ad_space( 'sidebar_ad_1', 'fl-ad-sidebar' );
+            }
+
+            // Sidebar Ad 2: After Category 4 (Business)
+            if ( 3 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
+                buzzmag_render_ad_space( 'sidebar_ad_2', 'fl-ad-sidebar' );
+            }
+
+            // Sidebar Ad 3: After Category 6 (Foreign)
+            if ( 5 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
+                buzzmag_render_ad_space( 'sidebar_ad_3', 'fl-ad-sidebar' );
+            }
+            ?>
         <?php endforeach; ?>
     </div>
 

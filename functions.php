@@ -242,6 +242,9 @@ require_once( get_template_directory() . '/functions/news-loops.php' );
 // Single Post Under-Post & Sidebar Modules
 require_once( get_template_directory() . '/includes/single-post-widgets.php' );
 
+// Ad Spaces Management System (Desktop & Mobile, Sticky Bottom Banner)
+require_once( get_template_directory() . '/functions/ads-management.php' );
+
 
 // WooCommerce
 if ( class_exists( 'WooCommerce' ) ) {

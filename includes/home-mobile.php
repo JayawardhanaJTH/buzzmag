@@ -36,6 +36,9 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         </section>
     <?php endif; ?>
 
+    <!-- Ad Space: Mobile Top (Below Lead) -->
+    <?php buzzmag_render_ad_space( 'home_ad_top', 'fl-ad-mobile-top' ); ?>
+
     <!-- 2. Latest 10 Posts (3D each post) -->
     <section class="fl-mobile-section fl-mobile-latest">
         <div class="fl-mobile-section-header">
@@ -56,6 +59,9 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         </div>
     </section>
 
+    <!-- Ad Space: After Latest 10 Posts -->
+    <?php buzzmag_render_ad_space( 'home_ad_mobile_1', 'fl-ad-mobile-mid' ); ?>
+
     <!-- 3. Top Story: 6 Posts (Within Week) (3D each post) -->
     <section class="fl-mobile-section fl-mobile-top-stories">
         <div class="fl-mobile-section-header">
@@ -75,6 +81,9 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
             ?>
         </div>
     </section>
+
+    <!-- Ad Space: After Top Stories -->
+    <?php buzzmag_render_ad_space( 'home_ad_mobile_2', 'fl-ad-mobile-mid' ); ?>
 
     <!-- 4. Category Blocks (3 Posts from each): Local, Off road, Business, Sports, Foreign, Featured -->
     <section class="fl-mobile-section fl-mobile-categories">
@@ -110,6 +119,9 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
             '#27ae60'
         );
         ?>
+
+        <!-- Ad Space: Between Business and Sports -->
+        <?php buzzmag_render_ad_space( 'home_ad_mobile_3', 'fl-ad-mobile-cat' ); ?>
 
         <!-- 4. Sports -->
         <?php
@@ -149,5 +161,8 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
     <section class="fl-mobile-section fl-mobile-videos-utilities">
         <?php buzzmag_render_column_3_utilities(); ?>
     </section>
+
+    <!-- Ad Space: Mobile Homepage Bottom -->
+    <?php buzzmag_render_ad_space( 'home_ad_mobile_bottom', 'fl-ad-mobile-bottom' ); ?>
 </div>
 

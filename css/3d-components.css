@@ -2421,3 +2421,205 @@ body.fl-drawer-open {
     touch-action: none;
     overscroll-behavior: none;
 }
+
+/* ==========================================================================
+   14. Modern Ad Spaces & Sticky Bottom Banner Ad (Desktop & Mobile)
+   ========================================================================== */
+.fl-ad-space {
+    width: 100%;
+    margin: 24px auto;
+    text-align: center;
+    box-sizing: border-box;
+    clear: both;
+}
+
+.fl-ad-space .adtitle {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--fl-text-meta, #888888);
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+
+.fl-ad-space .fl-ad-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.fl-ad-space .fl-ad-content img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fl-ad-space .fl-ad-content img:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+
+.fl-ad-space .fl-ad-content iframe,
+.fl-ad-space .fl-ad-content ins.adsbygoogle {
+    max-width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+/* Sidebar Ad Specific Styling */
+.fl-ad-space.fl-ad-sidebar {
+    margin: 16px 0;
+    width: 100%;
+}
+
+.fl-ad-space.fl-ad-fullwidth {
+    max-width: 100%;
+    margin: 30px auto;
+}
+
+/* Mobile Ad Margins */
+@media (max-width: 991px) {
+    .fl-ad-space {
+        margin: 18px auto;
+    }
+
+    .fl-ad-space.fl-ad-sidebar {
+        margin: 14px 0;
+    }
+}
+
+/* Sticky Bottom Banner Ad */
+body.has-sticky-ad {
+    transition: padding-bottom 0.2s ease;
+}
+
+/* Sticky Bottom Ad Footer Clearance Spacer */
+.fl-sticky-ad-footer-spacer {
+    display: none;
+    width: 100%;
+    height: 0;
+    clear: both;
+}
+
+body.has-sticky-ad .fl-sticky-ad-footer-spacer {
+    display: block !important;
+    height: 105px;
+}
+
+@media (max-width: 768px) {
+    body.has-sticky-ad .fl-sticky-ad-footer-spacer {
+        height: 75px;
+    }
+}
+
+.fl-sticky-bottom-ad-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+    padding: 8px 12px 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+[data-theme="dark"] .fl-sticky-bottom-ad-wrap {
+    background: rgba(18, 18, 18, 0.96);
+    border-top-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.fl-sticky-ad-container {
+    position: relative;
+    max-width: 970px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fl-sticky-ad-close {
+    position: absolute;
+    right: -24px;
+    top: -12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ed0e28;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
+    padding: 0;
+    z-index: 2;
+}
+
+.fl-sticky-ad-close:hover {
+    transform: scale(1.1);
+    background: #c0392b;
+}
+
+.fl-sticky-ad-label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #888888;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.fl-sticky-ad-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.fl-sticky-ad-inner img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.fl-sticky-ad-inner iframe,
+.fl-sticky-ad-inner ins.adsbygoogle {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .fl-sticky-bottom-ad-wrap {
+        padding: 6px 8px 8px;
+    }
+
+    .fl-sticky-ad-close {
+        right: 0px;
+        top: -14px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+    }
+}
