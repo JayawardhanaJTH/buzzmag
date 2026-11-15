@@ -17,9 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Render Under-Post Blocks: Latest (6 posts) and Most Read (last 36 hours, 6 posts)
  *
- * @param int $current_post_id Current post ID to exclude.
+ * @param int  $current_post_id Current post ID to exclude.
+ * @param bool $show_middle_ad Whether to render bottom ads between Latest and Most Read (e.g. Category page).
  */
-function buzzmag_render_single_under_post( $current_post_id = 0 ) {
+function buzzmag_render_single_under_post( $current_post_id = 0, $show_middle_ad = false ) {
     $exclude = array();
     if ( ! empty( $current_post_id ) ) {
         $exclude[] = (int) $current_post_id;
@@ -52,6 +53,13 @@ function buzzmag_render_single_under_post( $current_post_id = 0 ) {
                 endif; ?>
             </div>
         </div>
+
+        <?php
+        // Ad Space: Bottom Ads in between categories (Latest News and Most Read on Category page)
+        if ( $show_middle_ad && function_exists( 'buzzmag_render_stacked_centered_ads' ) ) {
+            buzzmag_render_stacked_centered_ads( 'post_img_bottom_1', 'post_img_bottom_2', 'fl-cat-between-ads' );
+        }
+        ?>
 
         <!-- 2. Most Read Posts (Most Viewed in 96h, 6 posts) -->
         <div class="fl-under-block fl-under-most-read">
@@ -128,25 +136,42 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
     );
     ?>
     <div class="fl-single-sidebar-categories">
+        <?php
+        // 1. Beginning of Side Panel (300x300 Ad)
+        if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+            buzzmag_render_ad_space( 'post_sidebar_top', 'fl-ad-300x300' );
+        }
+        ?>
+
         <?php foreach ( $categories as $idx => $cat ) : ?>
             <div class="fl-sidebar-cat-widget">
                 <?php buzzmag_render_category_3d_card( $cat['title'], $cat['slug'], 3, $cat['icon'], $cat['color'] ); ?>
             </div>
 
             <?php
-            // Sidebar Ad 1: After Category 2 (Political)
+            // Side Panel Ad 1: After Category 2 (Political, idx 1)
             if ( 1 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
-                buzzmag_render_ad_space( 'sidebar_ad_1', 'fl-ad-sidebar' );
+                buzzmag_render_ad_space( 'post_sidebar_ad_1', 'fl-ad-300x300' );
             }
 
-            // Sidebar Ad 2: After Category 4 (Business)
+            // Side Panel Middle: Two Vertical Ads (155x600 side-by-side, after Category 3 Off Road, idx 2)
+            if ( 2 === $idx && function_exists( 'buzzmag_render_twin_vertical_ads' ) ) {
+                buzzmag_render_twin_vertical_ads( 'post_sidebar_vert_1', 'post_sidebar_vert_2' );
+            }
+
+            // Side Panel Ad 2: After Category 4 (Business, idx 3)
             if ( 3 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
-                buzzmag_render_ad_space( 'sidebar_ad_2', 'fl-ad-sidebar' );
+                buzzmag_render_ad_space( 'post_sidebar_ad_2', 'fl-ad-300x300' );
             }
 
-            // Sidebar Ad 3: After Category 6 (Foreign)
+            // Side Panel Ad 3: After Category 5 (Sports, idx 4)
+            if ( 4 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
+                buzzmag_render_ad_space( 'post_sidebar_ad_3', 'fl-ad-300x300' );
+            }
+
+            // Side Panel Ad 4: After Category 6 (Foreign, idx 5)
             if ( 5 === $idx && function_exists( 'buzzmag_render_ad_space' ) ) {
-                buzzmag_render_ad_space( 'sidebar_ad_3', 'fl-ad-sidebar' );
+                buzzmag_render_ad_space( 'post_sidebar_ad_4', 'fl-ad-300x300' );
             }
             ?>
         <?php endforeach; ?>

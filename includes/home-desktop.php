@@ -28,6 +28,9 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
 ?>
 
 <div class="fl-home-desktop-wrapper fl-desktop-only">
+    <!-- Ad: Two different (728x90) ads top of leading post (centered) -->
+    <?php buzzmag_render_stacked_centered_ads( 'home_lead_top_1', 'home_lead_top_2', 'fl-home-lead-top-ads' ); ?>
+
     <!-- 1. Lead Post Section -->
     <?php if ( $lead_post ) : ?>
         <section class="fl-lead-section">
@@ -35,8 +38,8 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
         </section>
     <?php endif; ?>
 
-    <!-- Ad: Home Top (Below Lead / Above Grid) -->
-    <?php buzzmag_render_ad_space( 'home_ad_top', 'fl-ad-home-top fl-ad-fullwidth' ); ?>
+    <!-- Ad: Two different (728x90) ads bottom of leading post (centered) -->
+    <?php buzzmag_render_stacked_centered_ads( 'home_lead_bottom_1', 'home_lead_bottom_2', 'fl-home-lead-bottom-ads' ); ?>
 
     <!-- 2. Main 3-Column Grid -->
     <div class="fl-home-3col-grid">

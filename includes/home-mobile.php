@@ -29,6 +29,9 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
 ?>
 
 <div class="fl-home-mobile-wrapper fl-mobile-only">
+    <!-- Ad: Two different (728x90) ads top of leading post (centered) -->
+    <?php buzzmag_render_stacked_centered_ads( 'home_lead_top_1', 'home_lead_top_2', 'fl-home-lead-top-ads' ); ?>
+
     <!-- 1. Lead Post as Main Post (3D) -->
     <?php if ( $lead_post ) : ?>
         <section class="fl-mobile-section fl-mobile-lead">
@@ -36,8 +39,8 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         </section>
     <?php endif; ?>
 
-    <!-- Ad Space: Mobile Top (Below Lead) -->
-    <?php buzzmag_render_ad_space( 'home_ad_top', 'fl-ad-mobile-top' ); ?>
+    <!-- Ad: Two different (728x90) ads bottom of leading post (centered) -->
+    <?php buzzmag_render_stacked_centered_ads( 'home_lead_bottom_1', 'home_lead_bottom_2', 'fl-home-lead-bottom-ads' ); ?>
 
     <!-- 2. Latest 10 Posts (3D each post) -->
     <section class="fl-mobile-section fl-mobile-latest">

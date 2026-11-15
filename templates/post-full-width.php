@@ -25,8 +25,8 @@ get_header();
 
         <div class="clearfix fl-single-columns-wrap">
             <div id="fl-post-container" class="<?php echo esc_attr( $layoutClass ); ?>">
-                <!-- Ad Space: Single Post Top -->
-                <?php buzzmag_render_ad_space( 'post_ad_top', 'fl-ad-post-top' ); ?>
+                <!-- Ad Space: Top of Post Image (Two 728x90 Ads Centered) -->
+                <?php buzzmag_render_stacked_centered_ads( 'post_img_top_1', 'post_img_top_2', 'fl-post-img-top-ads' ); ?>
 
                 <div id="post-<?php the_ID(); ?>" <?php post_class( $class ); ?>>
                     <!-- 1. Post Media -->
@@ -69,6 +69,9 @@ get_header();
                     }
                     ?>
                     </div>
+
+                    <!-- Ad Space: Bottom of Post Image (Two 728x90 Ads Centered) -->
+                    <?php buzzmag_render_stacked_centered_ads( 'post_img_bottom_1', 'post_img_bottom_2', 'fl-post-img-bottom-ads' ); ?>
 
                     <!-- 2. Post Article Body -->
                     <div class="fl-single-body-wrap">
@@ -148,8 +151,7 @@ get_header();
                 buzzmag_render_single_under_post( get_the_ID() );
                 ?>
 
-                <!-- Ad Space: Single Post Page Bottom -->
-                <?php buzzmag_render_ad_space( 'post_ad_bottom', 'fl-ad-post-bottom' ); ?>
+
             </div>
         </div>
         <?php endwhile; ?>

@@ -3,10 +3,10 @@
  * Ad Spaces Management Engine
  *
  * Implements:
- * - Dynamic rendering for ~15 custom ad slots across Desktop & Mobile
+ * - 11 Homepage Ad Slots (2 top of lead 728x90, 2 bottom of lead 728x90, 1 top col3 300x300, 2 vertical mid col3 155x600, 4 col3 300x300)
+ * - 11 Inner Post Ad Slots (2 top of post image 728x90, 2 bottom of post image 728x90, 1 top side panel 300x300, 2 vertical mid side panel 155x600, 4 side panel 300x300)
  * - Global sticky bottom banner ad with dismiss toggle & height-compensation
- * - Safe shortcode, AdSense, script & HTML banner rendering
- * - Zero empty space when an ad slot is unused
+ * - Zero empty whitespace when an ad slot is unused
  *
  * @package BuzzMag
  */
@@ -16,28 +16,126 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Render an Ad Space Slot
+ * Check if an Ad Slot has Content
  *
- * @param string $slot_id       Theme mod slot identifier (e.g. 'home_ad_top', 'sidebar_ad_1').
+ * @param string $slot_id Theme mod slot ID.
+ * @return bool
+ */
+function buzzmag_has_ad( $slot_id ) {
+    $code = get_theme_mod( $slot_id, '' );
+    return ( ! empty( $code ) && is_string( $code ) && '' !== trim( $code ) );
+}
+
+/**
+ * Get Rendered Ad HTML Content
+ *
+ * @param string $slot_id Theme mod slot ID.
+ * @return string
+ */
+function buzzmag_get_ad_html( $slot_id ) {
+    $code = get_theme_mod( $slot_id, '' );
+    if ( empty( $code ) || ! is_string( $code ) || '' === trim( $code ) ) {
+        return '';
+    }
+    return do_shortcode( $code );
+}
+
+/**
+ * Render a Single Ad Space Slot (e.g. 300x300, custom banner)
+ *
+ * @param string $slot_id       Theme mod slot identifier.
  * @param string $extra_classes Optional extra CSS classes for the wrapper.
  * @return bool True if ad was rendered, false if empty.
  */
 function buzzmag_render_ad_space( $slot_id, $extra_classes = '' ) {
-    $ad_code = get_theme_mod( $slot_id, '' );
-
-    // Fallback for home_ad_top -> legacy home_ad
-    if ( empty( $ad_code ) && 'home_ad_top' === $slot_id ) {
-        $ad_code = get_theme_mod( 'home_ad', '' );
-    }
-
-    if ( empty( $ad_code ) || ! is_string( $ad_code ) || '' === trim( $ad_code ) ) {
+    $html = buzzmag_get_ad_html( $slot_id );
+    if ( '' === $html ) {
         return false;
     }
     ?>
     <div class="fl-ad-space fl-ad-<?php echo esc_attr( $slot_id ); ?> <?php echo esc_attr( $extra_classes ); ?>">
         <div class="fl-ad-content">
-            <?php echo do_shortcode( $ad_code ); ?>
+            <?php echo $html; ?>
         </div>
+    </div>
+    <?php
+    return true;
+}
+
+/**
+ * Render Two Different (728x90) Ads Centered Stack
+ * Used for:
+ * - Top of Lead Post (Home)
+ * - Bottom of Lead Post (Home)
+ * - Top of Post Image (Inner Post)
+ * - Bottom of Post Image (Inner Post)
+ *
+ * @param string $slot_1        First 728x90 ad slot ID.
+ * @param string $slot_2        Second 728x90 ad slot ID.
+ * @param string $extra_classes Optional extra CSS classes.
+ * @return bool True if at least one ad was rendered.
+ */
+function buzzmag_render_stacked_centered_ads( $slot_1, $slot_2, $extra_classes = '' ) {
+    $html_1 = buzzmag_get_ad_html( $slot_1 );
+    $html_2 = buzzmag_get_ad_html( $slot_2 );
+
+    if ( '' === $html_1 && '' === $html_2 ) {
+        return false;
+    }
+    ?>
+    <div class="fl-ad-stack-center <?php echo esc_attr( $extra_classes ); ?>">
+        <?php if ( '' !== $html_1 ) : ?>
+            <div class="fl-ad-slot fl-ad-728x90 fl-ad-<?php echo esc_attr( $slot_1 ); ?>">
+                <div class="fl-ad-content">
+                    <?php echo $html_1; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ( '' !== $html_2 ) : ?>
+            <div class="fl-ad-slot fl-ad-728x90 fl-ad-<?php echo esc_attr( $slot_2 ); ?>">
+                <div class="fl-ad-content">
+                    <?php echo $html_2; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return true;
+}
+
+/**
+ * Render Two Vertical Ads (155x600) Side-by-Side in Column 3 or Side Panel
+ *
+ * @param string $slot_1        First 155x600 vertical ad slot ID.
+ * @param string $slot_2        Second 155x600 vertical ad slot ID.
+ * @param string $extra_classes Optional extra CSS classes.
+ * @return bool True if at least one ad was rendered.
+ */
+function buzzmag_render_twin_vertical_ads( $slot_1, $slot_2, $extra_classes = '' ) {
+    $html_1 = buzzmag_get_ad_html( $slot_1 );
+    $html_2 = buzzmag_get_ad_html( $slot_2 );
+
+    if ( '' === $html_1 && '' === $html_2 ) {
+        return false;
+    }
+    ?>
+    <div class="fl-ad-twin-vertical <?php echo esc_attr( $extra_classes ); ?>">
+        <?php if ( '' !== $html_1 ) : ?>
+            <div class="fl-ad-half fl-ad-155x600 fl-ad-<?php echo esc_attr( $slot_1 ); ?>">
+                <div class="fl-ad-content">
+                    <?php echo $html_1; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ( '' !== $html_2 ) : ?>
+            <div class="fl-ad-half fl-ad-155x600 fl-ad-<?php echo esc_attr( $slot_2 ); ?>">
+                <div class="fl-ad-content">
+                    <?php echo $html_2; ?>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
     <?php
     return true;

@@ -2485,14 +2485,106 @@ body.fl-drawer-open {
     margin: 30px auto;
 }
 
+/* Centered Stack of 728x90 Ads */
+.fl-ad-stack-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin: 22px auto;
+    text-align: center;
+    clear: both;
+    box-sizing: border-box;
+}
+
+.fl-ad-728x90 {
+    width: 100%;
+    max-width: 728px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.fl-ad-728x90 .fl-ad-content,
+.fl-ad-728x90 img,
+.fl-ad-728x90 ins.adsbygoogle {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 300x300 Ad Container */
+.fl-ad-300x300 {
+    width: 100%;
+    max-width: 300px;
+    margin: 18px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.fl-ad-300x300 .fl-ad-content,
+.fl-ad-300x300 img,
+.fl-ad-300x300 ins.adsbygoogle {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* Twin Vertical Skyscraper Ads (155x600 + 155x600 Side-by-Side) */
+.fl-ad-twin-vertical {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    max-width: 330px;
+    margin: 20px auto;
+    clear: both;
+    box-sizing: border-box;
+}
+
+.fl-ad-twin-vertical .fl-ad-half {
+    flex: 1 1 155px;
+    max-width: 155px;
+    width: 155px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+.fl-ad-twin-vertical .fl-ad-half .fl-ad-content,
+.fl-ad-twin-vertical .fl-ad-half img,
+.fl-ad-twin-vertical .fl-ad-half ins.adsbygoogle {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+@media (max-width: 340px) {
+    .fl-ad-twin-vertical {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 /* Mobile Ad Margins */
 @media (max-width: 991px) {
     .fl-ad-space {
         margin: 18px auto;
     }
 
-    .fl-ad-space.fl-ad-sidebar {
-        margin: 14px 0;
+    .fl-ad-stack-center {
+        margin: 16px auto;
+        gap: 12px;
     }
 }
 

@@ -107,8 +107,11 @@ get_header();
                     </div>
                 <?php endif; ?>
 
-                <!-- 4. Below Sections (Under Category: Latest News & Most Read in 96h) -->
-                <?php buzzmag_render_single_under_post( 0 ); ?>
+                <!-- Ad Space: Top Ads Stack in between Categories (Category Archive & Latest News) -->
+                <?php buzzmag_render_stacked_centered_ads( 'post_img_top_1', 'post_img_top_2', 'fl-cat-between-ads' ); ?>
+
+                <!-- 4. Below Sections (Under Category: Latest News & Most Read in 96h with Bottom Ads in between) -->
+                <?php buzzmag_render_single_under_post( 0, true ); ?>
 
             </div>
 

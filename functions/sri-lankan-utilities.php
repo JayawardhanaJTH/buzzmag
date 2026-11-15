@@ -704,35 +704,61 @@ function buzzmag_render_video_channels_card() {
 /**
  * Render Homepage 3rd Column / Mobile Utilities Stack
  * Includes: 4 Video Channels, Top Stories, Cartoon, WhatsApp, Rahu Kalaya, Advertise, Facebook, TikTok
+ * and the 7 Column-3 custom ad placements.
  */
 function buzzmag_render_column_3_utilities() {
-    // 1. Video Channels (4 Standalone Cards)
-    buzzmag_render_video_channels_card();
-
-    // Ad Space: Column 3 Mid (Below Video Channels)
+    // 1. Beginning of 3rd Column (300x300 Ad)
     if ( function_exists( 'buzzmag_render_ad_space' ) ) {
-        buzzmag_render_ad_space( 'home_ad_col3', 'fl-ad-col3 fl-ad-sidebar' );
+        buzzmag_render_ad_space( 'home_col3_top', 'fl-ad-300x300' );
     }
 
-    // 2. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
+    // 2. Video Channels (4 Standalone Cards)
+    buzzmag_render_video_channels_card();
+
+    // 3. 3rd Column 300x300 Ad #1
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_ad_1', 'fl-ad-300x300' );
+    }
+
+    // 4. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
     buzzmag_render_top_stories_card();
 
-    // 3. Cartoon of the Day
+    // 5. Middle of 3rd Column: Two Vertical Ads (155x600 side-by-side)
+    if ( function_exists( 'buzzmag_render_twin_vertical_ads' ) ) {
+        buzzmag_render_twin_vertical_ads( 'home_col3_vert_1', 'home_col3_vert_2' );
+    }
+
+    // 6. Cartoon of the Day
     buzzmag_render_cartoon_card();
 
-    // 4. WhatsApp Community Banner
+    // 7. 3rd Column 300x300 Ad #2
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_ad_2', 'fl-ad-300x300' );
+    }
+
+    // 8. WhatsApp Community Banner
     buzzmag_render_whatsapp_banner();
 
-    // 5. Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa
+    // 9. Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa
     buzzmag_render_astrology_card();
 
-    // 6. Advertise With Us (Links to WhatsApp)
+    // 10. 3rd Column 300x300 Ad #3
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_ad_3', 'fl-ad-300x300' );
+    }
+
+    // 11. Advertise With Us (Links to WhatsApp)
     buzzmag_render_advertise_banner();
 
-    // 7. Facebook Page Card
+    // 12. Facebook Page Card
     buzzmag_render_facebook_banner();
 
-    // 8. TikTok Banner
+    // 13. TikTok Banner
     buzzmag_render_tiktok_banner();
+
+    // 14. 3rd Column 300x300 Ad #4 (End of Column)
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_ad_4', 'fl-ad-300x300' );
+    }
 }
 

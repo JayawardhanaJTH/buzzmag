@@ -1721,35 +1721,37 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		// =========================================================================
-		// AD SPACES MANAGEMENT SECTION (Desktop & Mobile, Sticky Bottom Banner)
+		// AD SPACES MANAGEMENT SECTION (11 Home Ads, 11 Inner Post Ads, Sticky Bottom)
 		// =========================================================================
 		$wp_customize->add_section( 'buzzmag_ad_spaces_section', array(
 			'title'       => esc_html__( 'Ad Spaces (Desktop & Mobile)', 'buzzmag' ),
-			'description' => esc_html__( 'Manage all ~15 custom ad slots across Homepage, Single Posts, Sidebar, Mobile, and Global Sticky Bottom. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide.', 'buzzmag' ),
+			'description' => esc_html__( 'Configure your 11 Homepage Ads, 11 Inner Post Ads, and Global Sticky Bottom Ad. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide without leaving empty space.', 'buzzmag' ),
 			'priority'    => 35,
 		) );
 
 		$ad_p = 1;
 
-		// 1. Global Sticky Bottom Ad
+		// ---------------------------------------------------------------------
+		// A. GLOBAL STICKY BOTTOM AD (ALL PAGES)
+		// ---------------------------------------------------------------------
 		$wp_customize->add_setting( 'sticky_bottom_ad', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
 		$wp_customize->add_control( 'sticky_bottom_ad', array(
-			'label'       => esc_html__( '1. Global Sticky Bottom Ad (All Pages)', 'buzzmag' ),
-			'description' => esc_html__( 'Fixed at the bottom of the viewport on all pages with dismiss button (e.g. 728x90, 320x50, AdSense responsive).', 'buzzmag' ),
+			'label'       => esc_html__( 'Sticky Bottom Ad: Banner Code (All Pages)', 'buzzmag' ),
+			'description' => esc_html__( 'Fixed at the bottom of the viewport on all pages with footer clearance compensation (e.g. 728x90, 320x50, AdSense responsive).', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'hide_sticky_bottom_ad', array(
+		$wp_customize->add_setting( 'hide_sticky_bottom_close_btn', array(
 			'default'           => false,
 			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
 		) );
-		$wp_customize->add_control( 'hide_sticky_bottom_ad', array(
-			'label'       => esc_html__( 'Disable Sticky Bottom Ad', 'buzzmag' ),
+		$wp_customize->add_control( 'hide_sticky_bottom_close_btn', array(
+			'label'       => esc_html__( 'Sticky Bottom: Hide Close (X) Button', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'checkbox',
 			'priority'    => $ad_p++,
@@ -1760,188 +1762,298 @@ function buzzmag_customizer( $wp_customize ) {
 			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
 		) );
 		$wp_customize->add_control( 'hide_sticky_bottom_mobile', array(
-			'label'       => esc_html__( 'Hide Sticky Bottom Ad on Mobile Devices Only', 'buzzmag' ),
+			'label'       => esc_html__( 'Sticky Bottom: Hide on Mobile Only', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'checkbox',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'hide_sticky_bottom_close_btn', array(
+		$wp_customize->add_setting( 'hide_sticky_bottom_ad', array(
 			'default'           => false,
 			'sanitize_callback' => 'buzzmag_sanitize_checkbox',
 		) );
-		$wp_customize->add_control( 'hide_sticky_bottom_close_btn', array(
-			'label'       => esc_html__( 'Hide Close Button on Sticky Bottom Ad', 'buzzmag' ),
+		$wp_customize->add_control( 'hide_sticky_bottom_ad', array(
+			'label'       => esc_html__( 'Sticky Bottom: Disable Completely', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'checkbox',
 			'priority'    => $ad_p++,
 		) );
 
-		// 2. Homepage Desktop Slots
-		$wp_customize->add_setting( 'home_ad_top', array(
+		// ---------------------------------------------------------------------
+		// B. HOMEPAGE ADS (11 AD SLOTS)
+		// ---------------------------------------------------------------------
+		$wp_customize->add_setting( 'home_lead_top_1', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_top', array(
-			'label'       => esc_html__( '2. Home: Top Ad (Below Lead / Above Grid)', 'buzzmag' ),
-			'description' => esc_html__( 'Renders full width between the Lead Story hero and the 3-column grid.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_lead_top_1', array(
+			'label'       => esc_html__( 'Home Ad 1: Top of Leading Post (728x90 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'Centered above the leading post.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_col2', array(
+		$wp_customize->add_setting( 'home_lead_top_2', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_col2', array(
-			'label'       => esc_html__( '3. Home Desktop: Column 2 Mid Ad', 'buzzmag' ),
-			'description' => esc_html__( 'Renders in Column 2 between categories (after Off Road, before Business).', 'buzzmag' ),
+		$wp_customize->add_control( 'home_lead_top_2', array(
+			'label'       => esc_html__( 'Home Ad 2: Top of Leading Post (728x90 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second ad centered above the leading post.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_col3', array(
+		$wp_customize->add_setting( 'home_lead_bottom_1', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_col3', array(
-			'label'       => esc_html__( '4. Home Desktop: Column 3 Mid Ad', 'buzzmag' ),
-			'description' => esc_html__( 'Renders in Column 3 below the Video Channels, before utilities.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_lead_bottom_1', array(
+			'label'       => esc_html__( 'Home Ad 3: Bottom of Leading Post (728x90 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'Centered below the leading post hero card.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_mid', array(
+		$wp_customize->add_setting( 'home_lead_bottom_2', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_mid', array(
-			'label'       => esc_html__( '5. Home: Mid-Page Leaderboard', 'buzzmag' ),
-			'description' => esc_html__( 'Full-width leaderboard between the 3-column grid and Politics/Featured sections.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_lead_bottom_2', array(
+			'label'       => esc_html__( 'Home Ad 4: Bottom of Leading Post (728x90 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second ad centered below the leading post hero card.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_bottom', array(
+		$wp_customize->add_setting( 'home_col3_top', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_bottom', array(
-			'label'       => esc_html__( '6. Home: Bottom Ad (Below Featured)', 'buzzmag' ),
-			'description' => esc_html__( 'At the bottom of homepage below the Featured section.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_top', array(
+			'label'       => esc_html__( 'Home Ad 5: 3rd Column Beginning (300x300)', 'buzzmag' ),
+			'description' => esc_html__( 'Placed at the very beginning of the 3rd Column.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		// 3. Homepage Mobile Slots
-		$wp_customize->add_setting( 'home_ad_mobile_1', array(
+		$wp_customize->add_setting( 'home_col3_vert_1', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_mobile_1', array(
-			'label'       => esc_html__( '7. Home Mobile: After Latest 10 Posts', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_vert_1', array(
+			'label'       => esc_html__( 'Home Ad 6: 3rd Column Middle - Vertical Ad 1 (155x600)', 'buzzmag' ),
+			'description' => esc_html__( 'First vertical skyscraper ad in the middle of 3rd Column (side-by-side pair).', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_mobile_2', array(
+		$wp_customize->add_setting( 'home_col3_vert_2', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_mobile_2', array(
-			'label'       => esc_html__( '8. Home Mobile: After Top Stories (7 Days)', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_vert_2', array(
+			'label'       => esc_html__( 'Home Ad 7: 3rd Column Middle - Vertical Ad 2 (155x600)', 'buzzmag' ),
+			'description' => esc_html__( 'Second vertical skyscraper ad in the middle of 3rd Column (side-by-side pair).', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_mobile_3', array(
+		$wp_customize->add_setting( 'home_col3_ad_1', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_mobile_3', array(
-			'label'       => esc_html__( '9. Home Mobile: Between Categories', 'buzzmag' ),
-			'description' => esc_html__( 'In Section 4, between Business and Sports.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_ad_1', array(
+			'label'       => esc_html__( 'Home Ad 8: 3rd Column - Ad #1 (300x300)', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'home_ad_mobile_bottom', array(
+		$wp_customize->add_setting( 'home_col3_ad_2', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'home_ad_mobile_bottom', array(
-			'label'       => esc_html__( '10. Home Mobile: Bottom Ad', 'buzzmag' ),
-			'description' => esc_html__( 'At the bottom of mobile homepage below Section 5 utilities.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_ad_2', array(
+			'label'       => esc_html__( 'Home Ad 9: 3rd Column - Ad #2 (300x300)', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		// 4. Single Post & Page Slots
-		$wp_customize->add_setting( 'post_ad_top', array(
+		$wp_customize->add_setting( 'home_col3_ad_3', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'post_ad_top', array(
-			'label'       => esc_html__( '11. Single Post: Top Ad', 'buzzmag' ),
-			'description' => esc_html__( 'Appears above the article title/image on single posts.', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_ad_3', array(
+			'label'       => esc_html__( 'Home Ad 10: 3rd Column - Ad #3 (300x300)', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'post_ad_bottom', array(
+		$wp_customize->add_setting( 'home_col3_ad_4', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'post_ad_bottom', array(
-			'label'       => esc_html__( '12. Single Post: Page Bottom Ad', 'buzzmag' ),
-			'description' => esc_html__( 'Appears below the Under-Post modules (Latest 6 & Most Read 6).', 'buzzmag' ),
+		$wp_customize->add_control( 'home_col3_ad_4', array(
+			'label'       => esc_html__( 'Home Ad 11: 3rd Column - Ad #4 (300x300)', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		// 5. Sidebar Slots (Desktop Sticky Sidebar & Mobile Category Scroll)
-		$wp_customize->add_setting( 'sidebar_ad_1', array(
+		// ---------------------------------------------------------------------
+		// C. INNER POST & CATEGORY PAGE ADS (11 AD SLOTS)
+		// ---------------------------------------------------------------------
+		$wp_customize->add_setting( 'post_img_top_1', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'sidebar_ad_1', array(
-			'label'       => esc_html__( '13. Sidebar Ad 1 (After Political Category)', 'buzzmag' ),
-			'description' => esc_html__( 'Between Category 2 (Political) and Category 3 (Off Road). Appears in desktop sidebar and mobile scroll.', 'buzzmag' ),
+		$wp_customize->add_control( 'post_img_top_1', array(
+			'label'       => esc_html__( 'Post / Category Ad 1: Top Ads (728x90 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'On single post: centered above post image. On category page: placed in between categories (Category archive & Latest News).', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'sidebar_ad_2', array(
+		$wp_customize->add_setting( 'post_img_top_2', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'sidebar_ad_2', array(
-			'label'       => esc_html__( '14. Sidebar Ad 2 (After Business Category)', 'buzzmag' ),
-			'description' => esc_html__( 'Between Category 4 (Business) and Category 5 (Sports). Appears in desktop sidebar and mobile scroll.', 'buzzmag' ),
+		$wp_customize->add_control( 'post_img_top_2', array(
+			'label'       => esc_html__( 'Post / Category Ad 2: Top Ads (728x90 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second ad centered above post image / in between categories.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
 		) );
 
-		$wp_customize->add_setting( 'sidebar_ad_3', array(
+		$wp_customize->add_setting( 'post_img_bottom_1', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
-		$wp_customize->add_control( 'sidebar_ad_3', array(
-			'label'       => esc_html__( '15. Sidebar Ad 3 (After Foreign Category)', 'buzzmag' ),
-			'description' => esc_html__( 'After Category 6 (Foreign), above mobile utilities.', 'buzzmag' ),
+		$wp_customize->add_control( 'post_img_bottom_1', array(
+			'label'       => esc_html__( 'Post / Category Ad 3: Bottom Ads (728x90 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'On single post: centered below post image. On category page: placed in between categories (Latest News & Most Read).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_img_bottom_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_img_bottom_2', array(
+			'label'       => esc_html__( 'Post / Category Ad 4: Bottom Ads (728x90 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second ad centered below post image / in between categories.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_top', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_top', array(
+			'label'       => esc_html__( 'Post / Category Ad 5: Side Panel Beginning (300x300)', 'buzzmag' ),
+			'description' => esc_html__( 'Placed at the very top of the side panel before Category 1 (Single Post & Category Page).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_vert_1', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_vert_1', array(
+			'label'       => esc_html__( 'Post / Category Ad 6: Side Panel Middle - Vertical Ad 1 (155x600)', 'buzzmag' ),
+			'description' => esc_html__( 'First vertical skyscraper ad in the middle of side panel (side-by-side pair on Single Post & Category Page).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_vert_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_vert_2', array(
+			'label'       => esc_html__( 'Post / Category Ad 7: Side Panel Middle - Vertical Ad 2 (155x600)', 'buzzmag' ),
+			'description' => esc_html__( 'Second vertical skyscraper ad in the middle of side panel (side-by-side pair on Single Post & Category Page).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_ad_1', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_ad_1', array(
+			'label'       => esc_html__( 'Post / Category Ad 8: Side Panel - Ad #1 (300x300)', 'buzzmag' ),
+			'description' => esc_html__( 'Placed after Category 2 (Political) on Single Post & Category Page.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_ad_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_ad_2', array(
+			'label'       => esc_html__( 'Post / Category Ad 9: Side Panel - Ad #2 (300x300)', 'buzzmag' ),
+			'description' => esc_html__( 'Placed after Category 4 (Business) on Single Post & Category Page.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_ad_3', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_ad_3', array(
+			'label'       => esc_html__( 'Post / Category Ad 10: Side Panel - Ad #3 (300x300)', 'buzzmag' ),
+			'description' => esc_html__( 'Placed after Category 5 (Sports) on Single Post & Category Page.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'post_sidebar_ad_4', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'post_sidebar_ad_4', array(
+			'label'       => esc_html__( 'Post / Category Ad 11: Side Panel - Ad #4 (300x300)', 'buzzmag' ),
+			'description' => esc_html__( 'Placed after Category 6 (Foreign) on Single Post & Category Page.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		// ---------------------------------------------------------------------
+		// D. FOOTER AD SLOT (OPTIONAL)
+		// ---------------------------------------------------------------------
+		$wp_customize->add_setting( 'footer_ad', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'footer_ad', array(
+			'label'       => esc_html__( 'Footer Ad (Above Footer Bar)', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,

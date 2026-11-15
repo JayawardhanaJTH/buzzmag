@@ -103,7 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
 
             <!-- Sticky Bottom Ad Clearance Spacer -->
-            <!-- <div id="fl-sticky-ad-footer-spacer" class="fl-sticky-ad-footer-spacer" aria-hidden="true"></div> -->
+            <div id="fl-sticky-ad-footer-spacer" class="fl-sticky-ad-footer-spacer" aria-hidden="true"></div>
         </div>
     </footer>
 
