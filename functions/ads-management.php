@@ -239,6 +239,20 @@ function buzzmag_render_sticky_bottom_ad() {
 add_action( 'wp_footer', 'buzzmag_render_sticky_bottom_ad', 99 );
 
 /**
+ * Output Custom Ad Header Scripts in <head>
+ * Hooked to wp_head at priority 5 so ad libraries and tracking tags load early.
+ */
+function buzzmag_output_header_ad_scripts() {
+    $scripts = get_theme_mod( 'ad_header_scripts', '' );
+    if ( ! empty( $scripts ) && is_string( $scripts ) && '' !== trim( $scripts ) ) {
+        echo "\n<!-- BuzzMag Header Ad Scripts -->\n";
+        echo $scripts . "\n";
+        echo "<!-- /BuzzMag Header Ad Scripts -->\n\n";
+    }
+}
+add_action( 'wp_head', 'buzzmag_output_header_ad_scripts', 5 );
+
+/**
  * Add body class when sticky bottom ad is enabled
  */
 function buzzmag_sticky_ad_body_class( $classes ) {
