@@ -148,9 +148,9 @@ get_header();
                                 </div>
                             <?php }
 
-                            // Post Ad (Content Bottom)
-                            if ( function_exists( 'buzzmag_render_ad_space' ) ) {
-                                buzzmag_render_ad_space( 'post_ad', 'alignwide' );
+                            // Single Post: End of Article Content Ad / Script
+                            if ( function_exists( 'buzzmag_render_article_end_ad' ) ) {
+                                buzzmag_render_article_end_ad();
                             } ?>
                         </article>
 

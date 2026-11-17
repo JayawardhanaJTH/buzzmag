@@ -2576,6 +2576,29 @@ body.fl-drawer-open {
     }
 }
 
+/* Single Post: End of Article Ad Space */
+.fl-article-end-ad {
+    width: 100%;
+    margin: 26px auto 10px;
+    text-align: center;
+    clear: both;
+    box-sizing: border-box;
+}
+
+.fl-article-end-ad .fl-ad-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.fl-article-end-ad img,
+.fl-article-end-ad iframe,
+.fl-article-end-ad ins.adsbygoogle {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Mobile Ad Margins */
 @media (max-width: 991px) {
     .fl-ad-space {

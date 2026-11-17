@@ -2061,7 +2061,22 @@ function buzzmag_customizer( $wp_customize ) {
 		) );
 
 		// ---------------------------------------------------------------------
-		// D. FOOTER AD SLOT (OPTIONAL)
+		// D. SINGLE POST: END OF ARTICLE AD / SCRIPT
+		// ---------------------------------------------------------------------
+		$wp_customize->add_setting( 'single_article_end_ad', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'single_article_end_ad', array(
+			'label'       => esc_html__( 'Single Post: End of Article Content Ad / Script', 'buzzmag' ),
+			'description' => esc_html__( 'Paste ad scripts, embedAd snippet, Google AdSense, or banner code to display at the very end of the article content (directly before </article>) on single post pages.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		// ---------------------------------------------------------------------
+		// E. FOOTER AD SLOT (OPTIONAL)
 		// ---------------------------------------------------------------------
 		$wp_customize->add_setting( 'footer_ad', array(
 			'default'           => '',

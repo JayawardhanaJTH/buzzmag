@@ -63,6 +63,32 @@ function buzzmag_render_ad_space( $slot_id, $extra_classes = '' ) {
 }
 
 /**
+ * Render Ad Script / Banner at End of Article Content (Single Post)
+ * Outputs at the very end of the article, directly before </article>.
+ *
+ * @return bool True if content rendered, false if empty.
+ */
+function buzzmag_render_article_end_ad() {
+    $code = get_theme_mod( 'single_article_end_ad', '' );
+    if ( empty( $code ) || ! is_string( $code ) || '' === trim( $code ) ) {
+        // Fallback to legacy post_ad if set
+        $code = get_theme_mod( 'post_ad', '' );
+    }
+
+    if ( empty( $code ) || ! is_string( $code ) || '' === trim( $code ) ) {
+        return false;
+    }
+    ?>
+    <div class="fl-ad-space fl-article-end-ad alignwide">
+        <div class="fl-ad-content">
+            <?php echo do_shortcode( $code ); ?>
+        </div>
+    </div>
+    <?php
+    return true;
+}
+
+/**
  * Render Two Different (728x90) Ads Centered Stack
  * Used for:
  * - Top of Lead Post (Home)
