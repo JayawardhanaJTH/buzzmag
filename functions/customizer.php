@@ -1826,8 +1826,8 @@ function buzzmag_customizer( $wp_customize ) {
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
 		$wp_customize->add_control( 'home_lead_bottom_1', array(
-			'label'       => esc_html__( 'Home Ad 3: Bottom of Leading Post (728x90 #1)', 'buzzmag' ),
-			'description' => esc_html__( 'Centered below the leading post hero card.', 'buzzmag' ),
+			'label'       => esc_html__( 'Home Ad 3: Under Columns 1 & 2 (728x90 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'Centered directly under the 1st and 2nd columns (News & Categories) on desktop; below lead post on mobile.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
@@ -1838,8 +1838,8 @@ function buzzmag_customizer( $wp_customize ) {
 			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
 		) );
 		$wp_customize->add_control( 'home_lead_bottom_2', array(
-			'label'       => esc_html__( 'Home Ad 4: Bottom of Leading Post (728x90 #2)', 'buzzmag' ),
-			'description' => esc_html__( 'Second ad centered below the leading post hero card.', 'buzzmag' ),
+			'label'       => esc_html__( 'Home Ad 4: Under Columns 1 & 2 (728x90 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second ad stacked centered under the 1st and 2nd columns.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,

@@ -989,7 +989,7 @@ small {
 #fl-content {
     position: relative;
     display: block;
-    margin-top: 64px;
+    /* margin-top: 64px; */
 }
 
 #fl-post-container {

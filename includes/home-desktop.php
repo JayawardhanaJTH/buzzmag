@@ -38,13 +38,13 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
         </section>
     <?php endif; ?>
 
-    <!-- Ad: Two different (728x90) ads bottom of leading post (centered) -->
-    <?php buzzmag_render_stacked_centered_ads( 'home_lead_bottom_1', 'home_lead_bottom_2', 'fl-home-lead-bottom-ads' ); ?>
-
     <!-- 2. Main 3-Column Grid -->
     <div class="fl-home-3col-grid">
-        <!-- ================= Column 1: Latest 10 & 4-Day Most Viewed ================= -->
-        <div class="fl-home-col fl-col-latest">
+        <!-- ================= Main Column 1 & 2 Wrapper ================= -->
+        <div class="fl-home-main-cols-wrap">
+            <div class="fl-home-2col-subgrid">
+                <!-- ================= Column 1: Latest 10 & 4-Day Most Viewed ================= -->
+                <div class="fl-home-col fl-col-latest">
             <div class="fl-col-header">
                 <span class="fl-col-badge red"><i class="fa fa-newspaper-o"></i></span>
                 <h3><?php esc_html_e( 'නවතම පුවත් (Latest News)', 'buzzmag' ); ?></h3>
@@ -131,6 +131,11 @@ $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
                 '#ed0e28'
             );
             ?>
+        </div>
+            </div>
+
+            <!-- Ad: Two different (728x90) ads under 1st and 2nd column (Home Ad 3 & 4) -->
+            <?php buzzmag_render_stacked_centered_ads( 'home_lead_bottom_1', 'home_lead_bottom_2', 'fl-home-col12-bottom-ads' ); ?>
         </div>
 
         <!-- ================= Column 3: Videos & Sri Lankan Utility Cards ================= -->
