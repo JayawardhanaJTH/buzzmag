@@ -278,6 +278,7 @@
    3. Desktop 3-Column Grid Layout
    ========================================================================== */
 .fl-home-desktop-wrapper {
+    display: block !important;
     width: 100%;
     box-sizing: border-box;
 }
@@ -304,6 +305,18 @@
     gap: 22px;
     width: 100%;
     box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+    .fl-home-3col-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .fl-home-2col-subgrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 .fl-home-col12-bottom-ads {
@@ -1629,6 +1642,7 @@
    9. Mobile Single-Stream View
    ========================================================================== */
 .fl-home-mobile-wrapper {
+    display: block !important;
     padding: 5px 0 25px 0;
 }
 
@@ -2588,7 +2602,7 @@ body.fl-drawer-open {
     .fl-ad-stack-center div[id^="block_"],
     .fl-article-end-ad div[id^="block_"],
     .section-ad-container-double > div {
-        width: 350px !important;
+        width: 320px !important;
         max-width: 100% !important;
         height: 50px !important;
         margin: 0 auto !important;

@@ -27,7 +27,7 @@ $biz_slug     = get_theme_mod( 'cat_slug_business', 'business' );
 $sports_slug  = get_theme_mod( 'cat_slug_sports', 'sports' );
 ?>
 
-<div class="fl-home-desktop-wrapper fl-desktop-only">
+<div class="fl-home-desktop-wrapper">
     <!-- Ad: Two different (728x90) ads top of leading post (centered) -->
     <?php buzzmag_render_stacked_centered_ads( 'home_lead_top_1', 'home_lead_top_2', 'fl-home-lead-top-ads' ); ?>
 

@@ -752,7 +752,7 @@ function buzzmag_render_below_sections() {
     $pol_query  = buzzmag_query_category_posts( $pol_slug, 6, array(), $pol_title );
     $feat_query = buzzmag_query_category_posts( $feat_slug, 6, array(), $feat_title );
     ?>
-    <section class="fl-below-sections fl-desktop-only">
+    <section class="fl-below-sections">
         <!-- Politics Section -->
         <div class="fl-below-block fl-politics-block">
             <div class="fl-section-header">

@@ -3903,7 +3903,7 @@ body.error404 .fl-box .head .title {
 
     /* Main Content */
     #fl-content {
-        margin-top: 24px;
+        margin-top: -10px;
     }
 
     #fl-post-container {

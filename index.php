@@ -27,11 +27,21 @@ if ( ! empty( $home_ad ) ) { ?>
 <div id="fl-content" class="fl-home-rebranded-content">
     <div class="fl-container clearfix">
         <?php
-        // 1. Desktop View
-        get_template_part( 'includes/home-desktop' );
+        // Render strictly ONE view (Desktop OR Mobile) to prevent duplicate ad container IDs in the DOM
+        $is_mobile = wp_is_mobile();
+        if ( isset( $_GET['view'] ) ) {
+            $is_mobile = ( 'mobile' === $_GET['view'] );
+        } elseif ( isset( $_GET['mobile'] ) ) {
+            $is_mobile = ( '1' === $_GET['mobile'] || 'true' === $_GET['mobile'] );
+        }
 
-        // 2. Mobile View
-        get_template_part( 'includes/home-mobile' );
+        if ( $is_mobile ) {
+            // 1. Mobile View only
+            get_template_part( 'includes/home-mobile' );
+        } else {
+            // 2. Desktop View only
+            get_template_part( 'includes/home-desktop' );
+        }
         ?>
     </div>
 </div>
