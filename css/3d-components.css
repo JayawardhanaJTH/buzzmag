@@ -2527,12 +2527,131 @@ body.fl-drawer-open {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    box-sizing: border-box;
+}
+
+.fl-ad-728x90 .fl-ad-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
 }
 
 .fl-ad-728x90 .fl-ad-content,
 .fl-ad-728x90 img,
 .fl-ad-728x90 ins.adsbygoogle {
     max-width: 100%;
+    height: auto;
+}
+
+/* Desktop 728x90 & 718x90 Ad Container Sizing */
+@media (min-width: 728px) {
+    .fl-ad-728x90 {
+        min-height: 90px;
+    }
+
+    .fl-ad-728x90 .fl-ad-content > div,
+    .fl-ad-728x90 div[id^="block_"],
+    .fl-ad-stack-center div[id^="block_"],
+    .section-ad-container-double > div {
+        width: 718px !important;
+        max-width: 728px !important;
+        height: 90px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Mobile 350x50 / 320x50 Responsive Override for 728x90 Ad Blocks */
+@media (max-width: 767px) {
+    .fl-ad-stack-center {
+        margin: 14px auto;
+        gap: 10px;
+    }
+
+    .fl-ad-728x90 {
+        max-width: 100% !important;
+        min-height: 50px;
+        overflow: visible !important;
+    }
+
+    .fl-ad-728x90 .fl-ad-content {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    /* Force mobile banner size (350x50) overriding inline style="width: 718px; height: 90px;" */
+    .fl-ad-728x90 .fl-ad-content > div,
+    .fl-ad-728x90 div[id^="block_"],
+    .fl-ad-stack-center div[id^="block_"],
+    .fl-article-end-ad div[id^="block_"],
+    .section-ad-container-double > div {
+        width: 350px !important;
+        max-width: 100% !important;
+        height: 50px !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+    }
+
+    .fl-ad-728x90 .fl-ad-content iframe,
+    .fl-ad-728x90 .fl-ad-content img,
+    .fl-ad-stack-center iframe,
+    .fl-ad-stack-center img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Small Mobile Screens (<= 360px) */
+@media (max-width: 360px) {
+    .fl-ad-728x90 .fl-ad-content > div,
+    .fl-ad-728x90 div[id^="block_"],
+    .fl-ad-stack-center div[id^="block_"],
+    .fl-article-end-ad div[id^="block_"],
+    .section-ad-container-double > div {
+        width: 320px !important;
+        max-width: 100% !important;
+        height: 50px !important;
+    }
+}
+
+/* Legacy & Custom Ad Container Compatibility */
+.section-ad-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.section-ad-container-single {
+    width: 100%;
+    margin-top: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-ad-container-double {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-ad-img {
+    width: 100%;
+    height: auto;
+}
+
+.section-ad-img-double {
+    width: 50%;
     height: auto;
 }
 
