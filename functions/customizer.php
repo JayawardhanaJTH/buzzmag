@@ -1725,22 +1725,22 @@ function buzzmag_customizer( $wp_customize ) {
 		// =========================================================================
 		$wp_customize->add_section( 'buzzmag_ad_spaces_section', array(
 			'title'       => esc_html__( 'Ad Spaces (Desktop & Mobile)', 'buzzmag' ),
-			'description' => esc_html__( 'Configure Header Ad Scripts, 11 Homepage Ads, 11 Inner Post/Category Ads, and Global Sticky Bottom Ad. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide without leaving empty space.', 'buzzmag' ),
+			'description' => esc_html__( 'Configure Body Ad Scripts, 11 Homepage Ads, 11 Inner Post/Category Ads, and Global Sticky Bottom Ad. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide without leaving empty space.', 'buzzmag' ),
 			'priority'    => 35,
 		) );
 
 		$ad_p = 1;
 
 		// ---------------------------------------------------------------------
-		// 0. HEADER AD SCRIPTS (<head>)
+		// 0. TOP OF BODY AD SCRIPTS (wp_body_open)
 		// ---------------------------------------------------------------------
 		$wp_customize->add_setting( 'ad_header_scripts', array(
 			'default'           => '',
 			'sanitize_callback' => 'buzzmag_sanitize_header_script',
 		) );
 		$wp_customize->add_control( 'ad_header_scripts', array(
-			'label'       => esc_html__( 'Header Ad Scripts (<head>)', 'buzzmag' ),
-			'description' => esc_html__( 'Paste Google AdSense auto-ads script (e.g. pagead2.googlesyndication.com tag), Google Ad Manager (GPT), Prebid.js, or any header tracking code to inject directly into the <head> tag across all pages.', 'buzzmag' ),
+			'label'       => esc_html__( 'Ad Scripts (Top of <body>)', 'buzzmag' ),
+			'description' => esc_html__( 'Paste Google AdSense, Google Tag Manager (GTM body), Prebid.js, or any ad scripts to inject immediately after the opening <body> tag (wp_body_open) across all pages.', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
