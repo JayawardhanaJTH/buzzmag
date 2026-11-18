@@ -76,9 +76,6 @@ get_header();
                     ?>
                     </div>
 
-                    <!-- Ad Space: Bottom of Post Image (Two 728x90 Ads Centered) -->
-                    <?php buzzmag_render_stacked_centered_ads( 'post_img_bottom_1', 'post_img_bottom_2', 'fl-post-img-bottom-ads' ); ?>
-
                     <!-- 2. Post Article Body -->
                     <div class="fl-single-body-wrap">
                         <article class="fl-article" post-id="<?php the_ID(); ?>">
@@ -150,6 +147,10 @@ get_header();
                         get_template_part( 'includes/author-box' );
                         ?>
                     </div>
+
+                    <!-- Ad Space: Bottom of Post Image (Two 728x90 Ads Centered) -->
+                    <?php buzzmag_render_stacked_centered_ads( 'post_img_bottom_1', 'post_img_bottom_2', 'fl-post-img-bottom-ads' ); ?>
+
                 </div>
 
                 <?php
