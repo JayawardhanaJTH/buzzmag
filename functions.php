@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Constants
 	define('fl_theme_name','BuzzMag');
 	define('fl_theme_path', get_template_directory_uri());
-    define('fl_theme_version', '3.1.0');
+    define('fl_theme_version', '3.1.1');
 
 // Content Width
 if ( ! isset( $content_width ) ) {
@@ -114,7 +114,7 @@ function buzzmag_addons_scripts() {
     // Fonts    
     wp_enqueue_style( 'buzzmag-google-fonts', buzzmag_google_fonts(), array(), null );
     // BuzzMag Style
-	wp_enqueue_style( 'buzzmag-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'buzzmag-style', get_stylesheet_uri(), array(), fl_theme_version );
     // 3D Components & Rebranded Layout Style
     wp_enqueue_style( 'buzzmag-3d-style', fl_theme_path . '/css/3d-components.css', array( 'buzzmag-style' ), fl_theme_version );
     // JS
