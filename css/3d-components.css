@@ -304,6 +304,7 @@
     grid-template-columns: minmax(0, 31fr) minmax(0, 40fr);
     gap: 22px;
     width: 100%;
+    min-width: 0;
     box-sizing: border-box;
 }
 
@@ -313,6 +314,13 @@
         gap: 25px;
     }
 
+    .fl-home-2col-subgrid {
+        grid-template-columns: minmax(0, 31fr) minmax(0, 40fr);
+        gap: 18px;
+    }
+}
+
+@media (max-width: 640px) {
     .fl-home-2col-subgrid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -2570,7 +2578,7 @@ body.fl-drawer-open {
     .fl-ad-stack-center div[id^="block_"],
     .section-ad-container-double > div {
         width: 718px !important;
-        max-width: 728px !important;
+        max-width: 100% !important;
         height: 90px !important;
         margin: 0 auto !important;
     }
