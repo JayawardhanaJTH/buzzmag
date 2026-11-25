@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Constants
 	define('fl_theme_name','BuzzMag');
 	define('fl_theme_path', get_template_directory_uri());
-    define('fl_theme_version', '3.1.2');
+    define('fl_theme_version', '3.1.4');
 
 // Content Width
 if ( ! isset( $content_width ) ) {

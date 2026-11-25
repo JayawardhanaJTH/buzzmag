@@ -831,16 +831,25 @@ function buzzmag_get_category_badge_meta( $term = null ) {
         }
     }
 
+    $political_slug = get_theme_mod( 'cat_slug_political', get_theme_mod( 'cat_slug_politics', 'politics' ) );
+
     $map = array(
-        get_theme_mod( 'cat_slug_local', 'local' )           => array( 'icon' => 'fa-map-marker',   'color' => '#2980b9' ),
-        get_theme_mod( 'cat_slug_political', get_theme_mod( 'cat_slug_politics', 'political' ) ) => array( 'icon' => 'fa-balance-scale',  'color' => '#8e44ad' ),
-        'politics'                                            => array( 'icon' => 'fa-balance-scale',  'color' => '#8e44ad' ),
-        get_theme_mod( 'cat_slug_offroad', 'off-road' )       => array( 'icon' => 'fa-road',         'color' => '#e67e22' ),
-        'offroad'                                             => array( 'icon' => 'fa-road',         'color' => '#e67e22' ),
-        get_theme_mod( 'cat_slug_business', 'business' )      => array( 'icon' => 'fa-line-chart',   'color' => '#27ae60' ),
-        get_theme_mod( 'cat_slug_sports', 'sports' )          => array( 'icon' => 'fa-trophy',       'color' => '#ed0e28' ),
-        get_theme_mod( 'cat_slug_foreign', 'foreign' )        => array( 'icon' => 'fa-globe',        'color' => '#16a085' ),
-        get_theme_mod( 'cat_slug_featured', 'featured' )      => array( 'icon' => 'fa-star',         'color' => '#d35400' ),
+        get_theme_mod( 'cat_slug_local', 'local' )           => array( 'icon' => 'fa-map-marker',    'color' => '#2980b9' ),
+        $political_slug                                       => array( 'icon' => 'fa-balance-scale', 'color' => '#8e44ad' ),
+        'politics'                                            => array( 'icon' => 'fa-balance-scale', 'color' => '#8e44ad' ),
+        'political'                                           => array( 'icon' => 'fa-balance-scale', 'color' => '#8e44ad' ),
+        'deshapalana'                                         => array( 'icon' => 'fa-balance-scale', 'color' => '#8e44ad' ),
+        get_theme_mod( 'cat_slug_offroad', 'off-road' )       => array( 'icon' => 'fa-road',          'color' => '#e67e22' ),
+        'offroad'                                             => array( 'icon' => 'fa-road',          'color' => '#e67e22' ),
+        'off-road'                                            => array( 'icon' => 'fa-road',          'color' => '#e67e22' ),
+        get_theme_mod( 'cat_slug_business', 'business' )      => array( 'icon' => 'fa-line-chart',    'color' => '#27ae60' ),
+        'business'                                            => array( 'icon' => 'fa-line-chart',    'color' => '#27ae60' ),
+        get_theme_mod( 'cat_slug_sports', 'sports' )          => array( 'icon' => 'fa-trophy',        'color' => '#ed0e28' ),
+        'sports'                                              => array( 'icon' => 'fa-trophy',        'color' => '#ed0e28' ),
+        get_theme_mod( 'cat_slug_foreign', 'foreign' )        => array( 'icon' => 'fa-globe',         'color' => '#16a085' ),
+        'foreign'                                             => array( 'icon' => 'fa-globe',         'color' => '#16a085' ),
+        get_theme_mod( 'cat_slug_featured', 'featured' )      => array( 'icon' => 'fa-star',          'color' => '#d35400' ),
+        'featured'                                            => array( 'icon' => 'fa-star',          'color' => '#d35400' ),
     );
 
     if ( ! empty( $slug ) && isset( $map[ $slug ] ) ) {

@@ -148,11 +148,12 @@ get_header();
                         ?>
                     </div>
 
-                    <!-- Ad Space: Bottom of Post Image (Two 728x90 Ads Centered) -->
-                    <?php buzzmag_render_stacked_centered_ads( 'post_img_bottom_1', 'post_img_bottom_2', 'fl-post-img-bottom-ads' ); ?>
-
+                    
                 </div>
-
+                
+                <!-- Ad Space: Bottom of Post Image (Two 728x90 Ads Centered) -->
+                <?php buzzmag_render_stacked_centered_ads( 'post_img_bottom_1', 'post_img_bottom_2', 'fl-post-img-bottom-ads' ); ?>
+                
                 <?php
                 // Under Post Modules: Latest (6) and Most Read (last 36hr, 6)
                 buzzmag_render_single_under_post( get_the_ID() );
