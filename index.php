@@ -28,12 +28,7 @@ if ( ! empty( $home_ad ) ) { ?>
     <div class="fl-container clearfix">
         <?php
         // Render strictly ONE view (Desktop OR Mobile) to prevent duplicate ad container IDs in the DOM
-        $is_mobile = wp_is_mobile();
-        if ( isset( $_GET['view'] ) ) {
-            $is_mobile = ( 'mobile' === $_GET['view'] );
-        } elseif ( isset( $_GET['mobile'] ) ) {
-            $is_mobile = ( '1' === $_GET['mobile'] || 'true' === $_GET['mobile'] );
-        }
+        $is_mobile = function_exists( 'buzzmag_is_mobile' ) ? buzzmag_is_mobile() : wp_is_mobile();
 
         if ( $is_mobile ) {
             // 1. Mobile View only

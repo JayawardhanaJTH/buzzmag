@@ -62,13 +62,15 @@ function buzzmag_render_single_under_post( $current_post_id = 0, $show_middle_ad
         ?>
 
         <!-- Mobile: Two (300x300) ads between Latest News and Most Read -->
-        <div class="fl-mobile-only fl-under-between-ads-mobile">
-            <?php
-            if ( function_exists( 'buzzmag_render_stacked_300_ads' ) ) {
-                buzzmag_render_stacked_300_ads( 'mobile_post_between_latest_1', 'mobile_post_between_latest_2', 'fl-post-between-latest-mostread', 'mobile_home_between_latest_1', 'mobile_home_between_latest_2' );
-            }
-            ?>
-        </div>
+        <?php if ( function_exists( 'buzzmag_is_mobile' ) ? buzzmag_is_mobile() : wp_is_mobile() ) : ?>
+            <div class="fl-mobile-only fl-under-between-ads-mobile">
+                <?php
+                if ( function_exists( 'buzzmag_render_stacked_300_ads' ) ) {
+                    buzzmag_render_stacked_300_ads( 'mobile_post_between_latest_1', 'mobile_post_between_latest_2', 'fl-post-between-latest-mostread', 'mobile_home_between_latest_1', 'mobile_home_between_latest_2' );
+                }
+                ?>
+            </div>
+        <?php endif; ?>
 
         <!-- 2. Most Read Posts (Most Viewed in 96h, 6 posts) -->
         <div class="fl-under-block fl-under-most-read">
@@ -187,11 +189,13 @@ function buzzmag_render_single_sidebar_categories( $current_post_id = 0 ) {
     </div>
 
     <!-- Mobile-Only: Homepage 3rd Column Utilities (Videos & Sri Lankan Utilities) at bottom of single post view -->
-    <div class="fl-mobile-only fl-single-mobile-utilities-wrap">
-        <div class="fl-mobile-videos-utilities">
-            <?php buzzmag_render_mobile_column_3_utilities(); ?>
+    <?php if ( function_exists( 'buzzmag_is_mobile' ) ? buzzmag_is_mobile() : wp_is_mobile() ) : ?>
+        <div class="fl-mobile-only fl-single-mobile-utilities-wrap">
+            <div class="fl-mobile-videos-utilities">
+                <?php buzzmag_render_mobile_column_3_utilities(); ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
     <?php
 }
 

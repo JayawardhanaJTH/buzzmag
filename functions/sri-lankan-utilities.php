@@ -772,34 +772,47 @@ function buzzmag_render_column_3_utilities() {
 /**
  * Render Mobile 3rd Column Utilities Stack
  *
- * Dedicated rendering method for mobile view so desktop Column 3 ad container
- * codes (home_col3_top, home_col3_ad_1, home_col3_vert_1, etc.) are NOT repeated
- * in the DOM. This prevents DOM ID collision and empty/white space issues caused
- * by ad network scripts attempting to attach to duplicate IDs.
+ * Dedicated rendering method for mobile view with mobile utilities stack and
+ * mobile utility ad placements. Only rendered on mobile requests (via buzzmag_is_mobile()).
  */
 function buzzmag_render_mobile_column_3_utilities() {
-    // 1. Video Channels (4 Standalone Cards)
+    // 1. Beginning of 3rd Column (300x300 Ad)
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_top', 'fl-ad-300x300' );
+    }
+
+    // 2. Video Channels (4 Standalone Cards)
     buzzmag_render_video_channels_card();
 
-    // 2. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
+    // 3. 3rd Column 300x300 Ad #1
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_ad_1', 'fl-ad-300x300' );
+    }
+
+    // 4. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
     buzzmag_render_top_stories_card();
 
-    // 3. Cartoon of the Day
+    // 5. Cartoon of the Day
     buzzmag_render_cartoon_card();
 
-    // 4. WhatsApp Community Banner
+    // 6. 3rd Column 300x300 Ad #2
+    if ( function_exists( 'buzzmag_render_ad_space' ) ) {
+        buzzmag_render_ad_space( 'home_col3_ad_2', 'fl-ad-300x300' );
+    }
+
+    // 7. WhatsApp Community Banner
     buzzmag_render_whatsapp_banner();
 
-    // 5. Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa
+    // 8. Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa
     buzzmag_render_astrology_card();
 
-    // 6. Advertise With Us (Links to WhatsApp)
+    // 9. Advertise With Us (Links to WhatsApp)
     buzzmag_render_advertise_banner();
 
-    // 7. Facebook Page Card
+    // 10. Facebook Page Card
     buzzmag_render_facebook_banner();
 
-    // 8. TikTok Banner
+    // 11. TikTok Banner
     buzzmag_render_tiktok_banner();
 }
 

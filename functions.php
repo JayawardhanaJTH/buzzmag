@@ -17,7 +17,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Constants
 	define('fl_theme_name','BuzzMag');
 	define('fl_theme_path', get_template_directory_uri());
-    define('fl_theme_version', '3.1.5');
+    define('fl_theme_version', '3.1.6');
+
+/**
+ * Check if the Current Request is Mobile
+ *
+ * Checks WordPress native wp_is_mobile() with support for URL test parameter overrides
+ * (?view=mobile or ?mobile=1).
+ *
+ * @return bool True if mobile request, false otherwise.
+ */
+function buzzmag_is_mobile() {
+    $is_mobile = wp_is_mobile();
+    if ( isset( $_GET['view'] ) ) {
+        $is_mobile = ( 'mobile' === $_GET['view'] );
+    } elseif ( isset( $_GET['mobile'] ) ) {
+        $is_mobile = ( '1' === $_GET['mobile'] || 'true' === $_GET['mobile'] );
+    }
+    return (bool) $is_mobile;
+}
 
 // Content Width
 if ( ! isset( $content_width ) ) {
