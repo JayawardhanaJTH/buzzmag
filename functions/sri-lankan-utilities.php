@@ -449,8 +449,10 @@ function buzzmag_render_whatsapp_banner() {
 
 /**
  * Render "Advertise With Us" Banner (Links to WhatsApp)
+ *
+ * @param string $custom_class Optional extra CSS class.
  */
-function buzzmag_render_advertise_banner() {
+function buzzmag_render_advertise_banner( $custom_class = '' ) {
     if ( get_theme_mod( 'hide_advertise_banner', false ) ) {
         return;
     }
@@ -459,8 +461,13 @@ function buzzmag_render_advertise_banner() {
     $ad_title   = get_theme_mod( 'advertise_title', esc_html__( 'Advertise With Us', 'buzzmag' ) );
     $ad_desc    = get_theme_mod( 'advertise_desc', esc_html__( 'Promote your brand or business to thousands of daily readers. Contact our advertising desk directly on WhatsApp.', 'buzzmag' ) );
     $ad_btn     = get_theme_mod( 'advertise_btn_text', esc_html__( 'Chat on WhatsApp', 'buzzmag' ) );
+
+    $classes = 'fl-3d-card fl-promo-banner fl-advertise-banner';
+    if ( ! empty( $custom_class ) ) {
+        $classes .= ' ' . esc_attr( $custom_class );
+    }
     ?>
-    <div class="fl-3d-card fl-promo-banner fl-advertise-banner" id="advertise-banner">
+    <div class="<?php echo esc_attr( $classes ); ?>" id="advertise-banner">
         <div class="fl-promo-content">
             <div class="fl-promo-icon-wrap">
                 <i class="fa fa-bullhorn"></i>
@@ -761,4 +768,39 @@ function buzzmag_render_column_3_utilities() {
         buzzmag_render_ad_space( 'home_col3_ad_4', 'fl-ad-300x300' );
     }
 }
+
+/**
+ * Render Mobile 3rd Column Utilities Stack
+ *
+ * Dedicated rendering method for mobile view so desktop Column 3 ad container
+ * codes (home_col3_top, home_col3_ad_1, home_col3_vert_1, etc.) are NOT repeated
+ * in the DOM. This prevents DOM ID collision and empty/white space issues caused
+ * by ad network scripts attempting to attach to duplicate IDs.
+ */
+function buzzmag_render_mobile_column_3_utilities() {
+    // 1. Video Channels (4 Standalone Cards)
+    buzzmag_render_video_channels_card();
+
+    // 2. Top Stories of the Day (දවසේ ප්‍රධාන පුවත්)
+    buzzmag_render_top_stories_card();
+
+    // 3. Cartoon of the Day
+    buzzmag_render_cartoon_card();
+
+    // 4. WhatsApp Community Banner
+    buzzmag_render_whatsapp_banner();
+
+    // 5. Astrological Info: Rahu Kalaya, Subha Dishawa, Maru Sitina Dishawa
+    buzzmag_render_astrology_card();
+
+    // 6. Advertise With Us (Links to WhatsApp)
+    buzzmag_render_advertise_banner();
+
+    // 7. Facebook Page Card
+    buzzmag_render_facebook_banner();
+
+    // 8. TikTok Banner
+    buzzmag_render_tiktok_banner();
+}
+
 

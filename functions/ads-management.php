@@ -131,6 +131,55 @@ function buzzmag_render_stacked_centered_ads( $slot_1, $slot_2, $extra_classes =
 }
 
 /**
+ * Render Two 300x300 Ads Stacked / Centered
+ * Used for:
+ * - Mobile Homepage: Between Latest News and Top Stories / Most Viewed
+ * - Mobile Inner Article: Between Latest News and Most Read
+ *
+ * @param string $slot_1          First 300x300 ad slot ID.
+ * @param string $slot_2          Second 300x300 ad slot ID.
+ * @param string $extra_classes   Optional extra CSS classes.
+ * @param string $fallback_slot_1 Optional fallback slot ID for slot 1.
+ * @param string $fallback_slot_2 Optional fallback slot ID for slot 2.
+ * @return bool True if at least one ad was rendered.
+ */
+function buzzmag_render_stacked_300_ads( $slot_1, $slot_2, $extra_classes = '', $fallback_slot_1 = '', $fallback_slot_2 = '' ) {
+    $html_1 = buzzmag_get_ad_html( $slot_1 );
+    if ( '' === $html_1 && ! empty( $fallback_slot_1 ) ) {
+        $html_1 = buzzmag_get_ad_html( $fallback_slot_1 );
+    }
+
+    $html_2 = buzzmag_get_ad_html( $slot_2 );
+    if ( '' === $html_2 && ! empty( $fallback_slot_2 ) ) {
+        $html_2 = buzzmag_get_ad_html( $fallback_slot_2 );
+    }
+
+    if ( '' === $html_1 && '' === $html_2 ) {
+        return false;
+    }
+    ?>
+    <div class="fl-ad-stack-300 <?php echo esc_attr( $extra_classes ); ?>">
+        <?php if ( '' !== $html_1 ) : ?>
+            <div class="fl-ad-space fl-ad-300x300 fl-ad-<?php echo esc_attr( $slot_1 ); ?>">
+                <div class="fl-ad-content">
+                    <?php echo $html_1; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ( '' !== $html_2 ) : ?>
+            <div class="fl-ad-space fl-ad-300x300 fl-ad-<?php echo esc_attr( $slot_2 ); ?>">
+                <div class="fl-ad-content">
+                    <?php echo $html_2; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return true;
+}
+
+/**
  * Render Two Vertical Ads (155x600) Side-by-Side in Column 3 or Side Panel
  *
  * @param string $slot_1        First 155x600 vertical ad slot ID.

@@ -139,6 +139,11 @@ get_header();
                             // Single Post: End of Article Content Ad / Script
                             if ( function_exists( 'buzzmag_render_article_end_ad' ) ) {
                                 buzzmag_render_article_end_ad();
+                            }
+
+                            // Single Post: "Advertise With Us" banner (Desktop & Mobile)
+                            if ( function_exists( 'buzzmag_render_advertise_banner' ) ) {
+                                buzzmag_render_advertise_banner( 'fl-article-end-advertise' );
                             } ?>
                         </article>
 

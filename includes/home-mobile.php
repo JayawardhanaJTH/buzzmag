@@ -62,6 +62,13 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
         </div>
     </section>
 
+    <!-- Ad: Two (300x300) ads between Latest News and Top Stories (Mobile) -->
+    <?php
+    if ( function_exists( 'buzzmag_render_stacked_300_ads' ) ) {
+        buzzmag_render_stacked_300_ads( 'mobile_home_between_latest_1', 'mobile_home_between_latest_2', 'fl-home-between-latest-top' );
+    }
+    ?>
+
     <!-- 3. Top Story: 6 Posts (Within Week) (3D each post) -->
     <section class="fl-mobile-section fl-mobile-top-stories">
         <div class="fl-mobile-section-header">
@@ -153,7 +160,7 @@ $featured_slug = get_theme_mod( 'cat_slug_featured', 'featured' );
 
     <!-- 5. End of Page: Video / YouTube column (as desktop 3rd column) & Utilities -->
     <section class="fl-mobile-section fl-mobile-videos-utilities">
-        <?php buzzmag_render_column_3_utilities(); ?>
+        <?php buzzmag_render_mobile_column_3_utilities(); ?>
     </section>
 </div>
 

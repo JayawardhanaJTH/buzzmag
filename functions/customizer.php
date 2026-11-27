@@ -1725,7 +1725,7 @@ function buzzmag_customizer( $wp_customize ) {
 		// =========================================================================
 		$wp_customize->add_section( 'buzzmag_ad_spaces_section', array(
 			'title'       => esc_html__( 'Ad Spaces (Desktop & Mobile)', 'buzzmag' ),
-			'description' => esc_html__( 'Configure Body Ad Scripts, 11 Homepage Ads, 11 Inner Post/Category Ads, and Global Sticky Bottom Ad. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide without leaving empty space.', 'buzzmag' ),
+			'description' => esc_html__( 'Configure Body Ad Scripts, Homepage Ads, Inner Post/Category Ads, Mobile Ad Slots, and Global Sticky Bottom Ad. Paste raw HTML, Google AdSense, scripts, or shortcodes. Leave empty to hide without leaving empty space.', 'buzzmag' ),
 			'priority'    => 35,
 		) );
 
@@ -1925,6 +1925,30 @@ function buzzmag_customizer( $wp_customize ) {
 			'priority'    => $ad_p++,
 		) );
 
+		$wp_customize->add_setting( 'mobile_home_between_latest_1', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'mobile_home_between_latest_1', array(
+			'label'       => esc_html__( 'Home Mobile Ad 1: Between Latest & Most Viewed (300x300 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'First 300x300 ad between Latest News and Top Stories / Most Viewed on mobile homepage.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'mobile_home_between_latest_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'mobile_home_between_latest_2', array(
+			'label'       => esc_html__( 'Home Mobile Ad 2: Between Latest & Most Viewed (300x300 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second 300x300 ad between Latest News and Top Stories / Most Viewed on mobile homepage.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
 		// ---------------------------------------------------------------------
 		// C. INNER POST & CATEGORY PAGE ADS (11 AD SLOTS)
 		// ---------------------------------------------------------------------
@@ -2055,6 +2079,30 @@ function buzzmag_customizer( $wp_customize ) {
 		$wp_customize->add_control( 'post_sidebar_ad_4', array(
 			'label'       => esc_html__( 'Post / Category Ad 11: Side Panel - Ad #4 (300x300)', 'buzzmag' ),
 			'description' => esc_html__( 'Placed after Category 6 (Foreign) on Single Post & Category Page.', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'mobile_post_between_latest_1', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'mobile_post_between_latest_1', array(
+			'label'       => esc_html__( 'Inner Post Mobile Ad 1: Between Latest & Most Read (300x300 #1)', 'buzzmag' ),
+			'description' => esc_html__( 'First 300x300 ad between Latest News and Most Read cards on mobile single post (falls back to Home Mobile Ad 1 if empty).', 'buzzmag' ),
+			'section'     => 'buzzmag_ad_spaces_section',
+			'type'        => 'textarea',
+			'priority'    => $ad_p++,
+		) );
+
+		$wp_customize->add_setting( 'mobile_post_between_latest_2', array(
+			'default'           => '',
+			'sanitize_callback' => 'buzzmag_sanitize_ad_code',
+		) );
+		$wp_customize->add_control( 'mobile_post_between_latest_2', array(
+			'label'       => esc_html__( 'Inner Post Mobile Ad 2: Between Latest & Most Read (300x300 #2)', 'buzzmag' ),
+			'description' => esc_html__( 'Second 300x300 ad between Latest News and Most Read cards on mobile single post (falls back to Home Mobile Ad 2 if empty).', 'buzzmag' ),
 			'section'     => 'buzzmag_ad_spaces_section',
 			'type'        => 'textarea',
 			'priority'    => $ad_p++,
