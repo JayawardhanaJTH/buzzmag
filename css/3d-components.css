@@ -259,10 +259,30 @@
 @media (max-width: 991px) {
     .fl-lead-hero-card {
         flex-direction: column;
+        min-height: auto;
     }
 
     .fl-lead-media {
-        min-height: 240px;
+        min-height: 0;
+        height: auto;
+        flex: none;
+        width: 100%;
+    }
+
+    .fl-lead-media .fl-lead-thumb-link,
+    .fl-lead-media > a:first-child {
+        height: auto;
+        display: block;
+    }
+
+    .fl-lead-media img {
+        height: auto;
+        width: 100%;
+        display: block;
+    }
+
+    .fl-lead-placeholder {
+        min-height: 200px;
     }
 
     .fl-lead-content {
